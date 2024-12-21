@@ -121,6 +121,7 @@ void binSort(vector<int> &nums){
     }
 }
 
+//Not Important for LeetCode
 void shellSort(vector<int> &nums){
     for(int gap = nums.size() / 2; gap >= 1; gap/=2){
         for(int i = gap; i < nums.size(); i++){

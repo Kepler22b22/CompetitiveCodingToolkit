@@ -1,7 +1,7 @@
 Author: Muqi Zhang
 Date: Dec 18 2024
 
-Algorithms
+ALGORITHMS
 
 --------------------------
 Data Structure: 
@@ -10,9 +10,9 @@ Strings
 Linked List (Singly LL, Circular LL, Doubly LL, Circular Doubly LL)
 Stack
 Queue
-Trees (Binary Search Trees, AVL Trees, Search Trees)
+Trees (Binary Search Trees, Search Trees)
 Heap
-Sorting Techniques
+Sorting Techniques (Bubble Sort, Insertion Sort, Selection Sort, Quick Sort, Merge Sort, Counting Sort, Bin Sort)
 Graphs
 
 --------------------------
@@ -191,8 +191,6 @@ VI. Trees:
 8. Generate BST from Preorder: 
 	Summary: 参考VI.2的框架，但是只需要一个int preidx不需要int inidx; 注意: preidx必须是pass by reference的!!!!!!
 
---> AVL Tree: using balanced factor (height of left subtree - height of right subtree)
-
 --------------------------
 VII. Heap: 
 - Heap must be a complete binary tree (height: O(nlogn)). 
@@ -236,11 +234,6 @@ VIII. Sorting Techniques:
 
 7. Bin/Bucket Sort: O(n)
 	Summary: 和Counting Sort唯一不同的就是vector<vector<int>> bin(max+1), 是二维的；所以要注意最后while-loop把bin里的数值cop用到nums array的时候，先nums[i++] = bin[j].back(); 再bin[j].pop_back().
-
-8. Radix Sort: O(n)
-//Not Implemented Yet
-
-9. Shell Sort: O(n^3/2) --> used for sorting very large size list; extension of Insertion Sort. 
 
 --------------------------
 IX. Graphs:
