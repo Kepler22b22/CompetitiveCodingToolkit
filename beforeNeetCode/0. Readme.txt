@@ -243,3 +243,12 @@ VIII. Sorting Techniques:
 9. Shell Sort: O(n^3/2) --> used for sorting very large size list; extension of Insertion Sort. 
 
 --------------------------
+IX. Graphs:
+--> Directed Graph, Simple DiGraph, Non-Directed Graph, Non-connected Graph, Strongly Connected Graph, Directed Acylic Graph, Topological Ordering. 
+--> vertex, weight, edge. 
+-->Spanning Tree. 
+
+1. Prim's MST Algo
+
+2. Kruskal's MST Algo
+--> Disjoint Set
