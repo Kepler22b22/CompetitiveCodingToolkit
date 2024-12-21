@@ -246,9 +246,22 @@ VIII. Sorting Techniques:
 IX. Graphs:
 --> Directed Graph, Simple DiGraph, Non-Directed Graph, Non-connected Graph, Strongly Connected Graph, Directed Acylic Graph, Topological Ordering. 
 --> vertex, weight, edge. 
--->Spanning Tree. 
+--> Spanning Tree. 
 
 1. Prim's MST Algo
+    --> Only need parent data structure to keep track of the parent of each node;
+    --> typedef pair<int, int> Edge; //Pair to represent (weight, vertex); 
+    --> Using min-heap to help to store (weight, vertex); 
+    --> 从u=0开始，while-loop条件: !pq.empty(). 
 
 2. Kruskal's MST Algo
---> Disjoint Set
+    --> Disjoint Set class: rank keeps track of the height of each root; parent keeps track of the parent of each node; so we need both of these two data structures to help; 
+    --> typedef pair<int, int> Edge; //Pair to represent (weight, vertex); 
+    --> 需要给FullEdge写一个comparator: 
+	sort(edges.begin(), edges.end(), [](const FullEdge &a, const FullEdge &b) {
+		return a.weight < b.weight;
+	});
+    --> Step 1: convert adjacency list (graph) to a list of edges; 
+    --> Step 2: Sort edges by weight;
+    --> Step 3: 对于edges中的每一个edge，取出u, v, w; 如果u和v的parent不同：unionSet(u, v), 把edge push进MST中; 
+    --> 如果MST.size() == vertices number - 1, break.
