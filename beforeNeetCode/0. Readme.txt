@@ -1,0 +1,245 @@
+Author: Muqi Zhang
+Date: Dec 18 2024
+
+Algorithms
+
+--------------------------
+Data Structure: 
+Arrays
+Strings
+Linked List (Singly LL, Circular LL, Doubly LL, Circular Doubly LL)
+Stack
+Queue
+Trees (Binary Search Trees, AVL Trees, Search Trees)
+Heap
+Sorting Techniques
+Graphs
+
+--------------------------
+I. Arrays: 
+1. Binary Search: 
+    1) Find the index of target;
+    2) Find the index that its corresponding value is equal or first greater than target, or return -1;
+    3) Find the index that its corresponding value is first greater than target, or return -1;
+    4) Find the index that its corresponding value is equal or first smaller than target, or return -1;
+    5) Find the index that its corresponding value is first smaller than target, or return -1;
+  Summary: 注意while loop的判断条件[1, 4, 5是l <= r; 2, 3是l < r]. 4和5需要result的辅助。
+
+2. Find Single Missing Element in an array: 
+    1) 遍历后的sum - (首项 + 末项) * 项数 / 2
+    2) 遍历后nums[i] - i ?= nums[0] - 0
+
+3. Find Multiple Missing Elements in an Array:
+    1) diff between index and num;
+    2) Hash table;
+  Summary: 第二种方法，先遍历nums得到maximum，hash table的size由max得到
+
+4. Find Duplicates in a Sorted Array:
+    1) Hash Table;
+
+5. Find Duplicates in a Unsorted Array: 
+    1) Hash Table;
+
+6. Find a Pair of Elements with Sum k in Sorted Array:
+    1) Hash Table;
+    2) Two Pointers;
+
+--------------------------
+II. Strings:
+1. Find the length of a String: 
+  Summary: char str[] = "test" (c-style) or string str = "test" (c++ style)
+
+2. Change Cases of a String
+
+3. Count Words and Vowels in a String
+
+4. Reverse a String: 
+  Summary: c/c++'s String type is not mutable, must use char[]; right pointer starts from strlen(str) - 1 (注意 -1！).
+
+5. Compare Strings and Checking Palindrome:
+    1) reverse & compare;
+    2) two pointers;
+
+6. Find duplicates in a String:
+    1) Hash Table;
+    2) Bitwise;
+  Summary: Bitwise需要注意一下！
+
+7. Check if 2 Strings are Anagram:
+    1) Hash Table;
+  Summary: 如果String里有duplicates则bitwise无法使用
+
+8. Permutation of String: 
+    1) Back Tracking;
+  Summary: Medium question in LeetCode!!!
+
+--------------------------
+III. Linked List:
+1. Check if a Pointer is not Pointing any node
+
+2. Display a LL
+
+3. Recursively Display a LL --> reversely display a LL
+
+4. Count Nodes in a LL
+
+5. Sum of All Nodes
+
+6. Search in a LL
+
+7. Insert in a LL
+
+8. Create a LL using Insert
+
+9. Create a LL by Inserting at Last
+
+10. Insert in a Sorted LL
+
+11. Delete from LL
+
+12. Remove Duplicates from Sorted LL
+
+13. Reverse a LL --> Recursively
+
+14. Concatenate 2 LL
+
+15. Merge 2 LL
+
+16. Check loop in LL
+
+--------------------------
+IV. Stack: 
+-push()
+-pop()
+-peek(idx)
+-top()
+-isEmpty()
+
+1. Stack Using Array
+
+2. Stack Using Linked List
+
+3. Parenthesis Matching
+    two situations that parenthesis not matching: 1) after finishing the procedure, stack is not empty;
+                                                  2) try to pop out, but the stack is empty;
+
+4. Infix to Postfix
+
+--------------------------
+V. Queue: 
+-enqueue(x)
+-dequeue()
+-isEmpty()
+
+1. Queue Using Single Pointer (Array)
+
+2. Queue Using Two Pointers (Array)
+* Front pointer should point to第一个element的前一个而不是指向第一个element
+
+3. Circular Queue (front and rear pointers are used circular)
+
+4. Queue Using Linked List
+
+5. Double Ended Queue - DEQueue
+
+6. Priority Queue
+
+7. Queue Using Two Stacks
+
+--------------------------
+VI. Trees:
+--> Binary Tree: deg(T) = 2 --> children = {0, 1, 2}. 
+--> Strict Binary Tree: children = {0, 2}. 
+--> Linked Representation of Binary Tree
+
+1. Binary Tree Traversals:
+    1) Preorder Tree Traversal; --> iterative / recursive
+	Summary: Use stack
+    2) Inorder Tree Traversal; 
+	Summary: BE CAREFUL!!! 
+		 Use stack!!!
+    3) Postorder Tree Traversal;
+	Summary: BE CAREFUL!!!
+		 Use stack!!! 
+		 Need a lastVisit Node!!!
+    4) Level Order Traversal;
+	Summary: BE CAREFUL!!!
+		 Use queue!!!
+
+2. Generate a Tree from Traversals (postorder + inorder or preorder + inorder): 
+	Summary: inorder用来确定node左右两侧的values，preorder用来确定每次dfs的root value
+
+3. Count Height and Nodes: 
+    1) counting height --> recursively, iteratively
+	Summary: 如果用DFS则用stack<pari<Node *, int>>, 如果用BFS，则用queue<Node *>; 三个方法的time & space complexity are similar. Time: O(n), Worst Space: O(n), Space: recursive and DFS using stack O(h), where h is the height of the tree, also is the height of the stack, BFS using queue O(w), where w is the width of the queue, sometimes this is not the height of the tree. 
+
+--> Binary Search Tree: 1) no duplicates; 2) inorder gives sorted order.
+
+4. Search in a Binary Search Tree
+
+5. Insert in a Binary Search Tree (iterative, recursive)
+	Summary: 两个functions都是Node *的return值；而且都应该return root. 
+
+6. Create a Binary Search Tree
+
+7. Delete from Binary Search Tree: 
+	Summary: 
+		case 1: 所删node没有child; 
+		case 2: 所删node只有一个child; 
+		case 3: 如果这个node下面还有其他的node，用inorder predecessor或inorder successor代替其值(写两个helper functions，或者用while loop实现); 
+
+8. Generate BST from Preorder: 
+	Summary: 参考VI.2的框架，但是只需要一个int preidx不需要int inidx; 注意: preidx必须是pass by reference的!!!!!!
+
+--> AVL Tree: using balanced factor (height of left subtree - height of right subtree)
+
+--------------------------
+VII. Heap: 
+- Heap must be a complete binary tree (height: O(nlogn)). 
+- Duplicates are allowed. 
+- Every node's element should be greater or equal to its children's. 
+· Node at index i
+· left child at 2*i
+· right child at 2*i + 1
+- max_heap, min_heap. 
+
+1. Heapify
+
+--------------------------
+VIII. Sorting Techniques:
+--> Criteria for Analysis: 
+- number of comparisons
+- number of swaps
+- adaptive
+- stable
+- extra memory
+
+1. Bubble Sort: O(n^2)
+	Summary: outer for-loop只需要从0～n-1; inner for-loop只需要0～n-1-i. 
+
+2. Insertion Sort: O(n^2)
+
+3. Selection Sort: O(n^2)
+	Summary: outer for-loop只需要从0～n-1; inner for-loop只需要i+1~n. 
+
+4. Quick Sort: O(nlogn)
+	Summary: Base case: quickSort中的if-condition;
+		 注意，使用helper function找到分割点(idx)后，recursive call的boundary index传入: low~idx-1, idx+1~high
+		 需要helper function：锁定每次array中第一个值做pivot，不要使用原本传进来的low和high，重新定义一个i(low)一个j(high), i从low开始++，负责找到所有小于等于pivot的值，j从high开始--，负责找到所有大于pivot的值，如果此时i还小于j，然后swap.
+		 helper function better use while-loop instead of using do-while loop, 但是如果使用while-loop，需要在里面嵌套i<=high和j>=low两个判断. 
+
+5. Merge Sort: O(nlogn) --> iterative & recursive
+	Summary: For merging, we must need extra space. 
+		 对于iterative，outer for-loop应该从cur_size=1开始，1～n, 每次更新是乘以2；inner for-loop每次从low=0开始，每次low+=2*cur_size, 重点要记住mid = min(low + cur_size - 1, (int)nums.size() - 1), high = min(low + 2 * cur_size - 1, (int)nums.size() - 1)的公式!!!
+
+6. Counting Sort: O(n)
+
+7. Bin/Bucket Sort: O(n)
+	Summary: 和Counting Sort唯一不同的就是vector<vector<int>> bin(max+1), 是二维的；所以要注意最后while-loop把bin里的数值cop用到nums array的时候，先nums[i++] = bin[j].back(); 再bin[j].pop_back().
+
+8. Radix Sort: O(n)
+//Not Implemented Yet
+
+9. Shell Sort: O(n^3/2) --> used for sorting very large size list; extension of Insertion Sort. 
+
+--------------------------
