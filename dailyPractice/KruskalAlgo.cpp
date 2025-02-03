@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <queue>
 
 using namespace std;
 
@@ -15,19 +14,18 @@ public:
     }
 
     int find(int i){
-        if(parent[i] == -1) {return i;}
+        if(parent[i] == -1){return i;}
         return parent[i] = find(parent[i]);
     }
-
+    
     void unionSet(int u, int v){
-        int rootU = find(u);
-        int rootV = find(v);
-        if(rank[rootU] != rank[rootV]){
-            if(rank[rootU] < rank[rootV]) {parent[rootU] = rootV;}
-            else if(rank[rootU] > rank[rootV]) {parent[rootV] = rootU;}
+        int rootu = find(u), rootv = find(v);
+        if(rank[rootu] != rank[rootv]){
+            if(rank[rootu] < rank[rootv]){parent[rootu] = rootv;}
+            else if(rank[rootu] > rank[rootv]){parent[rootv] = rootu;}
             else{
-                parent[rootV] = rootU;
-                rank[rootU]++;
+                parent[rootv] = rootu;
+                rank[rootu]++;
             }
         }
     }
@@ -37,13 +35,10 @@ void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
     sort(edges.begin(), edges.end(), [](const tuple<int, int, int> &a, const tuple<int, int, int> &b){
         return get<2>(a) < get<2>(b);
     });
-    
     DisjointSet set(n);
-    vector<tuple<int, int, int>> MST;
+    vector<tuple<int, int ,int>> MST;
     for(const auto &edge : edges){
-        int u = get<0>(edge);
-        int v = get<1>(edge);
-        int w = get<2>(edge);
+        int u = get<0>(edge), v = get<1>(edge), w = get<2>(edge);
         if(set.find(u) != set.find(v)){
             set.unionSet(u, v);
             MST.push_back(edge);
@@ -51,10 +46,8 @@ void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
         if(MST.size() == n - 1){break;}
     }
 
-    // Print the MST
-    cout << "Edge\tWeight\n";
-    for (const auto& edge : MST) {
-        cout << get<0>(edge) << " - " << get<1>(edge) << "\t" << get<2>(edge) << "\n";
+    for(const auto &edge : MST){
+        cout << get<0>(edge) << " " << get<1>(edge) << " " << get<2>(edge) << endl;
     }
 }
 

@@ -9,7 +9,7 @@ public:
     Node *left;
     Node *right;
 
-    Node(int v): val(v), left(NULL), right(NULL){}
+    Node(int v): val(v), left(NULL), right(NULL) {}
 };
 
 void preorderR(Node *root){
@@ -21,7 +21,7 @@ void preorderR(Node *root){
 
 void preorderI(Node *root){
     if(!root){return;}
-    stack<Node *> stk;
+    stack<Node*> stk;
     stk.push(root);
     while(!stk.empty()){
         Node *cur = stk.top();
@@ -41,7 +41,7 @@ void inorderR(Node *root){
 
 void inorderI(Node *root){
     if(!root){return;}
-    stack<Node *> stk;
+    stack<Node*> stk;
     Node *cur = root;
     while(!stk.empty() || cur){
         while(cur){
@@ -64,8 +64,8 @@ void postorderR(Node *root){
 
 void postorderI(Node *root){
     if(!root){return;}
-    stack<Node *> stk;
-    Node * cur = root, *lastVisit = NULL;
+    stack<Node*> stk;
+    Node *cur = root, *lastVisit = NULL;
     while(!stk.empty() || cur){
         while(cur){
             stk.push(cur);

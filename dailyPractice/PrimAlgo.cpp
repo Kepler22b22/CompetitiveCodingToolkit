@@ -1,33 +1,30 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 #include <queue>
+#include <unordered_set>
 
 using namespace std;
 
-void primsAlgo(vector<vector<pair<int, int>>> &edges, int n){
+void primsAlgo(vector<vector<pair<int, int>>> &graph, int n){
     vector<int> parent(n, -1);
     vector<int> key(n, INT_MAX);
-    unordered_set<int> MST;
-    
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // weight, vertex
+    unordered_set<int> visit;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     key[0] = 0;
     pq.push({0, 0});
-
     while(!pq.empty()){
         int v = pq.top().second;
         pq.pop();
-        if(MST.count(v)){continue;}
-        MST.insert(v);
-        for(const auto & edge : edges[v]){
-            if(edge.second < key[edge.first] && !MST.count(edge.first)){
-                key[edge.first] = edge.second;
-                parent[edge.first] = v;
-                pq.push({edge.second, edge.first});
+        if(visit.count(v)){continue;}
+        visit.insert(v);
+        for(const auto &[u, w] : graph[v]){
+            if(!visit.count(u) && key[u] > w){
+                key[u] = w;
+                parent[u] = v;
+                pq.push({w, u});
             }
         }
     }
-
     cout << "Edge \tWeight\n";
     for (int i = 1; i < n; i++) {
         cout << parent[i] << " - " << i << "\t" << key[i] << "\n";

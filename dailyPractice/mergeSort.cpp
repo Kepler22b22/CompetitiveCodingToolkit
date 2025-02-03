@@ -5,22 +5,14 @@ using namespace std;
 
 void merge(vector<int> &nums, int low, int mid, int high){
     vector<int> temp(nums.size());
-    int i = low, j = mid + 1, k = low;
-    while(i <= mid && j <= high){
-        if(nums[i] < nums[j]){
-            temp[k++] = nums[i++];
-        }
-        else{
-            temp[k++] = nums[j++];
-        }
+    int l = low, r = mid + 1, k = low;
+    while(l <= mid && r <= high){
+        if(nums[l] < nums[r]){temp[k++] = nums[l++];}
+        else{temp[k++] = nums[r++];}
     }
-    while(i <= mid){
-        temp[k++] = nums[i++];
-    }
-    while(j <= high){
-        temp[k++] = nums[j++];
-    }
-    for(i = low; i <= high; i++){
+    while(l <= mid){temp[k++] = nums[l++];}
+    while(r <= high){temp[k++] = nums[r++];}
+    for(int i = low; i <= high; i++){
         nums[i] = temp[i];
     }
 }

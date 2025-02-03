@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+
 using namespace std;
 
 int partitionI(vector<int> &nums, int low, int high){
@@ -26,7 +26,7 @@ void quickSortI(vector<int> &nums, int low, int high){
 int partitionII(vector<int> &nums, int low, int high){
     int pivot = nums[high];
     int l = low - 1;
-    for(int r = low; r < high; r++){
+    for(int r = low; r <= high; r++){
         if(nums[r] < pivot){
             l++;
             swap(nums[l], nums[r]);

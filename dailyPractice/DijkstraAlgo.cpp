@@ -9,16 +9,15 @@ vector<int> DijkstraAlgo(vector<vector<pair<int, int>>> &edges, int n, int start
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     dist[start] = 0;
     pq.push({0, start});
-
     while(!pq.empty()){
-        int v = pq.top().second;
+        int u = pq.top().second;
         int dis = pq.top().first;
         pq.pop();
-        if(dis > dist[v]){continue;}
-        for(const auto &[u, w] : edges[v]){
-            if(dist[v] + w < dist[u]){
-                dist[u] = dist[v] + w;
-                pq.push({w, u});
+        if(dis > dist[u]){continue;}
+        for(const auto &[v, w] : edges[u]){
+            if(dist[u] + w < dist[v]){
+                dist[v] = dist[u] + w;
+                pq.push({w, v});
             }
         }
     }

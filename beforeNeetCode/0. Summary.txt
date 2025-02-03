@@ -45,7 +45,7 @@ IV. Sliding Windows
 Date: Feb 2 2025
 1. Quick Sort:
 Hoare method uses nums[low] as pivot, Lomuto uses nums[high] as pivot. 
-So Hoare partition returns right pointer, Lomuto returns left-1 as index. 
+So Hoare partition returns right pointer, Lomuto returns left+1 as index. 
 
 Hoare's pointers start from low and high, Lomuto's pointers both start from low-1 and low. 
 
