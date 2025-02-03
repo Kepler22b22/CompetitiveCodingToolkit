@@ -1,0 +1,73 @@
+Author: Muqi Zhang
+Date: Jan 14 2025
+
+ALGORITHMS
+
+I. Linked Lists
+1. Two Pointers
+1) two pointers既可以用在vector/array上，也可以用在linked list上;
+2) merge既可以用在vector/array上，也可以用在linked list上;
+3) When should we use dummy node (in linked list problems)?
+* Whenever we need to create a new linked list --> reduce code complexity/boundary cases
+eg. merge, break 1 LL into 2 LLs, ...
+--> Problems in LeetCode: 141, 142, 160, 19, 21, 23, 86, 976
+
+2. Reverse Singly Linked List
+--> Problems in LeetCode: 206, 92, 25
+
+3. Palindrome --> palindrome也可以和linked list结合
+--> Problem in LeetCode: 234
+
+II. Two Pointers
+1. 快慢指针
+1) 原地修改/删除
+--> Problems in LeetCode: 26, 283, 83, 27
+
+2. 左右指针(Sliding Window, Binary Search)
+1) nSum
+--> Problems in LeetCode: 167
+2) Reverse Vector
+--> Problem in LeetCode: 344
+3) Palindrome
+--> Problem in LeetCode: 5
+
+III. Binary Search
+注意：
+1) when to use l < r, and when to use l<= r in the while loop condition
+2) how to update left/right pointer --> mid + 1/mid - 1, mid
+
+IV. Sliding Windows
+1) When should we extend the window
+2) When should we shrink the window
+3) When should we update the result
+
+
+Date: Feb 2 2025
+1. Quick Sort:
+Hoare method uses nums[low] as pivot, Lomuto uses nums[high] as pivot. 
+So Hoare partition returns right pointer, Lomuto returns left-1 as index. 
+
+Hoare's pointers start from low and high, Lomuto's pointers both start from low-1 and low. 
+
+Hoare is better for large input and is faster. 
+
+When modifying the pointers for Hoare method, key idea is: 
+if left index's value (nums[l]) is less than or equal to pivot, skip;
+if right index's value is greater than or equal to pivot, skip; 
+also, be careful about the indices within the while loop: 
+left pointer should also be checked to be smaller than high; 
+right pointer should also be checked to be greater than low. 
+
+2. Kruskal vs. Prim vs. Dijkstra
+1) Krystal: <-- minimum spinning tree, undirected weighted graphs
+class DisjointSet: (parent, rank <- depth of this node) find, unionSet
+需要先按照weight的decreasing order sort edges (vector<tuple<int, int, int>), 然后开始遍历edges;
+对于每个u, v, 如果u，v的parent不同，unionSet, 并push进MST中;
+当MST的size等于n-1的时候及时break
+
+2) Prim: <-- minimum spinning tree, undirected weighted graphs
+priority queue, parent, key;
+从index 0开始，先把{0, 0}push进pq中，key[0] = 0, 只要pq不为空...
+
+3) Dijkstra: <-- shortest path, directed weighted and undirected weighted graphs
+priority queue, distance
