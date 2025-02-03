@@ -17,7 +17,7 @@ vector<int> DijkstraAlgo(vector<vector<pair<int, int>>> &edges, int n, int start
         for(const auto &[v, w] : edges[u]){
             if(dist[u] + w < dist[v]){
                 dist[v] = dist[u] + w;
-                pq.push({w, v});
+                pq.push({dist[v], v});
             }
         }
     }
