@@ -6,29 +6,31 @@
 using namespace std;
 
 void primsAlgo(vector<vector<pair<int, int>>> &edges, int n){
-    vector<int> parent(n, -1);
-    vector<int> key(n, INT_MAX);
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    vector<int> parent(n, -1), key(n, INT_MAX);
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
     unordered_set<int> visit;
     key[0] = 0;
     pq.push({0, 0});
     while(!pq.empty()){
         int u = pq.top().second;
+        int w = pq.top().first;
         pq.pop();
         if(visit.count(u)){continue;}
         visit.insert(u);
         for(const auto &edge : edges[u]){
             if(!visit.count(edge.first) && key[edge.first] > edge.second){
-                key[edge.first] = edge.second;
                 parent[edge.first] = u;
+                key[edge.first] = edge.second;
                 pq.push({edge.second, edge.first});
             }
         }
     }
+
     cout << "Edge\tWeight" << endl; 
     for(int i = 1; i < n; i++){
         cout << parent[i] << "-" << i << " " << key[i] << endl;
     }
+
 }
 
 int main() {
@@ -51,6 +53,16 @@ int main() {
     }
 
     primsAlgo(graph, n);
+
+    /*
+    Expected Output:
+    Edge    Weight
+    0-1 2
+    5-2 3
+    0-3 3
+    2-4 1
+    3-5 2
+    */
 
     return 0;
 }

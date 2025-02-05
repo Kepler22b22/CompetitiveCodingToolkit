@@ -3,9 +3,9 @@
 
 using namespace std;
 
-class TrieNode{
+class TrieNode {
 public:
-    unordered_map<char, TrieNode*> children;
+    TrieNode *children[26];
     bool endOfWord;
 
     TrieNode(){
@@ -13,7 +13,7 @@ public:
     }
 };
 
-class PrefixTree{
+class PrefixTree {
 private:
     TrieNode *root;
 
@@ -25,31 +25,35 @@ public:
     void insert(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            if(!cur->children.count(ch)){
-                cur->children[ch] = new TrieNode();
+            int i = ch - 'a';
+            if(!cur->children[i]){
+                cur->children[i] = new TrieNode();
             }
-            cur = cur->children[ch];
+            cur = cur->children[i];
         }
         cur->endOfWord = true;
     }
 
-    bool search(string word){
+    int search(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            if(!cur->children.count(ch)){return false;}
-            cur = cur->children[ch];
+            int i = ch - 'a';
+            if(!cur->children[i]){return false;}
+            cur = cur->children[i];
         }
         return cur->endOfWord;
     }
 
-    bool startsWith(string prefix){
+    int startsWith(string word){
         TrieNode *cur = root;
-        for(char ch : prefix){
-            if(!cur->children.count(ch)){return false;}
-            cur = cur->children[ch];
+        for(char ch : word){
+            int i = ch - 'a';
+            if(!cur->children[i]){return false;}
+            cur = cur->children[i];
         }
         return true;
     }
+
 };
 
 int main() {

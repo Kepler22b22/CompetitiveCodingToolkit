@@ -5,8 +5,8 @@ using namespace std;
 
 int partitionI(vector<int> &nums, int low, int high){
     int pivot = nums[low];
-    int l = 0, r = nums.size() - 1;
-    while(l < r){
+    int l = low, r = high;
+    while(l <= r){
         while(l <= high && nums[l] <= pivot){l++;}
         while(r >= low && nums[r] > pivot){r--;}
         if(l < r){swap(nums[l], nums[r]);}
@@ -46,7 +46,7 @@ void quickSortII(vector<int> &nums, int low, int high){
 
 int main(){
     //Quick Sort I
-    vector<int >nums = {12, 11, 13, 5, 6};
+    vector<int >nums = {3, 3, 3, 3, 3};
     cout << "Original array: ";
     for (int num : nums) {cout << num << " ";}
     cout << endl;
@@ -56,7 +56,7 @@ int main(){
     cout << endl;
 
     //Quick Sort II: nums[high] as pivot
-    nums = {3, 3, 3, 3, 4};
+    nums = {1, 1, 1, 1, 1};
     cout << "Original array II: ";
     for (int num : nums) {cout << num << " ";}
     cout << endl;

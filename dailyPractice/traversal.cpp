@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class Node{
+class Node {
 public:
     int val;
     Node *left, *right;
@@ -21,7 +21,7 @@ void preorderR(Node *root){
 
 void preorderI(Node *root){
     if(!root){return;}
-    stack<Node*> stk;
+    stack<Node *> stk;
     stk.push(root);
     while(!stk.empty()){
         Node *cur = stk.top();
@@ -62,7 +62,7 @@ void postorderR(Node *root){
 }
 
 void postorderI(Node *root){
-    stack<Node*> stk;
+    stack<Node *> stk;
     Node *cur = root, *lastVisit = NULL;
     while(!stk.empty() || cur){
         while(cur){
@@ -88,8 +88,8 @@ void levelOrder(Node *root){
         int len = q.size();
         for(int i = 0; i < len; i++){
             Node *cur = q.front();
-            cout << cur->val << " ";
             q.pop();
+            cout<< cur->val << " ";
             if(cur->left){q.push(cur->left);}
             if(cur->right){q.push(cur->right);}
         }

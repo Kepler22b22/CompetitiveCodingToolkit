@@ -3,7 +3,7 @@
 
 using namespace std;
 
-class DisjointSet{
+class DisjointSet {
 private:
     vector<int> parent, rank;
 
@@ -32,21 +32,21 @@ public:
 };
 
 void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
-    sort(edges.begin(), edges.end(), [](const tuple<int, int, int>&a, const tuple<int, int, int> &b){
+    DisjointSet set(n);
+    vector<tuple<int, int, int>> inMST;
+    sort(edges.begin(), edges.end(), [](const tuple<int, int, int> &a, const tuple<int, int, int> &b){
         return get<2>(a) < get<2>(b);
     });
-    DisjointSet set(n);
-    vector<tuple<int, int, int>> MST;
     for(const auto &edge : edges){
-        int u = get<0>(edge), v = get<1>(edge);
+        int u = get<0>(edge), v = get<1>(edge), w = get<2>(edge);
         if(set.find(u) != set.find(v)){
             set.unionSet(u, v);
-            MST.push_back(edge);
+            inMST.push_back(edge);
         }
-        if(MST.size() == n - 1){break;}
+        if(inMST.size() == n - 1){break;}
     }
 
-    for(const auto &edge : MST){
+    for(const auto &edge : inMST){
         cout << get<0>(edge) << " " << get<1>(edge) << " " << get<2>(edge) << endl;
     }
 }
@@ -64,6 +64,15 @@ int main() {
     };
 
     KruskalAlgo(edges, n);
+
+    /*
+    Expected Output:
+    2 4 1
+    0 1 2
+    3 5 2
+    0 3 3
+    1 3 3
+    */
 
     return 0;
 }
