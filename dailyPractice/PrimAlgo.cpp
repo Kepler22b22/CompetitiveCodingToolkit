@@ -5,29 +5,29 @@
 
 using namespace std;
 
-void primsAlgo(vector<vector<pair<int, int>>> &graph, int n){
+void primsAlgo(vector<vector<pair<int, int>>> &edges, int n){
     vector<int> parent(n, -1);
     vector<int> key(n, INT_MAX);
-    unordered_set<int> visit;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    unordered_set<int> visit;
     key[0] = 0;
     pq.push({0, 0});
     while(!pq.empty()){
-        int v = pq.top().second;
+        int u = pq.top().second;
         pq.pop();
-        if(visit.count(v)){continue;}
-        visit.insert(v);
-        for(const auto &[u, w] : graph[v]){
-            if(!visit.count(u) && key[u] > w){
-                key[u] = w;
-                parent[u] = v;
-                pq.push({w, u});
+        if(visit.count(u)){continue;}
+        visit.insert(u);
+        for(const auto &edge : edges[u]){
+            if(!visit.count(edge.first) && key[edge.first] > edge.second){
+                key[edge.first] = edge.second;
+                parent[edge.first] = u;
+                pq.push({edge.second, edge.first});
             }
         }
     }
-    cout << "Edge \tWeight\n";
-    for (int i = 1; i < n; i++) {
-        cout << parent[i] << " - " << i << "\t" << key[i] << "\n";
+    cout << "Edge\tWeight" << endl; 
+    for(int i = 1; i < n; i++){
+        cout << parent[i] << "-" << i << " " << key[i] << endl;
     }
 }
 

@@ -4,9 +4,9 @@
 using namespace std;
 
 void merge(vector<int> &nums, int low, int mid, int high){
+    int l = low, r = mid + 1, k = l;
     vector<int> temp(nums.size());
-    int l = low, r = mid + 1, k = low;
-    while(l <= mid && r <= high){
+    while(l <= low && r <= high){
         if(nums[l] < nums[r]){temp[k++] = nums[l++];}
         else{temp[k++] = nums[r++];}
     }

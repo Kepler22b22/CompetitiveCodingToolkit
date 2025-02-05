@@ -1,13 +1,13 @@
 #include <iostream>
 #include <stack>
+#include <queue>
 
 using namespace std;
 
 class Node{
 public:
     int val;
-    Node *left;
-    Node *right;
+    Node *left, *right;
 
     Node(int v): val(v), left(NULL), right(NULL) {}
 };
@@ -40,8 +40,7 @@ void inorderR(Node *root){
 }
 
 void inorderI(Node *root){
-    if(!root){return;}
-    stack<Node*> stk;
+    stack<Node *> stk;
     Node *cur = root;
     while(!stk.empty() || cur){
         while(cur){
@@ -63,7 +62,6 @@ void postorderR(Node *root){
 }
 
 void postorderI(Node *root){
-    if(!root){return;}
     stack<Node*> stk;
     Node *cur = root, *lastVisit = NULL;
     while(!stk.empty() || cur){
@@ -71,13 +69,29 @@ void postorderI(Node *root){
             stk.push(cur);
             cur = cur->left;
         }
-        if(stk.top()->right && lastVisit != stk.top()->right){
+        if(stk.top()->right && stk.top()->right != lastVisit){
             cur = stk.top()->right;
         }
         else{
             lastVisit = stk.top();
             cout << stk.top()->val << " ";
             stk.pop();
+        }
+    }
+}
+
+void levelOrder(Node *root){
+    if(!root){return;}
+    queue<Node*> q;
+    q.push(root);
+    while(!q.empty()){
+        int len = q.size();
+        for(int i = 0; i < len; i++){
+            Node *cur = q.front();
+            cout << cur->val << " ";
+            q.pop();
+            if(cur->left){q.push(cur->left);}
+            if(cur->right){q.push(cur->right);}
         }
     }
 }
@@ -117,6 +131,11 @@ int main(){
     // Perform postorder traversal II
     cout << "Postorder Traversal II: ";
     postorderI(root);
+    cout << endl;
+
+    // Perform levelorder traversal II
+    cout << "Levelorder Traversal I: ";
+    levelOrder(root);
     cout << endl;
 
     return 0;
