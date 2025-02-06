@@ -20,33 +20,28 @@ public:
 
     void unionSet(int u, int v){
         int rootu = find(u), rootv = find(v);
-        if(rank[rootu] != rank[rootv]){
-            if(rank[rootu] < rank[rootv]){parent[rootu] = rootv;}
-            else if(rank[rootu] > rank[rootv]){parent[rootv] = rootu;}
-            else{
-                parent[rootv] = rootu;
-                rank[rootu]++;
-            }
+        if(rank[rootu] < rank[rootv]){parent[rootu] = rootv;}
+        else if(rank[rootu] > rank[rootv]){parent[rootv] = rootu;}else{
+            parent[rootv] = rootu;
+            rank[rootu]++;
         }
     }
 };
 
 void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
-    DisjointSet set(n);
-    vector<tuple<int, int, int>> inMST;
-    sort(edges.begin(), edges.end(), [](const tuple<int, int, int> &a, const tuple<int, int, int> &b){
+    sort(edges.begin(), edges.end(), [](const tuple<int, int, int>&a, const tuple<int, int, int>&b){
         return get<2>(a) < get<2>(b);
     });
-    for(const auto &edge : edges){
-        int u = get<0>(edge), v = get<1>(edge), w = get<2>(edge);
+    DisjointSet set(n);
+    vector<tuple<int, int, int>> MST;
+    for(const auto &[u, v, w] : edges){
         if(set.find(u) != set.find(v)){
             set.unionSet(u, v);
-            inMST.push_back(edge);
+            MST.push_back({u, v, w});
         }
-        if(inMST.size() == n - 1){break;}
+        if(MST.size() == n - 1){break;}
     }
-
-    for(const auto &edge : inMST){
+    for(const auto &edge : MST){
         cout << get<0>(edge) << " " << get<1>(edge) << " " << get<2>(edge) << endl;
     }
 }
@@ -71,7 +66,7 @@ int main() {
     0 1 2
     3 5 2
     0 3 3
-    1 3 3
+    2 5 3
     */
 
     return 0;

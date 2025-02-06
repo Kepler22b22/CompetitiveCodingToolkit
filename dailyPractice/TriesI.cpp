@@ -1,5 +1,4 @@
 #include <iostream>
-#include <unordered_map>
 
 using namespace std;
 
@@ -11,6 +10,7 @@ public:
     TrieNode(){
         endOfWord = false;
     }
+
 };
 
 class PrefixTree {
@@ -31,10 +31,10 @@ public:
             }
             cur = cur->children[i];
         }
-        cur->endOfWord = true;
+        cur->endOfWord  = true;
     }
 
-    int search(string word){
+    bool search(string word){
         TrieNode *cur = root;
         for(char ch : word){
             int i = ch - 'a';
@@ -44,7 +44,7 @@ public:
         return cur->endOfWord;
     }
 
-    int startsWith(string word){
+    bool startsWith(string word){
         TrieNode *cur = root;
         for(char ch : word){
             int i = ch - 'a';

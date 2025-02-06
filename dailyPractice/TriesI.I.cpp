@@ -8,7 +8,7 @@ public:
     unordered_map<char, TrieNode*> children;
     bool endOfWord;
 
-    TrieNode (){
+    TrieNode(){
         endOfWord = false;
     }
 };
@@ -17,23 +17,8 @@ class PrefixTree {
 private:
     TrieNode *root;
 
-    bool dfs(string word, int i, TrieNode *cur){
-        if(i == word.size()){return true;}
-        char ch = word[i];
-        if(ch == '.'){
-            for(const auto &child : cur->children){
-                if(dfs(word, i + 1, child.second)){return true;}
-            }
-            return false;
-        }
-        else{
-            if(!cur->children[ch]){return false;}
-            return dfs(word, i + 1, cur->children[ch]);
-        }
-    }
-
 public:
-    PrefixTree (){
+    PrefixTree(){
         root = new TrieNode();
     }
 
@@ -50,33 +35,54 @@ public:
 
     bool search(string word){
         TrieNode *cur = root;
-        return dfs(word, 0, cur);
+        for(char ch : word){
+            if(!cur->children.count(ch)){return false;}
+            cur = cur->children[ch];
+        }
+        return cur->endOfWord;
     }
 
+    bool startsWith(string word){
+        TrieNode *cur = root;
+        for(char ch : word){
+            if(!cur->children.count(ch)){return false;}
+            cur = cur->children[ch];
+        }
+        return true;
+    }
 };
 
 int main() {
     PrefixTree trie;
 
+    // Insert words into the Trie
     trie.insert("apple");
     trie.insert("app");
+    trie.insert("banana");
     trie.insert("bat");
 
+    // Search for words
     cout << "Search 'apple': " << (trie.search("apple") ? "Found" : "Not Found") << endl;
     cout << "Search 'app': " << (trie.search("app") ? "Found" : "Not Found") << endl;
     cout << "Search 'bat': " << (trie.search("bat") ? "Found" : "Not Found") << endl;
-    cout << "Search 'ba.': " << (trie.search("ba.") ? "Found" : "Not Found") << endl;
-    cout << "Search 'b..': " << (trie.search("b..") ? "Found" : "Not Found") << endl;
-    cout << "Search 'cat': " << (trie.search("cat") ? "Found" : "Not Found") << endl;
+    cout << "Search 'ban': " << (trie.search("ban") ? "Found" : "Not Found") << endl;
+
+    // Check for prefixes
+    cout << "Prefix 'ap': " << (trie.startsWith("ap") ? "Exists" : "Does Not Exist") << endl;
+    cout << "Prefix 'ban': " << (trie.startsWith("ban") ? "Exists" : "Does Not Exist") << endl;
+    cout << "Prefix 'ba': " << (trie.startsWith("ba") ? "Exists" : "Does Not Exist") << endl;
+    cout << "Prefix 'cat': " << (trie.startsWith("cat") ? "Exists" : "Does Not Exist") << endl;
 
     /*
     Expected Output:
     Search 'apple': Found
     Search 'app': Found
     Search 'bat': Found
-    Search 'ba.': Found
-    Search 'b..': Found
-    Search 'cat': Not Found
+    Search 'ban': Not Found
+    Prefix 'ap': Exists
+    Prefix 'ban': Exists
+    Prefix 'ba': Exists
+    Prefix 'cat': Does Not Exist
     */
 
     return 0;

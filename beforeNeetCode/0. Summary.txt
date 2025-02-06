@@ -75,3 +75,6 @@ priority queue, distance
 Date: Feb 5 2025
 **Don't forget pq.pop() within the while loop!  **
 **Don't forget edges[u]'s u within the for loop! **
+
+Date: Feb 6 2026
+**Don't forget pq.pop() within the while loop!  **
