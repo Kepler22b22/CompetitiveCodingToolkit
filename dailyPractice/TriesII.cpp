@@ -8,7 +8,7 @@ public:
     unordered_map<char, TrieNode*> children;
     bool endOfWord;
 
-    TrieNode (){
+    TrieNode(){
         endOfWord = false;
     }
 };
@@ -27,13 +27,13 @@ private:
             return false;
         }
         else{
-            if(!cur->children[ch]){return false;}
+            if(!cur->children.count(ch)){return false;}
             return dfs(word, i + 1, cur->children[ch]);
         }
     }
 
 public:
-    PrefixTree (){
+    PrefixTree(){
         root = new TrieNode();
     }
 
@@ -52,7 +52,6 @@ public:
         TrieNode *cur = root;
         return dfs(word, 0, cur);
     }
-
 };
 
 int main() {

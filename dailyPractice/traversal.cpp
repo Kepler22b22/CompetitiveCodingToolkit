@@ -25,8 +25,8 @@ void preorderI(Node *root){
     stk.push(root);
     while(!stk.empty()){
         Node *cur = stk.top();
-        stk.pop();
         cout << cur->val << " ";
+        stk.pop();
         if(cur->right){stk.push(cur->right);}
         if(cur->left){stk.push(cur->left);}
     }
@@ -40,7 +40,7 @@ void inorderR(Node *root){
 }
 
 void inorderI(Node *root){
-    stack<Node *> stk;
+    stack<Node*> stk;
     Node *cur = root;
     while(!stk.empty() || cur){
         while(cur){
@@ -62,14 +62,14 @@ void postorderR(Node *root){
 }
 
 void postorderI(Node *root){
-    stack<Node *> stk;
+    stack<Node*> stk;
     Node *cur = root, *lastVisit = NULL;
     while(!stk.empty() || cur){
         while(cur){
             stk.push(cur);
             cur = cur->left;
         }
-        if(stk.top()->right && stk.top()->right != lastVisit){
+        if(stk.top()->right && lastVisit != stk.top()->right){
             cur = stk.top()->right;
         }
         else{
@@ -88,8 +88,8 @@ void levelOrder(Node *root){
         int len = q.size();
         for(int i = 0; i < len; i++){
             Node *cur = q.front();
+            cout << cur->val << " ";
             q.pop();
-            cout<< cur->val << " ";
             if(cur->left){q.push(cur->left);}
             if(cur->right){q.push(cur->right);}
         }

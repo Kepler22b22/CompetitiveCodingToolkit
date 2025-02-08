@@ -6,7 +6,7 @@ using namespace std;
 int partitionI(vector<int> &nums, int low, int high){
     int pivot = nums[low];
     int l = low, r = high;
-    while(l <= r){
+    while(l < r){
         while(l <= high && nums[l] <= pivot){l++;}
         while(r >= low && nums[r] > pivot){r--;}
         if(l < r){swap(nums[l], nums[r]);}
@@ -26,7 +26,7 @@ void quickSortI(vector<int> &nums, int low, int high){
 int partitionII(vector<int> &nums, int low, int high){
     int pivot = nums[high];
     int l = low - 1;
-    for(int r = low; r < high; r++){
+    for(int r = low; r <= high; r++){
         if(nums[r] < pivot){
             l++;
             swap(nums[l], nums[r]);
@@ -38,7 +38,7 @@ int partitionII(vector<int> &nums, int low, int high){
 
 void quickSortII(vector<int> &nums, int low, int high){
     if(low < high){
-        int idx = partitionII(nums, low, high);
+        int idx = partitionI(nums, low, high);
         quickSortI(nums, low, idx - 1);
         quickSortI(nums, idx + 1, high);
     }
@@ -46,7 +46,7 @@ void quickSortII(vector<int> &nums, int low, int high){
 
 int main(){
     //Quick Sort I
-    vector<int >nums = {3, 3, 3, 3, 3};
+    vector<int >nums = {5, 4, 3, 2, 1};
     cout << "Original array: ";
     for (int num : nums) {cout << num << " ";}
     cout << endl;
@@ -56,7 +56,7 @@ int main(){
     cout << endl;
 
     //Quick Sort II: nums[high] as pivot
-    nums = {1, 1, 1, 1, 1};
+    nums = {5, 4, 3, 2, 1};
     cout << "Original array II: ";
     for (int num : nums) {cout << num << " ";}
     cout << endl;

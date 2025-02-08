@@ -5,12 +5,11 @@ using namespace std;
 class TrieNode {
 public:
     TrieNode *children[26];
-    bool endOfWord;
+    bool endOfword;
 
     TrieNode(){
-        endOfWord = false;
+        endOfword = false;
     }
-
 };
 
 class PrefixTree {
@@ -31,20 +30,20 @@ public:
             }
             cur = cur->children[i];
         }
-        cur->endOfWord  = true;
+        cur->endOfword = true;
     }
 
-    bool search(string word){
+    int search(string word){
         TrieNode *cur = root;
         for(char ch : word){
             int i = ch - 'a';
             if(!cur->children[i]){return false;}
             cur = cur->children[i];
         }
-        return cur->endOfWord;
+        return cur->endOfword;
     }
 
-    bool startsWith(string word){
+    int startsWith(string word){
         TrieNode *cur = root;
         for(char ch : word){
             int i = ch - 'a';
@@ -53,7 +52,6 @@ public:
         }
         return true;
     }
-
 };
 
 int main() {

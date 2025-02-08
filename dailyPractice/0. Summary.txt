@@ -85,3 +85,6 @@ Date: Feb 7 2025
 forget to initialize its size! 
 3. Building a max/min heap is O(n), heap sort is O(nlogn)
 4. 注意heapify时候for loop中的起止范围
+
+Date: Feb 8 2025
+1. Heap sort: 注意for loop的起止范围
