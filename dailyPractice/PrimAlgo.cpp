@@ -6,27 +6,29 @@
 using namespace std;
 
 void primsAlgo(vector<vector<pair<int, int>>> &edges, int n){
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
     vector<int> parent(n, -1), key(n, INT_MAX);
-    unordered_set<int> inMST;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    unordered_set<int> visit;
     key[0] = 0;
     pq.push({0, 0});
+
     while(!pq.empty()){
         int u = pq.top().second;
         pq.pop();
-        if(inMST.count(u)){continue;}
-        inMST.insert(u);
-        for(const auto &edge : edges[u]){
-            if(!inMST.count(edge.first) && key[edge.first] > edge.second){
-                key[edge.first] = edge.second;
+        if(visit.count(u)){continue;}
+        visit.insert(u);
+        for(const auto&edge : edges[u]){
+            if(!visit.count(edge.first) && key[edge.first] > edge.second){
                 parent[edge.first] = u;
+                key[edge.first] = edge.second;
                 pq.push({edge.second, edge.first});
             }
         }
     }
+
     cout << "Edge\tWeight" << endl;
-    for(int i = 0; i < n; i++){
-        cout << parent[i] << " " << i << " " << key[i] << endl;
+    for(int i = 1; i < n; i++){
+        cout << parent[i] << " - " << i << " " << key[i] << endl;
     }
 }
 

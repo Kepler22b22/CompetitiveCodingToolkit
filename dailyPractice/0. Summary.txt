@@ -78,3 +78,10 @@ Date: Feb 5 2025
 
 Date: Feb 6 2026
 **Don't forget pq.pop() within the while loop!  **
+
+Date: Feb 7 2025
+1. sorting a max heap with heap sort results in an increasing order
+2. In merge sort, in the merge helper function, when creating a temp vector, don't
+forget to initialize its size! 
+3. Building a max/min heap is O(n), heap sort is O(nlogn)
+4. 注意heapify时候for loop中的起止范围
