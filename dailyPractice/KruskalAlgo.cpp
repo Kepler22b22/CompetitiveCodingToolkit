@@ -21,7 +21,7 @@ public:
     void unionSet(int u, int v){
         int rootu = find(u), rootv = find(v);
         if(rank[rootu] < rank[rootv]){parent[rootu] = rootv;}
-        else if(rank[rootu] > rank[rootv]){parent[rootv] = rootu;}
+        else if(rank[rootu] > rank[rootv]){parent[v] = rootu;}
         else{
             parent[rootv] = rootu;
             rank[rootu]++;
@@ -35,7 +35,7 @@ void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
     });
     DisjointSet set(n);
     vector<tuple<int, int, int>> visit;
-    for(const auto & [u, v, w] : edges){
+    for(const auto&[u, v, w] : edges){
         if(set.find(u) != set.find(v)){
             set.unionSet(u, v);
             visit.push_back({u, v, w});
@@ -44,7 +44,7 @@ void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
     }
 
     for(const auto &edge : visit){
-        cout << get<0>(edge) << " " << get<1>(edge) << " " << get<2>(edge) << endl;
+        cout << get<0>(edge) << "-" << get<1>(edge) << " " << get<2>(edge) << endl;
     }
 }
 
