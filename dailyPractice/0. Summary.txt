@@ -88,3 +88,7 @@ forget to initialize its size!
 
 Date: Feb 8 2025
 1. Heap sort: 注意for loop的起止范围
+
+Date: Feb 13 2025
+1. traversal: iteratively postorder if-else condition！
+2. heap sort!

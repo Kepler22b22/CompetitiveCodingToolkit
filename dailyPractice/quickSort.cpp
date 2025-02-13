@@ -38,9 +38,9 @@ int partitionII(vector<int> &nums, int low, int high){
 
 void quickSortII(vector<int> &nums, int low, int high){
     if(low < high){
-        int idx = partitionI(nums, low, high);
-        quickSortI(nums, low, idx - 1);
-        quickSortI(nums, idx + 1, high);
+        int idx = partitionII(nums, low, high);
+        quickSortII(nums, low, idx - 1);
+        quickSortII(nums, idx + 1, high);
     }
 }
 
