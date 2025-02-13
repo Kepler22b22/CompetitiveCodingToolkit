@@ -14,10 +14,10 @@ vector<int> DijkstraAlgo(vector<vector<pair<int, int>>> &edges, int n, int start
         int dis = pq.top().first;
         pq.pop();
         if(dis > dist[u]){continue;}
-        for(const auto &[v, w] : edges[u]){
-            if(dist[v] > dist[u] + w){
-                dist[v] = dist[u] + w;
-                pq.push({dist[v], v});
+        for(const auto &edge : edges[u]){
+            if(dist[edge.first] > dist[u] + edge.second){
+                dist[edge.first] = dist[u] + edge.second;
+                pq.push({dist[edge.first], edge.first});
             }
         }
     }
