@@ -21,7 +21,7 @@ private:
         if(i == word.size()){return true;}
         char ch = word[i];
         if(ch == '.'){
-            for(const auto &child : cur->children){
+            for(const auto & child : cur->children){
                 if(dfs(word, i + 1, child.second)){return true;}
             }
             return false;
@@ -38,8 +38,8 @@ public:
     }
 
     void insert(string word){
-        TrieNode *cur = root;
-        for(const char ch : word){
+        TrieNode * cur = root;
+        for(char &ch : word){
             if(!cur->children.count(ch)){
                 cur->children[ch] = new TrieNode();
             }
@@ -48,7 +48,7 @@ public:
         cur->endOfWord = true;
     }
 
-    int search(string word){
+    bool search(string word){
         TrieNode *cur = root;
         return dfs(word, 0, cur);
     }

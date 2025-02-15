@@ -5,10 +5,10 @@ using namespace std;
 class TrieNode {
 public:
     TrieNode *children[26];
-    bool endOfword;
+    bool endOfWord;
 
     TrieNode(){
-        endOfword = false;
+        endOfWord = false;
     }
 };
 
@@ -23,29 +23,29 @@ public:
 
     void insert(string word){
         TrieNode *cur = root;
-        for(char ch : word){
+        for(char &ch : word){
             int i = ch - 'a';
             if(!cur->children[i]){
                 cur->children[i] = new TrieNode();
             }
             cur = cur->children[i];
         }
-        cur->endOfword = true;
+        cur->endOfWord = true;
     }
 
-    int search(string word){
+    bool search(string word){
         TrieNode *cur = root;
-        for(char ch : word){
+        for(char &ch : word){
             int i = ch - 'a';
             if(!cur->children[i]){return false;}
             cur = cur->children[i];
         }
-        return cur->endOfword;
+        return cur->endOfWord;
     }
 
-    int startsWith(string word){
+    bool startsWith(string word){
         TrieNode *cur = root;
-        for(char ch : word){
+        for(char &ch : word){
             int i = ch - 'a';
             if(!cur->children[i]){return false;}
             cur = cur->children[i];
