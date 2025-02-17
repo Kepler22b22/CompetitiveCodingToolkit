@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream> 
 #include <vector>
 
 using namespace std;
@@ -35,7 +35,7 @@ void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
     });
     DisjointSet set(n);
     vector<tuple<int, int, int>> inMST;
-    for(const auto&[u, v, w] : edges){
+    for(const auto &[u, v, w] : edges){
         if(set.find(u) != set.find(v)){
             set.unionSet(u, v);
             inMST.push_back({u, v, w});
