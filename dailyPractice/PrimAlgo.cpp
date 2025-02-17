@@ -1,11 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <queue>
 #include <unordered_set>
+#include <queue>
 
 using namespace std;
 
-void primsAlgo(vector<vector<pair<int , int>>> &edges, int n){
+void primsAlgo(vector<vector<pair<int ,int>>> &edges, int n){
     vector<int> parent(n, -1), key(n, INT_MAX);
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     unordered_set<int> visit;
@@ -16,7 +16,7 @@ void primsAlgo(vector<vector<pair<int , int>>> &edges, int n){
         pq.pop();
         if(visit.count(u)){continue;}
         visit.insert(u);
-        for(const auto & edge : edges[u]){
+        for(const auto &edge : edges[u]){
             if(!visit.count(edge.first) && key[edge.first] > edge.second){
                 parent[edge.first] = u;
                 key[edge.first] = edge.second;
@@ -24,7 +24,6 @@ void primsAlgo(vector<vector<pair<int , int>>> &edges, int n){
             }
         }
     }
-    cout << "Edge\tWeight" << endl;
     for(int i = 1; i < n; i++){
         cout << parent[i] << " - " << i << " " << key[i] << endl;
     }

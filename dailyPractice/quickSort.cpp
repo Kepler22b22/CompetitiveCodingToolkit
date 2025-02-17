@@ -6,7 +6,7 @@ using namespace std;
 int partitionI(vector<int> &nums, int low, int high){
     int pivot = nums[low];
     int l = low, r = high;
-    while(l < r){
+    while(l <= r){
         while(l <= high && nums[l] <= pivot){l++;}
         while(r >= low && nums[r] > pivot){r--;}
         if(l < r){swap(nums[l], nums[r]);}
@@ -29,7 +29,7 @@ int partitionII(vector<int> &nums, int low, int high){
     for(int r = low; r <= high; r++){
         if(nums[r] < pivot){
             l++;
-            swap(nums[l], nums[r]);
+            swap(nums[r], nums[l]);
         }
     }
     swap(nums[high], nums[l + 1]);
