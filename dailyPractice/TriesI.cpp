@@ -23,7 +23,7 @@ public:
 
     void insert(string word){
         TrieNode *cur = root;
-        for(char &ch : word){
+        for(char ch : word){
             int i = ch - 'a';
             if(!cur->children[i]){
                 cur->children[i] = new TrieNode();
@@ -33,24 +33,24 @@ public:
         cur->endOfWord = true;
     }
 
-    bool search(string word){
-        TrieNode *cur = root;
-        for(char &ch : word){
-            int i = ch - 'a';
-            if(!cur->children[i]){return false;}
-            cur = cur->children[i];
-        }
-        return cur->endOfWord;
-    }
-
     bool startsWith(string word){
         TrieNode *cur = root;
-        for(char &ch : word){
+        for(char ch : word){
             int i = ch - 'a';
             if(!cur->children[i]){return false;}
             cur = cur->children[i];
         }
         return true;
+    }
+
+    bool search(string word){
+        TrieNode *cur = root;
+        for(char ch : word){
+            int i = ch - 'a';
+            if(!cur->children[i]){return false;}
+            cur = cur->children[i];
+        }
+        return cur->endOfWord;
     }
 };
 

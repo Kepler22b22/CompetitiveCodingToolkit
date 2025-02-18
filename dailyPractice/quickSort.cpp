@@ -29,7 +29,7 @@ int partitionII(vector<int> &nums, int low, int high){
     for(int r = low; r <= high; r++){
         if(nums[r] < pivot){
             l++;
-            swap(nums[r], nums[l]);
+            swap(nums[l], nums[r]);
         }
     }
     swap(nums[high], nums[l + 1]);
