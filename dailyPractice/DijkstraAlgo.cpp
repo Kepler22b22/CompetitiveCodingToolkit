@@ -6,7 +6,7 @@ using namespace std;
 
 vector<int> DijkstraAlgo(vector<vector<pair<int, int>>> &edges, int n, int start){
     vector<int> dist(n, INT_MAX);
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int ,int>>> pq;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     dist[start] = 0;
     pq.push({0, start});
     while(!pq.empty()){
@@ -14,9 +14,9 @@ vector<int> DijkstraAlgo(vector<vector<pair<int, int>>> &edges, int n, int start
         int dis = pq.top().first;
         pq.pop();
         if(dis > dist[u]){continue;}
-        for(const auto &edge : edges[u]){
+        for(const auto & edge : edges[u]){
             if(dist[edge.first] > dist[u] + edge.second){
-                dist[edge.first] = edge.second + dist[u];
+                dist[edge.first] = dist[u] + edge.second;
                 pq.push({dist[edge.first], edge.first});
             }
         }

@@ -33,19 +33,19 @@ public:
         cur->endOfWord = true;
     }
 
-    int startsWith(string word){
+    bool startsWith(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            if(!cur->children[ch]){return false;}
+            if(!cur->children.count(ch)){return false;}
             cur = cur->children[ch];
         }
         return true;
     }
 
-    int search(string word){
+    bool search(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            if(!cur->children[ch]){return false;}
+            if(!cur->children.count(ch)){return false;}
             cur = cur->children[ch];
         }
         return cur->endOfWord;
