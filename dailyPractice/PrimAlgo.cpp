@@ -7,7 +7,7 @@ using namespace std;
 
 void primsAlgo(vector<vector<pair<int, int>>> &edges, int n){
     vector<int> parent(n, -1), key(n, INT_MAX);
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int ,int>>> pq;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     unordered_set<int> visit;
     key[0] = 0;
     pq.push({0, 0});
