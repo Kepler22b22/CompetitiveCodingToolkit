@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class TrieNode {
+class TrieNode{
 public:
     TrieNode *children[26];
     bool endOfWord;

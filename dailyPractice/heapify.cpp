@@ -38,7 +38,7 @@ void minHeap(vector<int> &nums){
         heapifyMin(nums, nums.size(), i);
     }
     for(int i = nums.size() - 1; i > 0; i--){
-        swap(nums[0], nums[i]);
+        swap(nums[i], nums[0]);
         heapifyMin(nums, i, 0);
     }
 }
