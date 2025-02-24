@@ -32,7 +32,7 @@ int partitionII(vector<int> &nums, int low, int high){
             swap(nums[l], nums[r]);
         }
     }
-    swap(nums[high], nums[l + 1]);
+    swap(nums[l + 1], nums[high]);
     return l + 1;
 }
 
