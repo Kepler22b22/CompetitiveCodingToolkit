@@ -18,7 +18,7 @@ private:
     TrieNode *root;
 
     bool dfs(string word, int i, TrieNode *cur){
-        if(i == word.size()){return true;}
+        if(i == word.size()){return cur->endOfWord;}
         char ch = word[i];
         if(ch == '.'){
             for(const auto &child : cur->children){
@@ -65,7 +65,7 @@ int main() {
     cout << "Search 'app': " << (trie.search("app") ? "Found" : "Not Found") << endl;
     cout << "Search 'bat': " << (trie.search("bat") ? "Found" : "Not Found") << endl;
     cout << "Search 'ba.': " << (trie.search("ba.") ? "Found" : "Not Found") << endl;
-    cout << "Search 'b..': " << (trie.search("b..") ? "Found" : "Not Found") << endl;
+    cout << "Search 'b.': " << (trie.search("b.") ? "Found" : "Not Found") << endl;
     cout << "Search 'cat': " << (trie.search("cat") ? "Found" : "Not Found") << endl;
 
     /*
@@ -74,7 +74,7 @@ int main() {
     Search 'app': Found
     Search 'bat': Found
     Search 'ba.': Found
-    Search 'b..': Found
+    Search 'b.': Not Found
     Search 'cat': Not Found
     */
 
