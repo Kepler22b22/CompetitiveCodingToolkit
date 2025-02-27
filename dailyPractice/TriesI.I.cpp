@@ -3,7 +3,7 @@
 
 using namespace std;
 
-class TrieNode{
+class TrieNode {
 public:
     unordered_map<char, TrieNode*> children;
     bool endOfWord;

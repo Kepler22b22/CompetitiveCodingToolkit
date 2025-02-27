@@ -40,8 +40,8 @@ void inorderR(Node *root){
 }
 
 void inorderI(Node *root){
-    Node *cur = root;
     stack<Node*> stk;
+    Node *cur = root;
     while(!stk.empty() || cur){
         while(cur){
             stk.push(cur);
@@ -62,8 +62,8 @@ void postorderR(Node *root){
 }
 
 void postorderI(Node *root){
-    Node *cur = root, *lastVisit = NULL;
     stack<Node*> stk;
+    Node *cur = root, *lastVisit = NULL;
     while(!stk.empty() || cur){
         while(cur){
             stk.push(cur);
