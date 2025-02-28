@@ -55,6 +55,11 @@ int findSmaller(vector<int> &nums, int target){
     return res;
 }
 
+
+
+
+
+
 int main() {
     vector<int> nums = {1, 3, 5, 7, 9, 11};
 
