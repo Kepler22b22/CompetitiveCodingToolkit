@@ -27,26 +27,26 @@ public:
         cout << endl;
     }
 
-    void dfs_helper(int node, vector<int> &visit){
-        if(visit[node]){return;}
-        cout << node << " ";
-        visit[node] = 1;
-        for(const auto &nei : adj[node]){
+    void dfs_helper(int u, vector<int> &visit){
+        if(visit[u]){return;}
+        visit[u] = 1;
+        cout << u << " ";
+        for(const auto & nei : adj[u]){
             dfs_helper(nei.first, visit);
         }
     }
 
     void bfs(int start){
         cout << "BFS starts: " << endl;
-        vector<int> visit(V, 0);
         queue<int> q;
-        visit[start] = 1;
+        vector<int> visit(V, 0);
         q.push(start);
+        visit[start] = 1;
         while(!q.empty()){
-            int node = q.front();
+            int u = q.front();
             q.pop();
-            cout << node << " ";
-            for(const auto & nei : adj[node]){
+            cout << u << " ";
+            for(const auto &nei : adj[u]){
                 if(!visit[nei.first]){
                     visit[nei.first] = 1;
                     q.push(nei.first);
@@ -59,7 +59,7 @@ public:
     void printGraph(){
         for(int i = 0; i < V; i++){
             cout << "Node " << i << ": ";
-            for(const auto& nei : adj[i]){
+            for(const auto &nei : adj[i]){
                 cout << "(" << nei.first << ", weight: " << nei.second << ")";
             }
             cout << endl;
