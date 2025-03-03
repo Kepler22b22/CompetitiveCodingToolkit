@@ -18,7 +18,7 @@ private:
     TrieNode *root;
 
     bool dfs(string word, int i, TrieNode *cur){
-        if(i == word.size()){return true;}
+        if(i == word.size()){return cur->endOfWord;}
         char ch = word[i];
         if(ch == '.'){
             for(const auto &child : cur->children){
@@ -27,7 +27,7 @@ private:
             return false;
         }
         else{
-            if(!cur->children[ch]){return false;}
+            if(!cur->children.count(ch)){return false;}
             return dfs(word, i + 1, cur->children[ch]);
         }
     }
