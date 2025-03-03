@@ -1,6 +1,10 @@
 Author: Muqi Zhang
 Date: Mar 1 2025
 
+
+Don't Ask, Just Practice it Everyday. 
+
+
 * DailyPractice Folder:
 - practice this folder everyday to keep my mind sharp. 
 - Templates for basic algorithms that I need to know.
