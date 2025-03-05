@@ -7,17 +7,17 @@ using namespace std;
 class Graph {
 private:
     int V;
-    vector<vector<pair<int, int>>> adj;
+    vector<vector<pair<int, int>>> edges;
 
 public:
     Graph(int vertices){
         V = vertices;
-        adj.resize(V);
+        edges.resize(V);
     }
 
     void addEdges(int u, int v, int w){
-        adj[u].push_back({v, w});
-        adj[v].push_back({u, w});
+        edges[u].push_back({v, w});
+        edges[v].push_back({u, w});
     }
 
     void dfs(int start){
@@ -31,25 +31,25 @@ public:
         if(visit[u]){return;}
         visit[u] = 1;
         cout << u << " ";
-        for(const auto & nei : adj[u]){
-            dfs_helper(nei.first, visit);
+        for(const auto &edge : edges[u]){
+            dfs_helper(edge.first, visit);
         }
     }
 
     void bfs(int start){
         cout << "BFS starts: " << endl;
-        queue<int> q;
         vector<int> visit(V, 0);
-        q.push(start);
+        queue<int> q;
         visit[start] = 1;
+        q.push(start);
         while(!q.empty()){
             int u = q.front();
             q.pop();
-            cout << u << " ";
-            for(const auto &nei : adj[u]){
-                if(!visit[nei.first]){
-                    visit[nei.first] = 1;
-                    q.push(nei.first);
+            cout <<  u << " ";
+            for(const auto &edge : edges[u]){
+                if(!visit[edge.first]){
+                    visit[edge.first] = 1;
+                    q.push(edge.first);
                 }
             }
         }
@@ -59,14 +59,13 @@ public:
     void printGraph(){
         for(int i = 0; i < V; i++){
             cout << "Node " << i << ": ";
-            for(const auto &nei : adj[i]){
-                cout << "(" << nei.first << ", weight: " << nei.second << ")";
+            for(const auto &edge : edges[i]){
+                cout << "(" << edge.first << ", weight: " << edge.second << ")";
             }
             cout << endl;
         }
     }
 };
-
 
 int main() {
     Graph g(7); // Create a graph with 7 vertices (0 to 6)
