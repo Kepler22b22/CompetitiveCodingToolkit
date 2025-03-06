@@ -67,6 +67,7 @@ public:
     }
 };
 
+
 int main() {
     Graph g(7); // Create a graph with 7 vertices (0 to 6)
     
