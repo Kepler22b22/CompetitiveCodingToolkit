@@ -16,6 +16,7 @@
 
     - 🔍 **Focused on Competitive Coding** – Tailored for quick application in coding contests.
 
+
 ## 📁 Repository Structure
 
     ```
@@ -25,13 +26,9 @@
 
         │── GraphAlgorithms/
 
-        │── DynamicProgramming/
-        
         │── DataStructures/
 
         │── BitManipulation/
-        
-        │── NumberTheory/
 
         │── StringAlgorithms/
 
