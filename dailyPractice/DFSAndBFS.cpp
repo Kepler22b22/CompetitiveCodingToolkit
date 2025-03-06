@@ -29,15 +29,15 @@ public:
 
     void dfs_helper(int u, vector<int> &visit){
         if(visit[u]){return;}
-        visit[u] = 1;
         cout << u << " ";
+        visit[u] = 1;
         for(const auto &edge : edges[u]){
             dfs_helper(edge.first, visit);
         }
     }
 
     void bfs(int start){
-        cout << "BFS starts: " << endl;
+        cout << "BFS starts" << endl;
         vector<int> visit(V, 0);
         queue<int> q;
         visit[start] = 1;
@@ -45,8 +45,8 @@ public:
         while(!q.empty()){
             int u = q.front();
             q.pop();
-            cout <<  u << " ";
-            for(const auto &edge : edges[u]){
+            cout << u << " ";
+            for(const auto & edge : edges[u]){
                 if(!visit[edge.first]){
                     visit[edge.first] = 1;
                     q.push(edge.first);
