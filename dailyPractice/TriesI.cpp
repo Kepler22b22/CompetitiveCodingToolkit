@@ -4,7 +4,7 @@ using namespace std;
 
 class TrieNode {
 public:
-    TrieNode *children[26];
+    TrieNode *children[52];
     bool endOfWord;
 
     TrieNode(){
@@ -16,6 +16,12 @@ class PrefixTree {
 private:
     TrieNode *root;
 
+    int getIndex(char ch){
+        if(islower(ch)){return ch - 'a' + 26;}
+        if(isupper(ch)){return ch - 'A';}
+        return -1;
+    }
+
 public:
     PrefixTree(){
         root = new TrieNode();
@@ -24,7 +30,7 @@ public:
     void insert(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            int i = ch - 'a';
+            int i = getIndex(ch);
             if(!cur->children[i]){
                 cur->children[i] = new TrieNode();
             }
@@ -36,7 +42,7 @@ public:
     bool startsWith(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            int i = ch - 'a';
+            int i = getIndex(ch);
             if(!cur->children[i]){return false;}
             cur = cur->children[i];
         }
@@ -46,7 +52,7 @@ public:
     bool search(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            int i = ch - 'a';
+            int i = getIndex(ch);
             if(!cur->children[i]){return false;}
             cur = cur->children[i];
         }
@@ -58,19 +64,19 @@ int main() {
     PrefixTree trie;
 
     // Insert words into the Trie
-    trie.insert("apple");
-    trie.insert("app");
+    trie.insert("Apple");
+    trie.insert("App");
     trie.insert("banana");
     trie.insert("bat");
 
     // Search for words
-    cout << "Search 'apple': " << (trie.search("apple") ? "Found" : "Not Found") << endl;
+    cout << "Search 'Apple': " << (trie.search("Apple") ? "Found" : "Not Found") << endl;
     cout << "Search 'app': " << (trie.search("app") ? "Found" : "Not Found") << endl;
     cout << "Search 'bat': " << (trie.search("bat") ? "Found" : "Not Found") << endl;
     cout << "Search 'ban': " << (trie.search("ban") ? "Found" : "Not Found") << endl;
 
     // Check for prefixes
-    cout << "Prefix 'ap': " << (trie.startsWith("ap") ? "Exists" : "Does Not Exist") << endl;
+    cout << "Prefix 'Ap': " << (trie.startsWith("Ap") ? "Exists" : "Does Not Exist") << endl;
     cout << "Prefix 'ban': " << (trie.startsWith("ban") ? "Exists" : "Does Not Exist") << endl;
     cout << "Prefix 'ba': " << (trie.startsWith("ba") ? "Exists" : "Does Not Exist") << endl;
     cout << "Prefix 'cat': " << (trie.startsWith("cat") ? "Exists" : "Does Not Exist") << endl;

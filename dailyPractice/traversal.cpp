@@ -12,6 +12,7 @@ public:
     Node(int v): val(v), left(NULL), right(NULL) {}
 };
 
+
 void preorderR(Node *root){
     if(!root){return;}
     cout << root->val << " ";

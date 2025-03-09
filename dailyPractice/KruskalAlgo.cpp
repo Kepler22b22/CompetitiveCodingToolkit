@@ -35,15 +35,15 @@ void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
     sort(edges.begin(), edges.end(), [](const tuple<int, int, int>&a, const tuple<int, int, int>&b){
         return get<2>(a) < get<2>(b);
     });
-    for(const auto & [u, v, w] : edges){
+    for(const auto&[u, v, w] : edges){
         if(set.find(u) != set.find(v)){
             set.unionSet(u, v);
             inMST.push_back({u, v, w});
         }
         if(inMST.size() == n - 1){break;}
     }
-    for(const auto &edge : inMST){
-        cout << get<0>(edge) << " - " << get<1>(edge) << " " << get<2>(edge) << endl;
+    for(const auto&edge : inMST){
+        cout << get<0>(edge) << " - " << get<1>(edge) << " " << endl;
     }
 }
 
