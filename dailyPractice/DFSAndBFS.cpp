@@ -7,22 +7,22 @@ using namespace std;
 class Graph {
 private:
     int V;
-    vector<vector<pair<int, int>>> edges;
+    vector<vector<pair<int, int>>> adj;
 
 public:
-    Graph(int vertices){
-        V = vertices;
-        edges.resize(V);
+    Graph(int verticies){
+        V = verticies;
+        adj.resize(V);
     }
 
     void addEdges(int u, int v, int w){
-        edges[u].push_back({v, w});
-        edges[v].push_back({u, w});
+        adj[u].push_back({v, w});
+        adj[v].push_back({u, w});
     }
 
     void dfs(int start){
         cout << "DFS starts: " << endl;
-        vector<int> visit(V, 0);
+        vector<int> visit(V);
         dfs_helper(start, visit);
         cout << endl;
     }
@@ -31,22 +31,22 @@ public:
         if(visit[u]){return;}
         cout << u << " ";
         visit[u] = 1;
-        for(const auto &edge : edges[u]){
+        for(const auto &edge : adj[u]){
             dfs_helper(edge.first, visit);
         }
     }
 
     void bfs(int start){
-        cout << "BFS starts" << endl;
-        vector<int> visit(V, 0);
+        cout << "BFS starts: " << endl;
+        vector<int> visit(V);
         queue<int> q;
-        visit[start] = 1;
         q.push(start);
+        visit[start] = 1;
         while(!q.empty()){
             int u = q.front();
             q.pop();
             cout << u << " ";
-            for(const auto & edge : edges[u]){
+            for(const auto &edge : adj[u]){
                 if(!visit[edge.first]){
                     visit[edge.first] = 1;
                     q.push(edge.first);
@@ -55,18 +55,16 @@ public:
         }
         cout << endl;
     }
-
     void printGraph(){
         for(int i = 0; i < V; i++){
             cout << "Node " << i << ": ";
-            for(const auto &edge : edges[i]){
+            for(const auto &edge : adj[i]){
                 cout << "(" << edge.first << ", weight: " << edge.second << ")";
             }
             cout << endl;
         }
     }
 };
-
 
 int main() {
     Graph g(7); // Create a graph with 7 vertices (0 to 6)
