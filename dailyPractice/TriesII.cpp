@@ -3,15 +3,12 @@
 
 using namespace std;
 
-
 class TrieNode {
 public:
     unordered_map<char, TrieNode*> children;
     bool endOfWord;
 
-    TrieNode(){
-        endOfWord = false;
-    }
+    TrieNode(): endOfWord(false) {}
 };
 
 class PrefixTree {

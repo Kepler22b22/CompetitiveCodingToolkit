@@ -30,11 +30,11 @@ public:
 };
 
 void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
-    DisjointSet set(n);
-    vector<tuple<int, int, int>> inMST;
     sort(edges.begin(), edges.end(), [](const tuple<int, int, int>&a, const tuple<int, int, int>&b){
         return get<2>(a) < get<2>(b);
     });
+    DisjointSet set(n);
+    vector<tuple<int, int, int>> inMST;
     for(const auto&[u, v, w] : edges){
         if(set.find(u) != set.find(v)){
             set.unionSet(u, v);
@@ -42,8 +42,8 @@ void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
         }
         if(inMST.size() == n - 1){break;}
     }
-    for(const auto&edge : inMST){
-        cout << get<0>(edge) << " - " << get<1>(edge) << " " << endl;
+    for(const auto &edge : inMST){
+        cout << get<0>(edge) << " - " << get<1>(edge) << " " << get<2>(edge) << endl;
     }
 }
 

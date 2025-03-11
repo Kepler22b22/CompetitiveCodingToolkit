@@ -12,7 +12,6 @@ public:
     Node(int v): val(v), left(NULL), right(NULL) {}
 };
 
-
 void preorderR(Node *root){
     if(!root){return;}
     cout << root->val << " ";
@@ -49,8 +48,8 @@ void inorderI(Node *root){
             cur = cur->left;
         }
         cur = stk.top();
-        stk.pop();
         cout << cur->val << " ";
+        stk.pop();
         cur = cur->right;
     }
 }
@@ -89,8 +88,8 @@ void levelOrder(Node *root){
         int len = q.size();
         for(int i = 0; i < len; i++){
             Node *cur = q.front();
-            q.pop();
             cout << cur->val << " ";
+            q.pop();
             if(cur->left){q.push(cur->left);}
             if(cur->right){q.push(cur->right);}
         }
