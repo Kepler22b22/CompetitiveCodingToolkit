@@ -21,7 +21,7 @@ public:
     }
 
     void dfs(int start){
-        cout << "DFS starts: " << endl;
+        cout << "DFS starts: "<< endl;
         vector<int> visit(V);
         dfs_helper(start, visit);
         cout << endl;
@@ -40,8 +40,8 @@ public:
         cout << "BFS starts: " << endl;
         vector<int> visit(V);
         queue<int> q;
-        q.push(start);
         visit[start] = 1;
+        q.push(start);
         while(!q.empty()){
             int u = q.front();
             q.pop();
@@ -55,11 +55,12 @@ public:
         }
         cout << endl;
     }
+
     void printGraph(){
         for(int i = 0; i < V; i++){
             cout << "Node " << i << ": ";
             for(const auto &edge : adj[i]){
-                cout << "(" << edge.first << ", weight: " << edge.second << ")";
+                cout << "(" << edge.first << ", weight: " << edge.second << ") ";
             }
             cout << endl;
         }

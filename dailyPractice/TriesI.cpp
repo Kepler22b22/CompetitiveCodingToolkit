@@ -4,23 +4,15 @@ using namespace std;
 
 class TrieNode {
 public:
-    TrieNode *children[52];
+    TrieNode *children[26];
     bool endOfWord;
 
-    TrieNode(){
-        endOfWord = false;
-    }
+    TrieNode(): endOfWord(false) {}
 };
 
 class PrefixTree {
 private:
     TrieNode *root;
-
-    int getIndex(char ch){
-        if(islower(ch)){return ch - 'a' + 26;}
-        if(isupper(ch)){return ch - 'A';}
-        return -1;
-    }
 
 public:
     PrefixTree(){
@@ -30,7 +22,7 @@ public:
     void insert(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            int i = getIndex(ch);
+            int i = ch - 'a';
             if(!cur->children[i]){
                 cur->children[i] = new TrieNode();
             }
@@ -42,7 +34,7 @@ public:
     bool startsWith(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            int i = getIndex(ch);
+            int i = ch - 'a';
             if(!cur->children[i]){return false;}
             cur = cur->children[i];
         }
@@ -52,7 +44,7 @@ public:
     bool search(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            int i = getIndex(ch);
+            int i = ch - 'a';
             if(!cur->children[i]){return false;}
             cur = cur->children[i];
         }
