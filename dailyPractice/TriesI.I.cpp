@@ -8,9 +8,7 @@ public:
     unordered_map<char, TrieNode*> children;
     bool endOfWord;
 
-    TrieNode(){
-        endOfWord = false;
-    }
+    TrieNode(): endOfWord(false) {}
 };
 
 class PrefixTree {
@@ -56,19 +54,19 @@ int main() {
     PrefixTree trie;
 
     // Insert words into the Trie
-    trie.insert("apple");
-    trie.insert("app");
+    trie.insert("Apple");
+    trie.insert("App");
     trie.insert("banana");
     trie.insert("bat");
 
     // Search for words
-    cout << "Search 'apple': " << (trie.search("apple") ? "Found" : "Not Found") << endl;
-    cout << "Search 'app': " << (trie.search("app") ? "Found" : "Not Found") << endl;
+    cout << "Search 'Apple': " << (trie.search("Apple") ? "Found" : "Not Found") << endl;
+    cout << "Search 'App': " << (trie.search("App") ? "Found" : "Not Found") << endl;
     cout << "Search 'bat': " << (trie.search("bat") ? "Found" : "Not Found") << endl;
     cout << "Search 'ban': " << (trie.search("ban") ? "Found" : "Not Found") << endl;
 
     // Check for prefixes
-    cout << "Prefix 'ap': " << (trie.startsWith("ap") ? "Exists" : "Does Not Exist") << endl;
+    cout << "Prefix 'Ap': " << (trie.startsWith("Ap") ? "Exists" : "Does Not Exist") << endl;
     cout << "Prefix 'ban': " << (trie.startsWith("ban") ? "Exists" : "Does Not Exist") << endl;
     cout << "Prefix 'ba': " << (trie.startsWith("ba") ? "Exists" : "Does Not Exist") << endl;
     cout << "Prefix 'cat': " << (trie.startsWith("cat") ? "Exists" : "Does Not Exist") << endl;
