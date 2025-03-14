@@ -10,8 +10,8 @@ private:
     vector<vector<pair<int, int>>> adj;
 
 public:
-    Graph(int verticies){
-        V = verticies;
+    Graph(int vertices){
+        V = vertices;
         adj.resize(V);
     }
 
@@ -21,7 +21,7 @@ public:
     }
 
     void dfs(int start){
-        cout << "DFS starts: "<< endl;
+        cout << "DFS starts: " << endl;
         vector<int> visit(V);
         dfs_helper(start, visit);
         cout << endl;
@@ -31,7 +31,7 @@ public:
         if(visit[u]){return;}
         cout << u << " ";
         visit[u] = 1;
-        for(const auto &edge : adj[u]){
+        for(const auto & edge : adj[u]){
             dfs_helper(edge.first, visit);
         }
     }
@@ -40,8 +40,8 @@ public:
         cout << "BFS starts: " << endl;
         vector<int> visit(V);
         queue<int> q;
-        visit[start] = 1;
         q.push(start);
+        visit[start] = 1;
         while(!q.empty()){
             int u = q.front();
             q.pop();
