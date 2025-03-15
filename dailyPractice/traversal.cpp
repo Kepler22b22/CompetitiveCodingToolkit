@@ -5,7 +5,7 @@
 using namespace std;
 
 class Node {
-public:
+public: 
     int val;
     Node *left, *right;
 
@@ -58,7 +58,7 @@ void postorderR(Node *root){
     if(!root){return;}
     postorderR(root->left);
     postorderR(root->right);
-    cout << root->val << " ";
+    cout << root-> val << " ";
 }
 
 void postorderI(Node *root){
@@ -69,7 +69,7 @@ void postorderI(Node *root){
             stk.push(cur);
             cur = cur->left;
         }
-        if(stk.top()->right && stk.top()->right != lastVisit){
+        if(stk.top()->right && lastVisit != stk.top()->right){
             cur = stk.top()->right;
         }
         else{
@@ -88,8 +88,8 @@ void levelOrder(Node *root){
         int len = q.size();
         for(int i = 0; i < len; i++){
             Node *cur = q.front();
-            q.pop();
             cout << cur->val << " ";
+            q.pop();
             if(cur->left){q.push(cur->left);}
             if(cur->right){q.push(cur->right);}
         }

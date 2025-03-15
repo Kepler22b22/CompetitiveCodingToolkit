@@ -15,8 +15,8 @@ private:
     TrieNode *root;
 
     int getIndex(char ch){
-        if(isupper(ch)){return ch - 'A';}
         if(islower(ch)){return ch - 'a' + 26;}
+        if(isupper(ch)){return ch - 'A';}
         return -1;
     }
 
@@ -37,9 +37,9 @@ public:
         cur->endOfWord = true;
     }
 
-    bool startsWith(string word){
+    bool startsWith(string prefix){
         TrieNode *cur = root;
-        for(char ch : word){
+        for(char ch : prefix){
             int i = getIndex(ch);
             if(!cur->children[i]){return false;}
             cur = cur->children[i];
@@ -81,11 +81,11 @@ int main() {
 
     /*
     Expected Output:
-    Search 'apple': Found
-    Search 'app': Found
+    Search 'Apple': Found
+    Search 'app': Not Found
     Search 'bat': Found
     Search 'ban': Not Found
-    Prefix 'ap': Exists
+    Prefix 'Ap': Exists
     Prefix 'ban': Exists
     Prefix 'ba': Exists
     Prefix 'cat': Does Not Exist
