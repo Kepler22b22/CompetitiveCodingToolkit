@@ -80,8 +80,8 @@ void mergeSortRecursive(vector<int> &nums, int low, int high){
 
 void mergeSortIterative(vector<int>& nums) {
     for (int cur_size = 1; cur_size < nums.size(); cur_size *= 2) {
-        for (int low = 0; low < nums.size() - 1; low += 2 * cur_size) {
-            int mid = min(low + cur_size - 1, (int)nums.size() - 1);
+        for (int low = 0; low < nums.size() - cur_size; low += 2 * cur_size) {
+            int mid = low + cur_size - 1;
             int high = min(low + 2 * cur_size - 1, (int)nums.size() - 1);
             merge(nums, low, mid, high);
         }
