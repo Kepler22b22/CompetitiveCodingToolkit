@@ -31,9 +31,9 @@ public:
         cur->endOfWord = true;
     }
 
-    bool startsWith(string word){
+    bool startsWith(string prefix){
         TrieNode *cur = root;
-        for(char ch : word){
+        for(char ch : prefix){
             if(!cur->children.count(ch)){return false;}
             cur = cur->children[ch];
         }
@@ -73,11 +73,11 @@ int main() {
 
     /*
     Expected Output:
-    Search 'apple': Found
-    Search 'app': Found
+    Search 'Apple': Found
+    Search 'App': Found
     Search 'bat': Found
     Search 'ban': Not Found
-    Prefix 'ap': Exists
+    Prefix 'Ap': Exists
     Prefix 'ban': Exists
     Prefix 'ba': Exists
     Prefix 'cat': Does Not Exist

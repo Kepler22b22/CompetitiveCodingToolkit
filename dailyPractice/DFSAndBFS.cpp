@@ -21,7 +21,7 @@ public:
     }
 
     void dfs(int start){
-        cout << "DFS starts: " << endl;
+        cout << "DFS starts: "<< endl;
         vector<int> visit(V);
         dfs_helper(start, visit);
         cout << endl;
@@ -31,15 +31,15 @@ public:
         if(visit[u]){return;}
         cout << u << " ";
         visit[u] = 1;
-        for(const auto & edge : adj[u]){
+        for(const auto &edge : adj[u]){
             dfs_helper(edge.first, visit);
         }
     }
 
     void bfs(int start){
         cout << "BFS starts: " << endl;
-        vector<int> visit(V);
         queue<int> q;
+        vector<int> visit(V);
         q.push(start);
         visit[start] = 1;
         while(!q.empty()){
