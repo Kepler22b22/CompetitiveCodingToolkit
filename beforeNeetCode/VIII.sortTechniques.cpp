@@ -17,23 +17,22 @@ void bubbleSort(vector<int> &nums){
 
 void insertionSort(vector<int> &nums){
     for(int i = 1; i < nums.size(); i++){
-        int insertVal = nums[i];
-        int j = i - 1;
-        while(j >= 0 && nums[j] > insertVal){
+        int j = i - 1, val = nums[i];
+        while(j >= 0 && nums[j] > val){
             nums[j + 1] = nums[j];
             j--;
         }
-        nums[j + 1] = insertVal;
+        nums[j + 1] = val;
     }
 }
 
 void selectionSort(vector<int> &nums){
-    for(int i = 0; i < nums.size() - 1; i++){
-        int minIdx = i;
+    for(int i = 0; i < nums.size(); i++){
+        int idx = i;
         for(int j = i + 1; j < nums.size(); j++){
-            if(nums[j] < nums[minIdx]){minIdx = j;}
+            if(nums[j] < nums[idx]){idx = j;}
         }
-        if(minIdx != i){swap(nums[i], nums[minIdx]);}
+        if(idx != i){swap(nums[i], nums[idx]);}
     }
 }
 
