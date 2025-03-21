@@ -9,7 +9,7 @@ public:
     int val;
     Node *left, *right;
 
-    Node(int v): val(v), left(NULL), right(NULL) {}
+    Node(int v): val(v) {}
 };
 
 void preorderR(Node *root){
@@ -27,7 +27,7 @@ void preorderI(Node *root){
         Node *cur = stk.top();
         stk.pop();
         cout << cur->val << " ";
-        if(cur->right){stk.push(cur->right);}
+        if(cur->right){stk.push({cur->right});}
         if(cur->left){stk.push(cur->left);}
     }
 }
