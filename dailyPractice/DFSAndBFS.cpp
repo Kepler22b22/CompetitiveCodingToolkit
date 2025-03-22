@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <unordered_set>
 #include <queue>
 
@@ -22,22 +23,22 @@ public:
 
     void dfs(int start){
         cout << "DFS starts: " << endl;
-        unordered_set<int> visit;
+        unordered_set<int > visit;
         dfs_helper(start, visit);
         cout << endl;
     }
 
     void dfs_helper(int u, unordered_set<int> &visit){
         if(visit.count(u)){return;}
-        visit.insert(u);
         cout << u << " ";
-        for(const auto & edge : adj[u]){
+        visit.insert(u);
+        for(const auto &edge : adj[u]){
             dfs_helper(edge.first, visit);
         }
     }
 
     void bfs(int start){
-        cout << "BFS starts: " << endl;
+        cout << "BFS starts:  " << endl;
         unordered_set<int> visit;
         queue<int> q;
         visit.insert(start);
@@ -46,7 +47,7 @@ public:
             int u = q.front();
             q.pop();
             cout << u << " ";
-            for(const auto &edge : adj[u]){
+            for(const auto&edge : adj[u]){
                 if(!visit.count(edge.first)){
                     visit.insert(edge.first);
                     q.push(edge.first);

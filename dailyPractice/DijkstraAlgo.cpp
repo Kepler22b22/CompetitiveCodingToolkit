@@ -17,7 +17,7 @@ vector<int> DijkstraAlgo(vector<vector<pair<int, int>>> &edges, int n, int start
         if(visit.count(u)){continue;}
         visit.insert(u);
         for(const auto &edge : edges[u]){
-            if(!visit.count(edge.first) && dist[edge.first] > edge.second + dist[u]){
+            if(!visit.count(edge.first) && dist[edge.first] > dist[u] + edge.second){
                 dist[edge.first] = edge.second + dist[u];
                 pq.push({dist[edge.first], edge.first});
             }
