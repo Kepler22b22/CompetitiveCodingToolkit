@@ -7,12 +7,12 @@ int partitionI(vector<int> &nums, int low, int high){
     int pivot = nums[low];
     int l = low, r = high;
     while(l <= r){
-        if(l <= high && nums[l] <= pivot){l++;}
-        if(r >= low && nums[r] > pivot){r--;}
-        if(l < r){swap(nums[r], nums[l]);}
+        while(l <= high && nums[l] <= pivot){l++;}
+        while(r >= low && nums[r] > pivot){r--;}
+        if(l < r){swap(nums[l], nums[r]);}
     }
     swap(nums[low], nums[r]);
-    return r + 1;
+    return r;
 }
 
 void quickSortI(vector<int> &nums, int low, int high){
@@ -32,7 +32,7 @@ int partitionII(vector<int> &nums, int low, int high){
             swap(nums[l], nums[r]);
         }
     }
-    swap(nums[high], nums[l + 1]);
+    swap(nums[l + 1], nums[high]);
     return l + 1;
 }
 

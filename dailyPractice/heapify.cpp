@@ -71,9 +71,9 @@ int main() {
     /*
     Expected Output:
     Original Array: 4 10 3 5 1 6 8 7 9 2 
-    Max Heap: 10 9 8 7 2 6 3 4 5 1 
+    Max Heap: 1 2 3 5 4 6 8 7 9 10 
     Original Array: 4 10 3 5 1 6 8 7 9 2 
-    Min Heap: 1 2 3 5 4 6 8 7 9 10
+    Min Heap: 10 9 8 7 2 6 3 4 5 1
     */
 
     return 0;
