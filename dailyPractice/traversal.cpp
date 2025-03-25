@@ -9,7 +9,7 @@ public:
     int val;
     Node *left, *right;
 
-    Node(int v): val(v) {}
+    Node(int v): val(v), left(NULL), right(NULL) {}
 };
 
 void preorderR(Node *root){
@@ -27,7 +27,7 @@ void preorderI(Node *root){
         Node *cur = stk.top();
         stk.pop();
         cout << cur->val << " ";
-        if(cur->right){stk.push({cur->right});}
+        if(cur->right){stk.push(cur->right);}
         if(cur->left){stk.push(cur->left);}
     }
 }
@@ -40,6 +40,7 @@ void inorderR(Node *root){
 }
 
 void inorderI(Node *root){
+    if(!root){return;}
     stack<Node*> stk;
     Node *cur = root;
     while(!stk.empty() || cur){

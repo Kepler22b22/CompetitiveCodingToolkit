@@ -11,8 +11,8 @@ private:
     vector<vector<pair<int, int>>> adj;
 
 public:
-    Graph(int vertices){
-        V = vertices;
+    Graph(int verticies){
+        V = verticies;
         adj.resize(V);
     }
 
@@ -23,7 +23,7 @@ public:
 
     void dfs(int start){
         cout << "DFS starts: " << endl;
-        unordered_set<int > visit;
+        unordered_set<int> visit;
         dfs_helper(start, visit);
         cout << endl;
     }
@@ -38,16 +38,16 @@ public:
     }
 
     void bfs(int start){
-        cout << "BFS starts:  " << endl;
+        cout << "BFS starts: " << endl;
         unordered_set<int> visit;
         queue<int> q;
-        visit.insert(start);
         q.push(start);
+        visit.insert(start);
         while(!q.empty()){
             int u = q.front();
             q.pop();
             cout << u << " ";
-            for(const auto&edge : adj[u]){
+            for(const auto &edge : adj[u]){
                 if(!visit.count(edge.first)){
                     visit.insert(edge.first);
                     q.push(edge.first);
@@ -66,6 +66,7 @@ public:
             cout << endl;
         }
     }
+
 };
 
 int main() {
