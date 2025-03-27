@@ -10,6 +10,7 @@ public:
     TrieNode(): endOfWord(false) {}
 };
 
+
 class PrefixTree {
 private:
     TrieNode *root;

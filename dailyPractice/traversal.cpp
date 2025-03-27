@@ -40,7 +40,6 @@ void inorderR(Node *root){
 }
 
 void inorderI(Node *root){
-    if(!root){return;}
     stack<Node*> stk;
     Node *cur = root;
     while(!stk.empty() || cur){
@@ -89,8 +88,8 @@ void levelOrder(Node *root){
         int len = q.size();
         for(int i = 0; i < len; i++){
             Node *cur = q.front();
-            q.pop();
             cout << cur->val << " ";
+            q.pop();
             if(cur->left){q.push(cur->left);}
             if(cur->right){q.push(cur->right);}
         }
