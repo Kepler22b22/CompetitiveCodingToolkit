@@ -18,7 +18,7 @@ void maxHeap(vector<int> &nums){
         heapifyMax(nums, nums.size(), i);
     }
     for(int i = nums.size() - 1; i > 0; i--){
-        swap(nums[0], nums[i]);
+        swap(nums[i], nums[0]);
         heapifyMax(nums, i, 0);
     }
 }
