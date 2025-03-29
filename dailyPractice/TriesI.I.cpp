@@ -43,7 +43,7 @@ public:
     bool search(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            if(!cur->children.count(ch)){return false;}
+            if(!cur->children[ch]){return false;}
             cur = cur->children[ch];
         }
         return cur->endOfWord;
