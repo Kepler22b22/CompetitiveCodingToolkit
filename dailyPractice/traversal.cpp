@@ -42,7 +42,7 @@ void inorderR(Node *root){
 void inorderI(Node *root){
     stack<Node*> stk;
     Node *cur = root;
-    while(!stk.empty() ||cur){
+    while(!stk.empty() || cur){
         while(cur){
             stk.push(cur);
             cur = cur->left;

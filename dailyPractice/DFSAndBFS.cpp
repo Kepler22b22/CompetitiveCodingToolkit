@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <queue>
 #include <unordered_set>
+#include <queue>
 
 using namespace std;
 
@@ -61,7 +61,7 @@ public:
         for(int i = 0; i < V; i++){
             cout << "Node " << i << ": ";
             for(const auto &edge : adj[i]){
-                cout << "(" << edge.first << ", weight: " << edge.second << ") ";
+                cout << "(" << edge.first << ", weight: " << edge.second << ")";
             }
             cout << endl;
         }
