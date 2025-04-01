@@ -18,13 +18,13 @@ void primsAlgo(vector<vector<pair<int, int>>> &edges, int n){
         visit.insert(u);
         for(const auto &edge : edges[u]){
             if(!visit.count(edge.first) && key[edge.first] > edge.second){
-                key[edge.first] = edge.second;
                 parent[edge.first] = u;
+                key[edge.first] = edge.second;
                 pq.push({edge.second, edge.first});
             }
         }
     }
-    cout << "Edge\tWeight" << endl;
+    cout<< "Edge\tWeight" << endl;
     for(int i = 1; i < n; i++){
         cout << parent[i] << " - " << i << " " << key[i] << endl;
     }
