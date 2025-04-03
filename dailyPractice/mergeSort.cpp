@@ -21,16 +21,16 @@ void mergeSort(vector<int> &nums, int low, int high){
     if(low < high){
         int mid = low + (high - low) / 2;
         mergeSort(nums, low, mid);
-        mergeSort(nums, mid + 1, high);
+        mergeSort(nums, mid +1, high);
         merge(nums, low, mid, high);
     }
 }
 
 void mergeSortI(vector<int> &nums){
     for(int i = 1; i < nums.size(); i *= 2){
-        for( int l = 0; l < nums.size() - i; l += 2 * i){
+        for(int l = 0; l < nums.size() - i; l += 2 * i){
             int mid = l + i - 1;
-            int r = min((int)nums.size() - 1, l + 2 * i - 1);
+            int r = min(l + 2 * i - 1, static_cast<int>(nums.size() - 1));
             merge(nums, l, mid, r);
         }
     }
