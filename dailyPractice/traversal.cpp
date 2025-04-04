@@ -50,7 +50,7 @@ void inorderI(Node *root){
         cur = stk.top();
         stk.pop();
         cout << cur->val << " ";
-        cur = cur->right;
+        cur = cur->left;
     }
 }
 
@@ -94,6 +94,7 @@ void levelOrder(Node *root){
             if(cur->right){q.push(cur->right);}
         }
     }
+    
 }
 
 int main(){
