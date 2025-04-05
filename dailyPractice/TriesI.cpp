@@ -29,10 +29,10 @@ public:
         TrieNode *cur = root;
         for(char ch : word){
             int i = getIndex(ch);
-            if(!cur->children[i]){
-                cur->children[i] = new TrieNode();
+            if(!cur->children[ch]){
+                cur->children[ch] = new TrieNode();
             }
-            cur = cur->children[i];
+            cur = cur->children[ch];
         }
         cur->endOfWord = true;
     }
@@ -40,9 +40,8 @@ public:
     bool startsWith(string prefix){
         TrieNode *cur = root;
         for(char ch : prefix){
-            int i = getIndex(ch);
-            if(!cur->children[i]){return false;}
-            cur = cur->children[i];
+            if(!cur->children[ch]){return false;}
+            cur = cur->children[ch];
         }
         return true;
     }
@@ -50,9 +49,8 @@ public:
     bool search(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            int i = getIndex(ch);
-            if(!cur->children[i]){return false;}
-            cur = cur->children[i];
+            if(!cur->children[ch]){return false;}
+            cur = cur->children[ch];
         }
         return cur->endOfWord;
     }

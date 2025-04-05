@@ -3,7 +3,7 @@
 
 using namespace std;
 
-class DisjointSet {
+class DisjointSet{
 private:
     vector<int> parent, rank;
 
@@ -30,10 +30,10 @@ public:
 };
 
 void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
-    DisjointSet set(n);
     sort(edges.begin(), edges.end(), [](const tuple<int, int, int> &a, const tuple<int, int, int> &b){
         return get<2>(a) < get<2>(b);
     });
+    DisjointSet set(n);
     vector<tuple<int, int, int>> inMST;
     for(const auto &[u, v, w] : edges){
         if(set.find(u) != set.find(v)){
