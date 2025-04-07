@@ -23,7 +23,7 @@ void BellmanFordAlgo(vector<tuple<int, int, int>> &edges, int n){
         }
     }
     for(int i = 0; i < n; i++){
-        if(dist[i] == INT_MAX){cout << "Node " << i << ": INT_MAX" << endl;}
+        if(dist[i] == INT_MAX){cout << "Node " << i << ": INT_MAX";}
         else{cout << "Node " << i << ": " << dist[i] << endl;}
     }
 }
@@ -38,6 +38,15 @@ int main() {
     };
 
     BellmanFordAlgo(edges, n);
+
+    /*
+    Expected Result: 
+    Negative cycle detected. 
+    Node 0: -7
+    Node 1: -4
+    Node 2: -5
+    Node 3: -6
+    */
 
     return 0;
 }
