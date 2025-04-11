@@ -38,7 +38,7 @@ public:
     void insert(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            if(!cur->children.count(ch)){
+            if(!cur->children[ch]){
                 cur->children[ch] = new TrieNode();
             }
             cur = cur->children[ch];
@@ -47,7 +47,7 @@ public:
     }
 
     bool search(string word){
-        TrieNode *cur = root;
+        TrieNode* cur = root;
         return dfs(word, 0, cur);
     }
 };

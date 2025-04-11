@@ -5,21 +5,21 @@ using namespace std;
 
 int partitionI(vector<int> &nums, int low, int high){
     int pivot = nums[low];
-    int l = low + 1, r = high;
+    int l = low, r = high;
     while(l <= r){
-        if(l <= high && nums[l] <= pivot){l++;}
-        if(r >= low && nums[r] > pivot){r--;}
+        while(l <= high && nums[l] <= pivot){l++;}
+        while(r >= low && nums[r] > pivot){r--;}
         if(l < r){swap(nums[l], nums[r]);}
     }
-    swap(nums[low], nums[r]);
+    swap(nums[r], nums[low]);
     return r;
 }
 
 void quickSortI(vector<int> &nums, int low, int high){
     if(low < high){
-        int idx = partitionI(nums, low, high);
-        quickSortI(nums, low, idx - 1);
-        quickSortI(nums, idx + 1, high);
+        int i = partitionI(nums, low, high);
+        quickSortI(nums, low, i - 1);
+        quickSortI(nums, i + 1, high);
     }
 }
 
