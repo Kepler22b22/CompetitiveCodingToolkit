@@ -23,7 +23,7 @@ public:
         if(rank[rootu] < rank[rootv]){parent[rootu] = rootv;}
         else if(rank[rootu] > rank[rootv]){parent[rootv] = rootu;}
         else{
-            parent[rootv] = rootu;
+            parent[rootu] = rootv;
             rank[rootu]++;
         }
     }
