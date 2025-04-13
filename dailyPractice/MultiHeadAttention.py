@@ -43,13 +43,13 @@ class MultiHeadAttention(nn.Module):
         self.w_v = nn.Linear(d_model, n_head * d_v, bias=False)
         self.fc = nn.Linear(n_head * d_v, d_model, bias=False)
 
-        self.attention = ScaledDotProductAttention(temperature=d_k ** 0.5)
+        self.attention = ScaledDotProductAttention(temperature=d_k**0.5)
         self.dropout = nn.Dropout(dropout)
         self.layer_norm = LayerNorm(d_model=d_model)
 
     def forward(self, q, k, v, mask=None):
         batch_size, len_q, len_k, len_v = q.size(0), q.size(1), k.size(1), v.size(1)
-        n_head, d_model, d_k, d_v = self.n_head, self.d_model, self.d_k, self.d_v
+        d_model, d_k, d_v, n_head = self.d_model, self.d_k, self.d_v, self.n_head
 
         residual = q
 
@@ -61,14 +61,10 @@ class MultiHeadAttention(nn.Module):
 
         if mask is not None:
             mask = mask.unsqueeze(1)
-        
+
         output, attn = self.attention(q, k, v, mask=mask)
-
-        output = output.transpose(1, 2).contiguous().view(batch_size, len_q, -1)
-        output = self.fc(output)
-        output = self.dropout(output)
+        output.transpose(1, 2).contiguous().view(batch_size, len_q, -1)
+        output = self.dropout(self.fc(output))
         output += residual
-
         output = self.layer_norm(output)
-
         return output, attn
