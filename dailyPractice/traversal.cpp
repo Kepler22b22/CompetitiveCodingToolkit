@@ -48,8 +48,8 @@ void inorderI(Node *root){
             cur = cur->left;
         }
         cur = stk.top();
-        stk.pop();
         cout << cur->val << " ";
+        stk.pop();
         cur = cur->right;
     }
 }

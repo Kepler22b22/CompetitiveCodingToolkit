@@ -47,7 +47,7 @@ public:
     }
 
     bool search(string word){
-        TrieNode* cur = root;
+        TrieNode *cur = root;
         return dfs(word, 0, cur);
     }
 };

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 #include <queue>
+#include <unordered_set>
 
 using namespace std;
 
@@ -22,11 +22,11 @@ public:
     }
 
     void bfs(int start){
-        cout << " BFS starts: " << endl;
-        unordered_set<int> visit;
+        cout << "BFS starts: " << endl;
         queue<int> q;
-        visit.insert(start);
+        unordered_set<int> visit;
         q.push(start);
+        visit.insert(start);
         while(!q.empty()){
             int u = q.front();
             q.pop();
