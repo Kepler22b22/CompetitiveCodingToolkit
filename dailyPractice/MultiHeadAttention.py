@@ -12,6 +12,7 @@ class ScaledDotProductAttention(nn.Module):
         attn = torch.matmul(q, k.transpose(-2, -1)) / self.temperature
         if mask is not None:
             attn = attn.mask(mask == 0, -1e9)
+        attn = attn - attn.max(dim=-1, keepdim=True).values
         attn = self.dropout(F.softmax(attn))
         output = torch.matmul(attn, v)
 
