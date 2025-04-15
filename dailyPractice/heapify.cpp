@@ -9,7 +9,7 @@ void heapifyMax(vector<int> &nums, int n, int i){
     if(r < n && nums[r] > nums[root]){root = r;}
     if(root != i){
         swap(nums[root], nums[i]);
-        heapifyMax(nums, n, root);
+        heapifyMax(nums, root, i);
     }
 }
 
@@ -18,7 +18,7 @@ void maxHeap(vector<int> &nums){
         heapifyMax(nums, nums.size(), i);
     }
     for(int i = nums.size() - 1; i > 0; i--){
-        swap(nums[0], nums[i]);
+        swap(nums[i], nums[0]);
         heapifyMax(nums, i, 0);
     }
 }
@@ -29,7 +29,7 @@ void heapifyMin(vector<int> &nums, int n, int i){
     if(r < n && nums[r] < nums[root]){root = r;}
     if(root != i){
         swap(nums[root], nums[i]);
-        heapifyMin(nums, n, root);
+        heapifyMin(nums, root, i);
     }
 }
 
@@ -38,7 +38,7 @@ void minHeap(vector<int> &nums){
         heapifyMin(nums, nums.size(), i);
     }
     for(int i = nums.size() - 1; i > 0; i--){
-        swap(nums[0], nums[i]);
+        swap(nums[i], nums[0]);
         heapifyMin(nums, i, 0);
     }
 }

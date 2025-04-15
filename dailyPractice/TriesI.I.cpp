@@ -8,14 +8,14 @@ public:
     unordered_map<char, TrieNode*> children;
     bool endOfWord;
 
-    TrieNode(): endOfWord(false) {}
+    TrieNode():endOfWord(false) {}
 };
 
 class PrefixTree {
 private:
     TrieNode *root;
 
-public: 
+public:
     PrefixTree(){
         root = new TrieNode();
     }
