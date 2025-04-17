@@ -16,15 +16,31 @@ public:
         adj.resize(V);
     }
 
-    void addEdges(int u, int v, int w){
+    void addEdges(int u,  int v, int w){
         adj[u].push_back({v, w});
         adj[v].push_back({u, w});
     }
 
+    void dfs(int start){
+        cout << "DFS starts: " << endl;
+        unordered_set<int> visit;
+        dfs_helper(start, visit);
+        cout << endl;
+    }
+
+    void dfs_helper(int u, unordered_set<int> &visit){
+        if(visit.count(u)){return;}
+        cout << u << " ";
+        visit.insert(u);
+        for(const auto &edge : adj[u]){
+            dfs_helper(edge.first, visit);
+        }
+    }
+
     void bfs(int start){
         cout << "BFS starts: " << endl;
-        queue<int> q;
         unordered_set<int> visit;
+        queue<int> q;
         q.push(start);
         visit.insert(start);
         while(!q.empty()){
@@ -39,22 +55,6 @@ public:
             }
         }
         cout << endl;
-    }
-
-    void dfs(int start){
-        cout << "DFS starts: " << endl;
-        unordered_set<int> visit;
-        dfs_helper(start, visit);
-        cout << endl;
-    }
-
-    void dfs_helper(int u, unordered_set<int> &visit){
-        if(visit.count(u)){return;}
-        visit.insert(u);
-        cout << u << " ";
-        for(const auto &edge : adj[u]){
-            dfs_helper(edge.first, visit);
-        }
     }
 
     void printGraph(){

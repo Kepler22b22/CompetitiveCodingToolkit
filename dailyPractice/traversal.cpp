@@ -48,8 +48,8 @@ void inorderI(Node *root){
             cur = cur->left;
         }
         cur = stk.top();
-        cout << cur->val << " ";
         stk.pop();
+        cout << cur->val << " ";
         cur = cur->right;
     }
 }
@@ -74,7 +74,7 @@ void postorderI(Node *root){
         }
         else{
             lastVisit = stk.top();
-            cout << stk.top()->val << " ";
+            cout << stk.top()->val  << " ";
             stk.pop();
         }
     }
