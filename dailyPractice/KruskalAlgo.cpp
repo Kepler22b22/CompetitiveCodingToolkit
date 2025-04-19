@@ -46,6 +46,7 @@ void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
         cout << get<0>(edge) << " - " << get<1>(edge) << " " << get<2>(edge) << endl;
     }
 }
+
 int main() {
     int n = 6; // Number of vertices
 

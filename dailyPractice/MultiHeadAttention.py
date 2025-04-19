@@ -11,7 +11,7 @@ class ScaledDotProductAttention(nn.Module):
     def forward(self, q, k, v, mask=None):
         attn = torch.matmul(q, k.transpose(-2, -1)) / self.temperature
         if mask is not None:
-            attn = attn.mask_filled(mask==0, -1e9)
+            attn = attn.mask_fill(mask==0, -1e9)
         attn = attn - attn.max(dim=-1, keepdim=True).values
         attn = self.dropout(F.softmax(attn, dim=-1))
         output = torch.matmul(attn, v)
@@ -28,8 +28,8 @@ class LayerNorm(nn.Module):
     def forward(self, x):
         mean = x.mean(dim=-1, keepdim=True)
         var = x.var(dim=-1, unbiased=False, keepdim=True)
-        x_nrom = (x - mean) / torch.sqrt(var + self.eps)
-        return self.gamma.unsqueeze(0).unsqueeze(0) * x_nrom + self.beta.unsqueeze(0).unsqueeze(0)
+        x_norm = (x - mean) / torch.sqrt(var + self.eps)
+        return self.gamma.unsqueeze(0).unsqueeze(0) * x_norm + self.beta.unsqueeze(0).unsqueeze(0)
 
 class MultiHeadAttention(nn.Module):
     def __init__(self, d_model, d_k, d_v, n_head, dropout=0.1):
@@ -64,6 +64,7 @@ class MultiHeadAttention(nn.Module):
             mask = mask.unsqueeze(1)
 
         output, attn = self.attention(q, k, v, mask=mask)
+        output.transpose(1, 2).contiguous().view(batch_size, len_q, d_model)
         output = self.dropout(self.fc(output))
         output += residual
         output = self.layer_norm(output)

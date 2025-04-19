@@ -8,8 +8,8 @@ void heapifyMax(vector<int> &nums, int n, int i){
     if(l < n && nums[l] > nums[root]){root = l;}
     if(r < n && nums[r] > nums[root]){root = r;}
     if(root != i){
-        swap(nums[root], nums[i]);
-        heapifyMax(nums, root, i);
+        swap(nums[i], nums[root]);
+        heapifyMax(nums, n, root);
     }
 }
 
@@ -28,8 +28,8 @@ void heapifyMin(vector<int> &nums, int n, int i){
     if(l < n && nums[l] < nums[root]){root = l;}
     if(r < n && nums[r] < nums[root]){root = r;}
     if(root != i){
-        swap(nums[root], nums[i]);
-        heapifyMin(nums, root, i);
+        swap(nums[i], nums[root]);
+        heapifyMin(nums, n, root);
     }
 }
 
