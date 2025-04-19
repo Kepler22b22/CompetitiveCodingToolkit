@@ -40,6 +40,7 @@ void inorderR(Node *root){
 }
 
 void inorderI(Node *root){
+    if(!root){return;}
     stack<Node*> stk;
     Node *cur = root;
     while(!stk.empty() || cur){
@@ -74,7 +75,7 @@ void postorderI(Node *root){
         }
         else{
             lastVisit = stk.top();
-            cout << stk.top()->val  << " ";
+            cout << stk.top()->val << " ";
             stk.pop();
         }
     }

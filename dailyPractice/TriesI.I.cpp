@@ -8,7 +8,7 @@ public:
     unordered_map<char, TrieNode*> children;
     bool endOfWord;
 
-    TrieNode():endOfWord(false) {}
+    TrieNode(): endOfWord(false) {}
 };
 
 class PrefixTree {
@@ -23,16 +23,14 @@ public:
     void insert(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            if(!cur->children.count(ch)){
-                cur->children[ch] = new TrieNode();
-            }
+            if(!cur->children.count(ch)){cur->children[ch] = new TrieNode();}
             cur = cur->children[ch];
         }
         cur->endOfWord = true;
     }
 
     bool startsWith(string prefix){
-        TrieNode *cur = root;
+        TrieNode * cur = root;
         for(char ch : prefix){
             if(!cur->children.count(ch)){return false;}
             cur = cur->children[ch];
@@ -41,7 +39,7 @@ public:
     }
 
     bool search(string word){
-        TrieNode *cur = root;
+        TrieNode * cur = root;
         for(char ch : word){
             if(!cur->children.count(ch)){return false;}
             cur = cur->children[ch];

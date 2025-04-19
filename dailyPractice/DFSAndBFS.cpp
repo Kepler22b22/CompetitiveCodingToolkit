@@ -16,7 +16,7 @@ public:
         adj.resize(V);
     }
 
-    void addEdges(int u,  int v, int w){
+    void addEdges(int u, int v, int w){
         adj[u].push_back({v, w});
         adj[v].push_back({u, w});
     }
@@ -39,8 +39,8 @@ public:
 
     void bfs(int start){
         cout << "BFS starts: " << endl;
-        unordered_set<int> visit;
         queue<int> q;
+        unordered_set<int> visit;
         q.push(start);
         visit.insert(start);
         while(!q.empty()){
