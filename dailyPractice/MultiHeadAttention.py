@@ -6,31 +6,30 @@ class ScaledDotProductAttention(nn.Module):
     def __init__(self, temperature, dropout=0.1):
         super().__init__()
         self.temperature = temperature
-        self.dropout = nn.Dropout(dropout)
+        self.Dropout = nn.Dropout(dropout)
 
     def forward(self, q, k, v, mask=None):
         attn = torch.matmul(q, k.transpose(-2, -1)) / self.temperature
         if mask is not None:
-            attn = attn.mask_fill(mask==0, -1e9)
+            attn = attn.masked_fill(mask==0, -1e9)
         attn = attn - attn.max(dim=-1, keepdim=True).values
-        attn = self.dropout(F.softmax(attn, dim=-1))
+        attn = self.Dropout(F.softmax(attn, dim=-1))
         output = torch.matmul(attn, v)
         return output, attn
     
 class LayerNorm(nn.Module):
     def __init__(self, d_model, eps=1e-6):
         super().__init__()
-        self.model = d_model
         self.eps = eps
         self.gamma = nn.Parameter(torch.ones(d_model))
         self.beta = nn.Parameter(torch.zeros(d_model))
-    
+
     def forward(self, x):
         mean = x.mean(dim=-1, keepdim=True)
         var = x.var(dim=-1, unbiased=False, keepdim=True)
         x_norm = (x - mean) / torch.sqrt(var + self.eps)
         return self.gamma.unsqueeze(0).unsqueeze(0) * x_norm + self.beta.unsqueeze(0).unsqueeze(0)
-
+    
 class MultiHeadAttention(nn.Module):
     def __init__(self, d_model, d_k, d_v, n_head, dropout=0.1):
         super().__init__()
@@ -38,7 +37,7 @@ class MultiHeadAttention(nn.Module):
         self.d_k = d_k
         self.d_v = d_v
         self.n_head = n_head
-
+        
         self.w_q = nn.Linear(d_model, n_head * d_k, bias=False)
         self.w_k = nn.Linear(d_model, n_head * d_k, bias=False)
         self.w_v = nn.Linear(d_model, n_head * d_v, bias=False)
@@ -49,8 +48,8 @@ class MultiHeadAttention(nn.Module):
         self.layer_norm = LayerNorm(d_model=d_model)
 
     def forward(self, q, k, v, mask=None):
-        batch_size, len_q, len_k, len_v = q.size(0), q.size(1), k.size(1), v.size(1)
         d_model, d_k, d_v, n_head = self.d_model, self.d_k, self.d_v, self.n_head
+        batch_size, len_q, len_k, len_v = q.size(0), q.size(1), k.size(1), v.size(1)
 
         residual = q
 
@@ -64,8 +63,8 @@ class MultiHeadAttention(nn.Module):
             mask = mask.unsqueeze(1)
 
         output, attn = self.attention(q, k, v, mask=mask)
-        output.transpose(1, 2).contiguous().view(batch_size, len_q, d_model)
-        output = self.dropout(self.fc(output))
+        output = output.transpose(1, 2).contiguous().view(batch_size, len_q, -1)
+        output = self.dropout(output)
         output += residual
         output = self.layer_norm(output)
         return output, attn
