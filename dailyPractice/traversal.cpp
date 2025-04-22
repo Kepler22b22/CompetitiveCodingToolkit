@@ -40,7 +40,6 @@ void inorderR(Node *root){
 }
 
 void inorderI(Node *root){
-    if(!root){return;}
     stack<Node*> stk;
     Node *cur = root;
     while(!stk.empty() || cur){
@@ -70,7 +69,7 @@ void postorderI(Node *root){
             stk.push(cur);
             cur = cur->left;
         }
-        if(stk.top()->right && lastVisit != stk.top()->right){
+        if(stk.top()->right && stk.top()->right != lastVisit){
             cur = stk.top()->right;
         }
         else{
@@ -81,8 +80,9 @@ void postorderI(Node *root){
     }
 }
 
-void levelOrder(Node *root){  
+void levelOrder(Node *root){
     if(!root){return;}
+    stack<Node*> stk;
     queue<Node*> q;
     q.push(root);
     while(!q.empty()){
