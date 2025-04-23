@@ -30,7 +30,7 @@ public:
     }
 
     bool startsWith(string prefix){
-        TrieNode * cur = root;
+        TrieNode *cur = root;
         for(char ch : prefix){
             if(!cur->children.count(ch)){return false;}
             cur = cur->children[ch];
@@ -39,7 +39,7 @@ public:
     }
 
     bool search(string word){
-        TrieNode * cur = root;
+        TrieNode *cur = root;
         for(char ch : word){
             if(!cur->children.count(ch)){return false;}
             cur = cur->children[ch];
