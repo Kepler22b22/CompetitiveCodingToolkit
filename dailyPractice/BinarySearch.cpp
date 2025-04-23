@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 
-
 using namespace std;
 
 int findEqualOrGreater(vector<int> &nums, int target){

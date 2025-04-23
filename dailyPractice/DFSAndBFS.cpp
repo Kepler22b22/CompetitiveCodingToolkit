@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <stack>
 #include <unordered_set>
 
 using namespace std;
@@ -23,18 +24,23 @@ public:
 
     void dfs(int start){
         cout << "DFS starts: " << endl;
+        stack<int> stk;
+        stk.push(start);
         unordered_set<int> visit;
-        dfs_helper(start, visit);
-        cout << endl;
-    }
-
-    void dfs_helper(int u, unordered_set<int> &visit){
-        if(visit.count(u)){return;}
-        cout << u << " ";
-        visit.insert(u);
-        for(const auto &edge : adj[u]){
-            dfs_helper(edge.first, visit);
+        while(!stk.empty()){
+            int u = stk.top();
+            stk.pop();
+            if(!visit.count(u)){
+                cout << u << " ";
+                visit.insert(u);
+                for(const auto &edge : adj[u]){
+                    if(!visit.count(edge.first)){
+                        stk.push(edge.first);
+                    }
+                }
+            }
         }
+        cout << endl;
     }
 
     void bfs(int start){

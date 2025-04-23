@@ -5,9 +5,9 @@ using namespace std;
 class TrieNode {
 public:
     TrieNode *children[52];
-    bool endOfWord;
+    bool endOfWrod;
 
-    TrieNode(): endOfWord(false) {}
+    TrieNode(): endOfWrod(false) {}
 };
 
 class PrefixTree {
@@ -15,8 +15,8 @@ private:
     TrieNode *root;
 
     int getIndex(char ch){
-        if(islower(ch)){return ch - 'a' + 26;}
-        if(isupper(ch)){return ch - 'A';}
+        if(isupper(ch)){return ch - 'A' + 26;}
+        if(islower(ch)){return ch - 'a';}
         return -1;
     }
 
@@ -34,7 +34,7 @@ public:
             }
             cur = cur->children[i];
         }
-        cur->endOfWord = true;
+        cur->endOfWrod = true;
     }
 
     bool startsWith(string prefix){
@@ -54,7 +54,7 @@ public:
             if(!cur->children[i]){return false;}
             cur = cur->children[i];
         }
-        return cur->endOfWord;
+        return cur->endOfWrod;
     }
 };
 
