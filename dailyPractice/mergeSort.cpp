@@ -33,7 +33,7 @@ void mergeSortI(vector<int> &nums){
             int r = min((int)nums.size() - 1, l + 2 * i - 1);
             merge(nums, l, mid, r);
         }
-    }
+    } 
 }
 
 int main(){

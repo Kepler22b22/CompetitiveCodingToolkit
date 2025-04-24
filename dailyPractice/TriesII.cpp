@@ -19,7 +19,7 @@ private:
         if(i == word.size()){return cur->endOfWord;}
         char ch = word[i];
         if(ch == '.'){
-            for(const auto &child : cur->children){
+            for(const auto&child : cur->children){
                 if(dfs(word, i + 1, child.second)){return true;}
             }
             return false;
@@ -38,7 +38,7 @@ public:
     void insert(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            if(!cur->children[ch]){
+            if(!cur->children.count(ch)){
                 cur->children[ch] = new TrieNode();
             }
             cur = cur->children[ch];
