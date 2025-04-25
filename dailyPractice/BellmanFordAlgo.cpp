@@ -5,7 +5,7 @@ using namespace std;
 
 void BellmanFordAlgo(vector<tuple<int, int, int>> &edges, int n){
     int superNode = n;
-    vector<int> dist(n, INT_MAX);
+    vector<int> dist(n + 1, INT_MAX);
     dist[superNode] = 0;
     for(int i = 0; i < n; i++){
         edges.push_back({n, i, 0});

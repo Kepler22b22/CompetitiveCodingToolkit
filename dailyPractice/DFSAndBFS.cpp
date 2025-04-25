@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <stack>
 #include <unordered_set>
+#include <stack>
 
 using namespace std;
 
@@ -12,8 +12,8 @@ private:
     vector<vector<pair<int, int>>> adj;
 
 public:
-    Graph(int verticies){
-        V = verticies;
+    Graph(int vertices){
+        V = vertices;
         adj.resize(V);
     }
 
@@ -22,21 +22,36 @@ public:
         adj[v].push_back({u, w});
     }
 
-    void dfs(int start){
-        cout << "DFS starts: " << endl;
+    void dfsR(int start){
+        cout << "Recursive DFS starts: " << endl;
+        unordered_set<int> visit;
+        dfs_helper(start, visit);
+        cout << endl;
+    }
+
+    void dfs_helper(int u, unordered_set<int> &visit){
+        if(visit.count(u)){return;}
+        visit.insert(u);
+        cout << u << " ";
+        for(const auto &edge : adj[u]){
+            dfs_helper(edge.first, visit);
+        }
+    }
+
+    void dfsI(int start){
+        cout << "Iterative DFS starts: " << endl;
+        unordered_set<int> visit;
         stack<int> stk;
         stk.push(start);
-        unordered_set<int> visit;
         while(!stk.empty()){
             int u = stk.top();
             stk.pop();
-            if(!visit.count(u)){
-                cout << u << " ";
-                visit.insert(u);
-                for(const auto &edge : adj[u]){
-                    if(!visit.count(edge.first)){
-                        stk.push(edge.first);
-                    }
+            if(visit.count(u)){continue;}
+            visit.insert(u);
+            cout << u << " ";
+            for(const auto &edge : adj[u]){
+                if(!visit.count(edge.first)){
+                    stk.push(edge.first);
                 }
             }
         }
@@ -65,9 +80,9 @@ public:
 
     void printGraph(){
         for(int i = 0; i < V; i++){
-            cout << "Node " << i << ": ";
+            cout << "Node "  << i << ": ";
             for(const auto &edge : adj[i]){
-                cout << "(" << edge.first << " , weight: " << edge.second << ") ";
+                cout << "(" << edge.first << ", weight: " << edge.second << ") ";
             }
             cout << endl;
         }
@@ -88,7 +103,8 @@ int main() {
     g.printGraph(); // Debugging: Print the graph
 
     // Performing DFS and BFS
-    g.dfs(0);
+    g.dfsI(0);
+    g.dfsR(0);
     g.bfs(0);
 
     /*Expected Output: 
