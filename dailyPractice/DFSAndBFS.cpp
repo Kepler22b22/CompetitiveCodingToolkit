@@ -39,9 +39,9 @@ public:
     }
 
     void dfsI(int start){
-        cout << "Iterative DFS starts: " << endl;
-        unordered_set<int> visit;
+        cout << "Recusive DFS starts: " << endl;
         stack<int> stk;
+        unordered_set<int> visit;
         stk.push(start);
         while(!stk.empty()){
             int u = stk.top();
@@ -114,9 +114,10 @@ int main() {
     Node 3: (1, weight: 6)
     Node 4: (1, weight: 3)
     Node 5: (2, weight: 8)
-    Node 6: (2, weight: 5)
-    DFS starts:
-    0 1 3 4 2 5 6
+    Node 6: (2, weight: 5) 
+    Recusive DFS starts: 
+    0 2 6 5 1 4 3 
+    Recursive DFS starts: 
     BFS starts:
     0 1 2 3 4 5 6
     */
