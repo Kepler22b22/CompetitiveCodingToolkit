@@ -33,7 +33,7 @@ public:
 
     bool startsWith(string prefix){
         TrieNode *cur = root;
-        for(char  ch : prefix){
+        for(char ch : prefix){
             if(!cur->children.count(ch)){return false;}
             cur = cur->children[ch];
         }
