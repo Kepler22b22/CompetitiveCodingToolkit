@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <stack>
 #include <queue>
 #include <unordered_set>
-#include <stack>
 
 using namespace std;
 
@@ -22,26 +22,10 @@ public:
         adj[v].push_back({u, w});
     }
 
-    void dfsR(int start){
-        cout << "Recursive DFS starts: " << endl;
-        unordered_set<int> visit;
-        dfs_helper(start, visit);
-        cout << endl;
-    }
-
-    void dfs_helper(int u, unordered_set<int> &visit){
-        if(visit.count(u)){return;}
-        visit.insert(u);
-        cout << u << " ";
-        for(const auto &edge : adj[u]){
-            dfs_helper(edge.first, visit);
-        }
-    }
-
     void dfsI(int start){
-        cout << "Recusive DFS starts: " << endl;
-        stack<int> stk;
+        cout << "Iterate DFS starts: " << endl;
         unordered_set<int> visit;
+        stack<int> stk;
         stk.push(start);
         while(!stk.empty()){
             int u = stk.top();
@@ -58,10 +42,26 @@ public:
         cout << endl;
     }
 
+    void dfsR(int start){
+        cout << "Recursive DFS starts: " << endl;
+        unordered_set<int> visit;
+        dfs_helper(start, visit);
+        cout << endl;
+    }
+
+    void dfs_helper(int u, unordered_set<int> &visit){
+        if(visit.count(u)){return;}
+        visit.insert(u);
+        cout << u << " ";
+        for(const auto &edge : adj[u]){
+            dfs_helper(edge.first, visit);
+        }
+    }
+
     void bfs(int start){
         cout << "BFS starts: " << endl;
-        queue<int> q;
         unordered_set<int> visit;
+        queue<int> q;
         q.push(start);
         visit.insert(start);
         while(!q.empty()){

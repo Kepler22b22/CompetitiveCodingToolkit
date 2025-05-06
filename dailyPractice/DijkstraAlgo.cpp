@@ -26,6 +26,7 @@ vector<int> DijkstraAlgo(vector<vector<pair<int, int>>> &edges, int n, int start
     return dist;
 }
 
+
 int main() {
     int n = 7;
     vector<vector<pair<int, int>>> edges(n);
