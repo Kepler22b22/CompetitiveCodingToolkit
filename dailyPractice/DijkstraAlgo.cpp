@@ -7,9 +7,9 @@ using namespace std;
 
 vector<int> DijkstraAlgo(vector<vector<pair<int, int>>> &edges, int n, int start){
     vector<int> dist(n, INT_MAX);
+    dist[start] = 0;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     unordered_set<int> visit;
-    dist[start] = 0;
     pq.push({0, start});
     while(!pq.empty()){
         int u = pq.top().second;
