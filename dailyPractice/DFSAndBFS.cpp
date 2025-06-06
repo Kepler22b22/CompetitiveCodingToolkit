@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <stack>
-#include <queue>
 #include <unordered_set>
+#include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -12,8 +12,8 @@ private:
     vector<vector<pair<int, int>>> adj;
 
 public:
-    Graph(int vertices){
-        V = vertices;
+    Graph(int verticies){
+        V = verticies;
         adj.resize(V);
     }
 
@@ -24,8 +24,8 @@ public:
 
     void dfsI(int start){
         cout << "Iterate DFS starts: " << endl;
-        unordered_set<int> visit;
         stack<int> stk;
+        unordered_set<int> visit;
         stk.push(start);
         while(!stk.empty()){
             int u = stk.top();
@@ -62,8 +62,8 @@ public:
         cout << "BFS starts: " << endl;
         unordered_set<int> visit;
         queue<int> q;
-        q.push(start);
         visit.insert(start);
+        q.push(start);
         while(!q.empty()){
             int u = q.front();
             q.pop();
@@ -115,11 +115,12 @@ int main() {
     Node 4: (1, weight: 3)
     Node 5: (2, weight: 8)
     Node 6: (2, weight: 5) 
-    Recusive DFS starts: 
+    Iterate DFS starts: 
     0 2 6 5 1 4 3 
     Recursive DFS starts: 
-    BFS starts:
-    0 1 2 3 4 5 6
+    0 1 3 4 2 5 6 
+    BFS starts: 
+    0 1 2 3 4 5 6 
     */
 
     return 0;

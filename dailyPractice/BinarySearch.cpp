@@ -16,7 +16,6 @@ int findEqualOrGreater(vector<int> &nums, int target){
     return res;
 }
 
-
 int findGreater(vector<int> &nums, int target){
     int l = 0, r = nums.size() - 1, res = -1;
     while(l <= r){
