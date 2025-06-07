@@ -4,11 +4,11 @@
 using namespace std;
 
 void heapifyMax(vector<int> &nums, int n, int i){
-    int root = i, l = 2 * i + 1, r = 2 * i + 2;
+    int l = 2 * i + 1, r = 2 * i + 2, root = i;
     if(l < n && nums[l] > nums[root]){root = l;}
     if(r < n && nums[r] > nums[root]){root = r;}
     if(root != i){
-        swap(nums[i], nums[root]);
+        swap(nums[root], nums[i]);
         heapifyMax(nums, n, root);
     }
 }
@@ -17,14 +17,14 @@ void maxHeap(vector<int> &nums){
     for(int i = nums.size() / 2 - 1; i >= 0; i--){
         heapifyMax(nums, nums.size(), i);
     }
-    for(int i = nums.size() - 1; i> 0; i--){
-        swap(nums[0], nums[i]);
+    for(int i = nums.size() - 1; i > 0; i--){
+        swap(nums[i], nums[0]);
         heapifyMax(nums, i, 0);
     }
 }
 
 void heapifyMin(vector<int> &nums, int n, int i){
-    int root = i, l = 2 * i + 1, r = 2 * i + 2;
+    int l = 2 * i + 1, r = 2 * i + 2, root = i;
     if(l < n && nums[l] < nums[root]){root = l;}
     if(r < n && nums[r] < nums[root]){root = r;}
     if(root != i){
