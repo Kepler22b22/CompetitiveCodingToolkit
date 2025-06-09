@@ -7,16 +7,16 @@ public:
     TrieNode *children[52];
     bool endOfWord;
 
-    TrieNode(): endOfWord(false) {}
+    TrieNode(): endOfWord(false){}
 };
 
 class PrefixTree {
 private:
     TrieNode *root;
 
-    int getIndex(char ch){
-        if(islower(ch)){return ch - 'a';}
-        if(isupper(ch)){return ch - 'A' + 26;}
+    int getIdx(char ch){
+        if(islower(ch)){return ch - 'a' + 26;}
+        if(isupper(ch)){return ch - 'a';}
         return -1;
     }
 
@@ -28,7 +28,7 @@ public:
     void insert(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            int i = getIndex(ch);
+            int i = getIdx(ch);
             if(!cur->children[i]){
                 cur->children[i] = new TrieNode();
             }
@@ -40,7 +40,7 @@ public:
     bool startsWith(string prefix){
         TrieNode *cur = root;
         for(char ch : prefix){
-            int i = getIndex(ch);
+            int i = getIdx(ch);
             if(!cur->children[i]){return false;}
             cur = cur->children[i];
         }
@@ -50,7 +50,7 @@ public:
     bool search(string word){
         TrieNode *cur = root;
         for(char ch : word){
-            int i = getIndex(ch);
+            int i = getIdx(ch);
             if(!cur->children[i]){return false;}
             cur = cur->children[i];
         }
