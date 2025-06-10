@@ -63,17 +63,17 @@ void postorderR(Node *root){
 
 void postorderI(Node *root){
     stack<Node*> stk;
-    Node *cur = root, *lastVisit = NULL;
+    Node *cur = root, *lastVisited = NULL;
     while(!stk.empty() || cur){
         while(cur){
             stk.push(cur);
             cur = cur->left;
         }
-        if(stk.top()->right && lastVisit != stk.top()->right){
+        if(stk.top()->right && lastVisited != stk.top()->right){
             cur = stk.top()->right;
         }
         else{
-            lastVisit = stk.top();
+            lastVisited = stk.top();
             cout << stk.top()->val << " ";
             stk.pop();
         }
