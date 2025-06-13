@@ -43,7 +43,7 @@ void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
         if(inMST.size() == n - 1){break;}
     }
     for(const auto &edge : inMST){
-        cout << get<0>(edge) << " - " << get<1>(edge) << " "<< get<2>(edge) << endl;
+        cout << get<0>(edge) << " - " << get<1>(edge) << " " << get<2>(edge) << endl;
     }
 }
 

@@ -7,7 +7,7 @@ public:
     TrieNode *children[52];
     bool endOfWord;
 
-    TrieNode(): endOfWord(false){}
+    TrieNode(): endOfWord(false) {}
 };
 
 class PrefixTree {
@@ -16,7 +16,7 @@ private:
 
     int getIdx(char ch){
         if(islower(ch)){return ch - 'a' + 26;}
-        if(isupper(ch)){return ch - 'a';}
+        if(isupper(ch)){return ch - 'A';}
         return -1;
     }
 
