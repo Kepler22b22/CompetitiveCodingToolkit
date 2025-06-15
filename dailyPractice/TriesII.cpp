@@ -36,7 +36,7 @@ public:
     }
 
     void insert(string word){
-        TrieNode *cur  = root;
+        TrieNode *cur = root;
         for(char ch : word){
             if(!cur->children.count(ch)){
                 cur->children[ch] = new TrieNode();

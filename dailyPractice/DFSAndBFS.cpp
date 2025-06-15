@@ -23,7 +23,7 @@ public:
     }
 
     void dfsI(int start){
-        cout << "Iterate DFS starts: " << endl;
+        cout << "Iterative DFS starts: " << endl;
         stack<int> stk;
         unordered_set<int> visit;
         stk.push(start);
@@ -34,9 +34,7 @@ public:
             visit.insert(u);
             cout << u << " ";
             for(const auto &edge : adj[u]){
-                if(!visit.count(edge.first)){
-                    stk.push(edge.first);
-                }
+                stk.push(edge.first);
             }
         }
         cout << endl;
@@ -51,8 +49,8 @@ public:
 
     void dfs_helper(int u, unordered_set<int> &visit){
         if(visit.count(u)){return;}
-        cout << u <<  " ";
         visit.insert(u);
+        cout << u << " ";
         for(const auto &edge : adj[u]){
             dfs_helper(edge.first, visit);
         }
@@ -62,16 +60,16 @@ public:
         cout << "BFS starts: " << endl;
         queue<int> q;
         unordered_set<int> visit;
-        q.push(start);
         visit.insert(start);
+        q.push(start);
         while(!q.empty()){
             int u = q.front();
             q.pop();
-            cout << u << " " ;
+            cout << u << " ";
             for(const auto &edge : adj[u]){
                 if(!visit.count(edge.first)){
-                    q.push(edge.first);
                     visit.insert(edge.first);
+                    q.push(edge.first);
                 }
             }
         }
