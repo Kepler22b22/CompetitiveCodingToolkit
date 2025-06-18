@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <queue>
 #include <stack>
+#include <queue>
 #include <unordered_set>
 
 using namespace std;
@@ -34,7 +34,9 @@ public:
             visit.insert(u);
             cout << u << " ";
             for(const auto &edge : adj[u]){
-                stk.push(edge.first);
+                if(!visit.count(edge.first)){
+                    stk.push(edge.first);
+                }
             }
         }
         cout << endl;
@@ -60,8 +62,8 @@ public:
         cout << "BFS starts: " << endl;
         queue<int> q;
         unordered_set<int> visit;
-        visit.insert(start);
         q.push(start);
+        visit.insert(start);
         while(!q.empty()){
             int u = q.front();
             q.pop();
