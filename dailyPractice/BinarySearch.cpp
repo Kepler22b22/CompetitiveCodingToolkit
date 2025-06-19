@@ -9,7 +9,7 @@ int findEqualOrGreater(vector<int> &nums, int target){
         int mid = l + (r - l) / 2;
         if(nums[mid] < target){l = mid + 1;}
         else{
-            res = mid;
+            res = -1;
             r = mid - 1;
         }
     }
@@ -22,7 +22,7 @@ int findGreater(vector<int> &nums, int target){
         int mid = l + (r - l) / 2;
         if(nums[mid] <= target){l = mid + 1;}
         else{
-            res = mid;
+            res = -1;
             r = mid - 1;
         }
     }

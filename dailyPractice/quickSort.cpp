@@ -4,8 +4,7 @@
 using namespace std;
 
 int partitionI(vector<int> &nums, int low, int high){
-    int pivot = nums[low];
-    int l = low, r = high;
+    int pivot = nums[low], l = low, r = high;
     while(l < r){
         while(l <= high && nums[l] <= pivot){l++;}
         while(r >= low && nums[r] > pivot){r--;}
@@ -17,16 +16,15 @@ int partitionI(vector<int> &nums, int low, int high){
 
 void quickSortI(vector<int> &nums, int low, int high){
     if(low < high){
-        int i = partitionI(nums, low, high);
-        quickSortI(nums, low, i - 1);
-        quickSortI(nums, i + 1, high);
+        int idx = partitionI(nums, low, high);
+        quickSortI(nums, low, idx - 1);
+        quickSortI(nums, idx + 1, high);
     }
 }
 
 int partitionII(vector<int> &nums, int low, int high){
-    int pivot = nums[high];
-    int l = low - 1;
-    for(int r = low; r <= high; r++){
+    int pivot = nums[high], l = low - 1;
+    for(int r = low; l <= high; i++){
         if(nums[r] < pivot){
             l++;
             swap(nums[l], nums[r]);
@@ -38,9 +36,9 @@ int partitionII(vector<int> &nums, int low, int high){
 
 void quickSortII(vector<int> &nums, int low, int high){
     if(low < high){
-        int i = partitionII(nums, low, high);
-        quickSortII(nums, low, i - 1);
-        quickSortII(nums, i + 1, high);
+        int idx = partitionI(nums, low, high);
+        quickSortI(nums, low, idx - 1);
+        quickSortI(nums, idx + 1, high);
     }
 }
 

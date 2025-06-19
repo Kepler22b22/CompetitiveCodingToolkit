@@ -67,9 +67,9 @@ void postorderI(Node *root){
     while(!stk.empty() || cur){
         while(cur){
             stk.push(cur);
-            cur = cur->left;
+            cur =cur->left;
         }
-        if(stk.top()->right && lastVisit != stk.top()->right){
+        if(stk.top()->right && stk.top()->right != lastVisit){
             cur = stk.top()->right;
         }
         else{
@@ -91,7 +91,7 @@ void levelOrder(Node *root){
             q.pop();
             cout << cur->val << " ";
             if(cur->left){q.push(cur->left);}
-            if(cur->right){q.push(cur->right);}
+            if(cur->right){q.push({cur->right});}
         }
     }
 }

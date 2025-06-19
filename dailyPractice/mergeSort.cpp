@@ -10,12 +10,8 @@ void merge(vector<int> &nums, int low, int mid, int high){
         if(nums[l] < nums[r]){temp[k++] = nums[l++];}
         else{temp[k++] = nums[r++];}
     }
-    while(l <= mid){
-        temp[k++] = nums[l++];
-    }
-    while(r <= high){
-        temp[k++] = nums[r++];
-    }
+    while(l <= mid){temp[k++] = nums[l++];}
+    while(r <= high){temp[k++] = nums[r++];}
     for(int i = low; i <= high; i++){
         nums[i] = temp[i - low];
     }
