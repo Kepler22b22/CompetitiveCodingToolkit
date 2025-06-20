@@ -51,8 +51,8 @@ public:
 
     void dfs_helper(int u, unordered_set<int> &visit){
         if(visit.count(u)){return;}
-        visit.insert(u);
         cout << u << " ";
+        visit.insert(u);
         for(const auto &edge : adj[u]){
             dfs_helper(edge.first, visit);
         }

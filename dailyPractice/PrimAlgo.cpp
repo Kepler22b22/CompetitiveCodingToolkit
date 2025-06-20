@@ -18,9 +18,9 @@ void primsAlgo(vector<vector<pair<int, int>>> &edges, int n){
         visit.insert(u);
         for(const auto &edge : edges[u]){
             if(!visit.count(edge.first) && key[edge.first] > edge.second){
+                pq.push({edge.second, edge.first});
                 parent[edge.first] = u;
                 key[edge.first] = edge.second;
-                pq.push({edge.second, edge.first});
             }
         }
     }
