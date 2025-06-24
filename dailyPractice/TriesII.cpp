@@ -35,6 +35,7 @@ public:
         root = new TrieNode();
     }
 
+    
     void insert(string word){
         TrieNode *cur = root;
         for(char ch : word){
