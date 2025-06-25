@@ -35,8 +35,8 @@ int findEqualOrSmaller(vector<int> &nums, int target){
         int mid = l + (r - l) / 2;
         if(nums[mid] > target){r = mid - 1;}
         else{
-            res = mid;
             l = mid + 1;
+            res = mid;
         }
     }
     return res;
@@ -48,8 +48,8 @@ int findSmaller(vector<int> &nums, int target){
         int mid = l + (r - l) / 2;
         if(nums[mid] >= target){r = mid - 1;}
         else{
-            res = mid;
             l = mid + 1;
+            res = mid;
         }
     }
     return res;
