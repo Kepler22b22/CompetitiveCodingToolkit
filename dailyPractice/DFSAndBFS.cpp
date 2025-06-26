@@ -22,22 +22,6 @@ public:
         adj[v].push_back({u, w});
     }
 
-    void dfsR(int start){
-        cout << "Recursive DFS starts: " << endl;
-        unordered_set<int> visit;
-        dfs_helper(start, visit);
-        cout << endl;
-    }
-
-    void dfs_helper(int u, unordered_set<int> &visit){
-        if(visit.count(u)){return;}
-        cout << u << " ";
-        visit.insert(u);
-        for(const auto &edge : adj[u]){
-            dfs_helper(edge.first, visit);
-        }
-    }
-
     void dfsI(int start){
         cout << "Iterative DFS starts: " << endl;
         stack<int> stk;
@@ -56,6 +40,22 @@ public:
             }
         }
         cout << endl;
+    }
+
+    void dfsR(int start){
+        cout << "Recusive DFS starts: " << endl;
+        unordered_set<int> visit;
+        dfs_helper(start, visit);
+        cout << endl;
+    }
+
+    void dfs_helper(int u, unordered_set<int> &visit){
+        if(visit.count(u)){return;}
+        visit.insert(u);
+        cout << u << " ";
+        for(const auto &edge : adj[u]){
+            dfs_helper(edge.first, visit);
+        }
     }
 
     void bfs(int start){
@@ -77,7 +77,7 @@ public:
         }
         cout << endl;
     }
-    
+
     void printGraph(){
         for(int i = 0; i < V; i++){
             cout << "Node "  << i << ": ";
