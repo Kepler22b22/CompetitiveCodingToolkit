@@ -4,24 +4,17 @@
 using namespace std;
 
 class TrieNode {
-public:
+private:
     unordered_map<char, TrieNode*> children;
     bool endOfWord;
 
-    TrieNode(): endOfWord(false) {}
-};
-
-class PrefixTree {
-private:
-    TrieNode *root;
-
 public:
-    PrefixTree(){
-        root = new TrieNode();
+    TrieNode(){
+        endOfWord = false;
     }
 
     void insert(string word){
-        TrieNode *cur = root;
+        TrieNode *cur = this;
         for(char ch : word){
             if(!cur->children.count(ch)){
                 cur->children[ch] = new TrieNode();
@@ -32,7 +25,7 @@ public:
     }
 
     bool startsWith(string prefix){
-        TrieNode *cur = root;
+        TrieNode *cur = this;
         for(char ch : prefix){
             if(!cur->children.count(ch)){return false;}
             cur = cur->children[ch];
@@ -41,7 +34,7 @@ public:
     }
 
     bool search(string word){
-        TrieNode *cur = root;
+        TrieNode *cur = this;
         for(char ch : word){
             if(!cur->children.count(ch)){return false;}
             cur = cur->children[ch];
@@ -51,7 +44,7 @@ public:
 };
 
 int main() {
-    PrefixTree trie;
+    TrieNode trie;
 
     // Insert words into the Trie
     trie.insert("Apple");
