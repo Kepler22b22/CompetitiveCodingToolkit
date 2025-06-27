@@ -4,40 +4,32 @@
 using namespace std;
 
 class TrieNode {
-public:
+private:
     unordered_map<char, TrieNode*> children;
     bool endOfWord;
 
-    TrieNode(): endOfWord(false) {}
-};
-
-class PrefixTree {
-private:
-    TrieNode *root;
-
-    bool dfs(string word, int i, TrieNode *cur){
+    bool bt(string word, int i, TrieNode *cur){
         if(i == word.size()){return cur->endOfWord;}
         char ch = word[i];
         if(ch == '.'){
             for(const auto &child : cur->children){
-                if(dfs(word, i + 1, child.second)){return true;}
+                if(bt(word, i + 1, child.second)){return true;}
             }
             return false;
         }
         else{
             if(!cur->children.count(ch)){return false;}
-            return dfs(word, i + 1, cur->children[ch]);
+            return bt(word, i + 1, cur->children[ch]);
         }
     }
 
 public:
-    PrefixTree(){
-        root = new TrieNode();
+    TrieNode(){
+        endOfWord = false;
     }
 
-    
     void insert(string word){
-        TrieNode *cur = root;
+        TrieNode *cur = this;
         for(char ch : word){
             if(!cur->children.count(ch)){
                 cur->children[ch] = new TrieNode();
@@ -48,13 +40,13 @@ public:
     }
 
     bool search(string word){
-        TrieNode *cur = root;
-        return dfs(word, 0, cur);
+        TrieNode *cur = this;
+        return bt(word, 0, cur);
     }
 };
 
 int main() {
-    PrefixTree trie;
+    TrieNode trie;
 
     trie.insert("apple");
     trie.insert("app");
