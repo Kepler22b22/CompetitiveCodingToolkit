@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <unordered_set>
 #include <stack>
 #include <queue>
-#include <unordered_set>
 
 using namespace std;
 
@@ -43,7 +43,7 @@ public:
     }
 
     void dfsR(int start){
-        cout << "Recusive DFS starts: " << endl;
+        cout << "Recursive DFS starts: " << endl;
         unordered_set<int> visit;
         dfs_helper(start, visit);
         cout << endl;
