@@ -13,9 +13,7 @@ void merge(vector<int> &nums, int low, int mid, int high){
     while(l <= mid){
         temp[k++] = nums[l++];
     }
-    while(r <= high){
-        temp[k++] = nums[r++];
-    }
+    while(r <= high){temp[k++] = nums[r++];}
     for(int i = low; i <= high; i++){
         nums[i] = temp[i - low];
     }
@@ -23,7 +21,7 @@ void merge(vector<int> &nums, int low, int mid, int high){
 
 void mergeSort(vector<int> &nums, int low, int high){
     if(low < high){
-        int mid = low + (high - low) / 2;
+        int mid= low + (high - low) / 2;
         mergeSort(nums, low, mid);
         mergeSort(nums, mid + 1, high);
         merge(nums, low, mid, high);
@@ -34,7 +32,7 @@ void mergeSortI(vector<int> &nums){
     for(int i = 1; i < nums.size(); i *= 2){
         for(int l = 0; l < nums.size() - i; l += 2 * i){
             int mid = l + i - 1;
-            int r = min(static_cast<int>(nums.size() - 1), l + 2 * i - 1);
+            int r = min((int)nums.size() - 1, l + 2 * i - 1);
             merge(nums, l, mid, r);
         }
     }
