@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 #include <queue>
+#include <unordered_set>
 
 using namespace std;
 
@@ -18,14 +18,14 @@ void primsAlgo(vector<vector<pair<int, int>>> &edges, int n){
         visit.insert(u);
         for(const auto &edge : edges[u]){
             if(!visit.count(edge.first) && key[edge.first] > edge.second){
-                key[edge.first] = edge.second;
-                parent[edge.first] = u;
                 pq.push({edge.second, edge.first});
+                parent[edge.first] = u;
+                key[edge.first] = edge.second;
             }
         }
     }
     cout << "Edge\tWeight" << endl;
-    for(int i = 1; i < n; i++){
+    for(int i = 0; i < n; i++){
         cout << parent[i] << " - " << i << " " << key[i] << endl;
     }
 }
