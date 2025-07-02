@@ -17,7 +17,7 @@ void BellmanFordAlgo(vector<tuple<int, int, int>> &edges, int n){
             }
         }
     }
-    for(const auto&[u, v, w] : edges){
+    for(const auto &[u, v, w] : edges){
         if(dist[u] != INT_MAX && dist[v] > dist[u] + w){
             cout << "Negative cycle detected. " << endl;
         }
