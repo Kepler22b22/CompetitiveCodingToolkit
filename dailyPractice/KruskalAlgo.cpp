@@ -31,10 +31,10 @@ public:
 
 void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
     DisjointSet set(n);
-    vector<tuple<int, int, int>> inMST;
-    sort(edges.begin(), edges.end(), [](const tuple<int, int, int> &a, const tuple<int ,int, int> &b){
+    sort(edges.begin(), edges.end(), [](const tuple<int, int, int> &a, const tuple<int, int, int> &b){
         return get<2>(a) < get<2>(b);
     });
+    vector<tuple<int, int, int>> inMST;
     for(const auto &[u, v, w] : edges){
         if(set.find(u) != set.find(v)){
             set.unionSet(u, v);
