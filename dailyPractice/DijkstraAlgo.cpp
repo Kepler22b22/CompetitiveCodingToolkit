@@ -13,6 +13,7 @@ vector<int> DijkstraAlgo(vector<vector<pair<int, int>>> &edges, int n, int start
     pq.push({0, start});
     while(!pq.empty()){
         int u = pq.top().second;
+        int distu = pq.top().first;
         pq.pop();
         if(visit.count(u)){continue;}
         visit.insert(u);

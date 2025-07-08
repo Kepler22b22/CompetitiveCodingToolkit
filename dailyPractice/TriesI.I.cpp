@@ -40,6 +40,7 @@ public:
             cur = cur->children[ch];
         }
         return cur->endOfWord;
+        
     }
 };
 
