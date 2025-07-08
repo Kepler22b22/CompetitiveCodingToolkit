@@ -40,9 +40,11 @@ public:
             cur = cur->children[ch];
         }
         return cur->endOfWord;
-        
+
     }
 };
+
+
 
 int main() {
     TrieNode trie;
