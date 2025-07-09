@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <stack>
 #include <queue>
 
@@ -50,7 +51,7 @@ void inorderI(Node *root){
         cur = stk.top();
         stk.pop();
         cout << cur->val << " ";
-        cur = cur->right;
+        cur = cur->right;;
     }
 }
 
@@ -63,7 +64,7 @@ void postorderR(Node *root){
 
 void postorderI(Node *root){
     stack<Node*> stk;
-    Node *cur = root, *lastVisit = NULL;
+    Node *cur = root, *lastVisit;
     while(!stk.empty() || cur){
         while(cur){
             stk.push(cur);
@@ -83,6 +84,7 @@ void postorderI(Node *root){
 void levelOrder(Node *root){
     if(!root){return;}
     queue<Node*> q;
+    Node *cur = root;
     q.push(root);
     while(!q.empty()){
         int len = q.size();
