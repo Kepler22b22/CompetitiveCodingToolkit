@@ -26,7 +26,6 @@ private:
 public:
     TrieNode(){
         endOfWord = false;
-
     }
 
     void insert(string word){
