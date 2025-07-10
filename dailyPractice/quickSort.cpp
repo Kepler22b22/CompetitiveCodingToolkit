@@ -14,7 +14,33 @@ int partitionI(vector<int> &nums, int low, int high){
     return r;
 }
 
-void quickSortI()
+void quickSortI(vector<int> &nums, int low, int high){
+    if(low < high){
+        int idx = partitionI(nums, low, high);
+        quickSortI(nums, low, idx - 1);
+        quickSortI(nums, idx + 1, high);
+    }
+}
+
+int partitionII(vector<int> &nums, int low, int high){
+    int pivot = nums[high], l = low - 1;
+    for(int r = low; r <= high; r++){
+        if(nums[r] < pivot){
+            l++;
+            swap(nums[l], nums[r]);
+        }
+    }
+    swap(nums[l + 1], nums[high]);
+    return l + 1;
+}
+
+void quickSortII(vector<int> &nums, int low, int high){
+    if(low < high){
+        int idx = partitionII(nums, low, high);
+        quickSortII(nums, low, idx - 1);
+        quickSortII(nums, idx + 1, high);
+    }
+}
 
 int main(){
     //Quick Sort I
