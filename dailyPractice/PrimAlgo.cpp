@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 #include <queue>
+#include <unordered_set>
 
 using namespace std;
 
@@ -25,9 +25,7 @@ void primsAlgo(vector<vector<pair<int, int>>> &edges, int n){
         }
     }
     cout << "Edge\tWeight" << endl;
-    for(int i = 1; i < n; i++){
-        cout << parent[i] << " - " << i << " " << key[i] << endl;
-    }
+    for(int i = 1; i < n; i++){}
 }
 
 int main() {
