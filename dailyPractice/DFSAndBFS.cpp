@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <stack>
-#include <queue>
 #include <unordered_set>
+#include <queue>
 
 using namespace std;
 
@@ -23,16 +23,16 @@ public:
     }
 
     void dfsI(int start){
-        cout << "Iterate DFS starts: " << endl;
-        unordered_set<int> visit;
+        cout << "Iterative DFS starts: " << endl;
         stack<int> stk;
+        unordered_set<int> visit;
         stk.push(start);
         while(!stk.empty()){
             int u = stk.top();
             stk.pop();
             if(visit.count(u)){continue;}
             visit.insert(u);
-            cout << u << " " ;
+            cout << u << " ";
             for(const auto &edge : adj[u]){
                 if(!visit.count(edge.first)){
                     stk.push(edge.first);
@@ -51,8 +51,8 @@ public:
 
     void dfs_helper(int u, unordered_set<int> &visit){
         if(visit.count(u)){return;}
-        cout << u << " ";
         visit.insert(u);
+        cout << u << " ";
         for(const auto &edge : adj[u]){
             dfs_helper(edge.first, visit);
         }
@@ -65,7 +65,7 @@ public:
         q.push(start);
         visit.insert(start);
         while(!q.empty()){
-            int u = q.front();
+            int u  = q.front();
             q.pop();
             cout << u << " ";
             for(const auto &edge : adj[u]){
