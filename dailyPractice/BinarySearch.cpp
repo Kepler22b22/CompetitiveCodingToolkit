@@ -44,11 +44,11 @@ int findEqualOrSmaller(vector<int> &nums, int target){
 
 int findSmaller(vector<int> &nums, int target){
     int l = 0, r = nums.size() - 1, res = -1;
-    while(l <= r){
+    while(l <=r ){
         int mid = l + (r - l) / 2;
         if(nums[mid] >= target){r = mid - 1;}
         else{
-            res=  mid;
+            res = mid;
             l = mid + 1;
         }
     }
