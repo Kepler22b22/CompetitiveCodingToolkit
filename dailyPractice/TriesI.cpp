@@ -35,7 +35,7 @@ public:
         for(char ch : prefix){
             int i = getIdx(ch);
             if(!cur->children[i]){return false;}
-            cur= cur->children[i];
+            cur = cur->children[i];
         }
         return true;
     }
@@ -45,7 +45,7 @@ public:
         for(char ch : word){
             int i = getIdx(ch);
             if(!cur->children[i]){return false;}
-            cur= cur->children[i];
+            cur = cur->children[i];
         }
         return cur->endOfWord;
     }
