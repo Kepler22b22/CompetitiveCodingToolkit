@@ -41,8 +41,8 @@ void inorderR(Node *root){
 }
 
 void inorderI(Node *root){
-    stack<Node*> stk;
     Node *cur = root;
+    stack<Node*> stk;
     while(!stk.empty() || cur){
         while(cur){
             stk.push(cur);
