@@ -15,31 +15,7 @@ public:
 
     void insert(string word){
         TrieNode *cur = this;
-        for(char ch : word){
-            if(!cur->children[ch]){
-                cur->children[ch] = new TrieNode();
-            }
-            cur = cur->children[ch];
-        }
-        cur->endOfWord = true;
-    }
-
-    bool startsWith(string prefix){
-        TrieNode *cur = this;
-        for(char ch : prefix){
-            if(!cur->children[ch]){return false;}
-            cur = cur->children[ch];
-        }
-        return true;
-    }
-
-    bool search(string word){
-        TrieNode *cur = this;
-        for(char ch : word){
-            if(!cur->children[ch]){return false;}
-            cur = cur->children[ch];
-        }
-        return cur->endOfWord;
+        
     }
 };
 
