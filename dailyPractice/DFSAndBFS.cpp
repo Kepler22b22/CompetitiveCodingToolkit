@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 #include <stack>
 #include <queue>
+#include <unordered_set>
 
 using namespace std;
 
@@ -31,8 +31,8 @@ public:
             int u = stk.top();
             stk.pop();
             if(visit.count(u)){continue;}
-            cout << u << " ";
             visit.insert(u);
+            cout << u << " ";
             for(const auto &edge : adj[u]){
                 if(!visit.count(edge.first)){
                     stk.push(edge.first);
@@ -51,41 +51,18 @@ public:
 
     void dfs_helper(int u, unordered_set<int> &visit){
         if(visit.count(u)){return;}
-        cout << u << " ";
         visit.insert(u);
-        for(const auto &edge : adj[u]){
+        cout << u << " ";
+        for(const auto &edge: adj[u]){
             dfs_helper(edge.first, visit);
         }
     }
 
     void bfs(int start){
-        cout << "BFS starts: " << endl;
+        cout <<"BFS starts: " << endl;
         queue<int> q;
         unordered_set<int> visit;
-        q.push(start);
-        visit.insert(start);
-        while(!q.empty()){
-            int u = q.front();
-            q.pop();
-            cout << u << " ";
-            for(const auto &edge : adj[u]){
-                if(!visit.count(edge.first)){
-                    q.push(edge.first);
-                    visit.insert(edge.first);
-                }
-            }
-        }
         cout << endl;
-    }
-
-    void printGraph(){
-        for(int i = 0; i < V; i++){
-            cout << "Node "  << i << ": ";
-            for(const auto &edge : adj[i]){
-                cout << "(" << edge.first << ", weight: " << edge.second << ") ";
-            }
-            cout << endl;
-        }
     }
 };
 
