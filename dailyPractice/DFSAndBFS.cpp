@@ -62,7 +62,30 @@ public:
         cout <<"BFS starts: " << endl;
         queue<int> q;
         unordered_set<int> visit;
+        q.push(start);
+        visit.insert(start);
+        while(!q.empty()){
+            int u = q.front();
+            q.pop();
+            cout << u << " ";
+            for(const auto &edge : adj[u]){
+                if(!visit.count(edge.first)){
+                    visit.insert(edge.first);
+                    q.push(edge.first);
+                }
+            }
+        }
         cout << endl;
+    }
+
+    void printGraph(){
+        for(int i = 0; i < V; i++){
+            cout << "Node " << i << ": ";
+            for(const auto &edge : adj[i]){
+                cout << " (" << edge.first << ", weight: " << edge.second << ")";
+            }
+            cout << endl;
+        }
     }
 };
 

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<int> DijkstraAlgo(vector<vector<pair<int, int>>> &edges, int n, int start){
+vector<int> Dijkstra(vector<vector<pair<int, int>>> &edges, int n, int start){
     vector<int> dist(n, INT_MAX);
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     unordered_set<int> visit;
