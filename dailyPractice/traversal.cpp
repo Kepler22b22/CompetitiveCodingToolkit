@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <stack>
 #include <queue>
 
@@ -7,10 +6,10 @@ using namespace std;
 
 class Node {
 public:
-    int val;
     Node *left, *right;
+    int val;
 
-    Node(int v): val(v), left(NULL), right(NULL) {}
+    Node(int v): val(v), left(nullptr), right(nullptr) {}
 };
 
 void preorderR(Node *root){
@@ -21,38 +20,12 @@ void preorderR(Node *root){
 }
 
 void preorderI(Node *root){
-    if(!root){return;}
-    stack<Node*> stk;
-    stk.push(root);
-    while(!stk.empty()){
-        Node *cur = stk.top();
-        stk.pop();
-        cout << cur->val << " ";
-        if(cur->right){stk.push(cur->right);}
-        if(cur->left){stk.push(cur->left);}
-    }
 }
 
 void inorderR(Node *root){
-    if(!root){return;}
-    inorderR(root->left);
-    cout << root->val << " ";
-    inorderR(root->right);
 }
 
 void inorderI(Node *root){
-    Node *cur = root;
-    stack<Node*> stk;
-    while(!stk.empty() || cur){
-        while(cur){
-            stk.push(cur);
-            cur = cur->left;
-        }
-        cur = stk.top();
-        stk.pop();
-        cout << cur->val << " ";
-        cur = cur->right;
-    }
 }
 
 void postorderR(Node *root){
@@ -63,38 +36,9 @@ void postorderR(Node *root){
 }
 
 void postorderI(Node *root){
-    stack<Node*> stk;
-    Node *cur = root, *lastVisit = NULL;
-    while(!stk.empty() || cur){
-        while(cur){
-            stk.push(cur);
-            cur = cur->left;
-        }
-        if(stk.top()->right && lastVisit != stk.top()->right){
-            cur = stk.top()->right;
-        }
-        else{
-            lastVisit = stk.top();
-            cout << stk.top()->val << " ";
-            stk.pop();
-        }
-    }
 }
 
 void levelOrder(Node *root){
-    if(!root){return;}
-    queue<Node*> q;
-    q.push(root);
-    while(!q.empty()){
-        int len = q.size();
-        for(int i = 0; i < len; i++){
-            Node *cur = q.front();
-            q.pop();
-            cout << cur->val << " ";
-            if(cur->left){q.push(cur->left);}
-            if(cur->right){q.push(cur->right);}
-        }
-    }
 }
 
 int main(){
