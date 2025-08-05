@@ -20,12 +20,14 @@ void preorderR(Node *root){
 }
 
 void preorderI(Node *root){
+    if(!root){return;}
 }
 
 void inorderR(Node *root){
 }
 
 void inorderI(Node *root){
+    if(!root){return;}
 }
 
 void postorderR(Node *root){
@@ -39,6 +41,7 @@ void postorderI(Node *root){
 }
 
 void levelOrder(Node *root){
+    if(!root){return;}
 }
 
 int main(){
