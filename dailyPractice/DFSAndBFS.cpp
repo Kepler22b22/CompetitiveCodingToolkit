@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <stack>
 #include <queue>
 #include <unordered_set>
+#include <stack>
 
 using namespace std;
 
@@ -43,23 +43,14 @@ public:
     }
 
     void dfsR(int start){
-        cout << "Recursive DFS starts: " << endl;
+        cout << "Recursively DFS starts: " << endl;
         unordered_set<int> visit;
         dfs_helper(start, visit);
         cout << endl;
     }
 
-    void dfs_helper(int u, unordered_set<int> &visit){
-        if(visit.count(u)){return;}
-        visit.insert(u);
-        cout << u << " ";
-        for(const auto &edge: adj[u]){
-            dfs_helper(edge.first, visit);
-        }
-    }
-
     void bfs(int start){
-        cout <<"BFS starts: " << endl;
+        cout << "BFS starts: " << endl;
         queue<int> q;
         unordered_set<int> visit;
         q.push(start);
@@ -76,6 +67,15 @@ public:
             }
         }
         cout << endl;
+    }
+
+    void dfs_helper(int u, unordered_set<int> &visit){
+        if(visit.count(u)){return;}
+        visit.insert(u);
+        cout << u << " ";
+        for(const auto &edge : adj[u]){
+            dfs_helper(edge.first, visit);
+        }
     }
 
     void printGraph(){
