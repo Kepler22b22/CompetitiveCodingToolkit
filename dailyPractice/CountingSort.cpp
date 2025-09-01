@@ -10,8 +10,8 @@ void CountingSort(vector<int> &nums){
         count[num]++;
     }
     int idx = 0;
-    for(int i = 0; i <= m; i++) {
-        while (count[i]-- > 0) {
+    for(int i = 0; i <= m; i++){
+        while(count[i]-- > 0){
             nums[idx++] = i;
         }
     }
