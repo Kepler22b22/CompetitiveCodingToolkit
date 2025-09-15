@@ -10,7 +10,7 @@ void CountingSort(vector<int> &nums){
         count[num]++;
     }
     int idx = 0;
-    for(int i = 0; i < m + 1; i++){
+    for(int i = 0; i < nums.size(); i++){
         while(count[i]-- > 0){
             nums[idx++] = i;
         }
