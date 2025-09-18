@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <stack>
 #include <queue>
 
@@ -6,8 +7,8 @@ using namespace std;
 
 class Node {
 public:
-    Node *left, *right;
     int val;
+    Node *left, *right;
 
     Node(int v): val(v), left(nullptr), right(nullptr) {}
 };
@@ -70,7 +71,7 @@ void postorderI(Node *root){
             cur = cur->left;
         }
         if(stk.top()->right && lastVisit != stk.top()->right){
-            cur = stk.top()->right;
+            stk.push(stk.top()->right);
         }
         else{
             lastVisit = stk.top();
@@ -86,7 +87,7 @@ void levelOrder(Node *root){
     q.push(root);
     while(!q.empty()){
         int len = q.size();
-        for(int i = 0; i < len; i++){
+        for(int i = 0; i < len; ++i){
             Node *cur = q.front();
             q.pop();
             cout << cur->val << " ";
