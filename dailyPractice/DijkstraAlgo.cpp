@@ -1,16 +1,16 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 #include <queue>
+#include <unordered_set>
 
 using namespace std;
 
 vector<int> DijkstraAlgo(vector<vector<pair<int, int>>> &edges, int n, int start){
     vector<int> dist(n, INT_MAX);
     dist[start] = 0;
-    unordered_set<int> visit;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     pq.push({0, start});
+    unordered_set<int> visit;
     while(!pq.empty()){
         int u = pq.top().second;
         pq.pop();
@@ -18,7 +18,7 @@ vector<int> DijkstraAlgo(vector<vector<pair<int, int>>> &edges, int n, int start
         visit.insert(u);
         for(const auto &edge : edges[u]){
             if(!visit.count(edge.first) && dist[edge.first] > edge.second + dist[u]){
-                dist[edge.first] = edge.second + dist[u];
+                dist[edge.first] = dist[u] + edge.second;
                 pq.push({dist[edge.first], edge.first});
             }
         }
