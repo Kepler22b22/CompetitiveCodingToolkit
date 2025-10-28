@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <stack>
 #include <queue>
 #include <unordered_set>
-#include <stack>
 
 using namespace std;
 
@@ -10,6 +10,15 @@ class Graph {
 private:
     int V;
     vector<vector<pair<int, int>>> adj;
+
+    void dfs_helper(int u, unordered_set<int> &visit){
+        if(visit.count(u)){return;}
+        visit.insert(u);
+        cout << u << " ";
+        for(const auto &edge : adj[u]){
+            dfs_helper(edge.first, visit);
+        }
+    }
 
 public:
     Graph(int verticies){
@@ -24,16 +33,16 @@ public:
 
     void dfsI(int start){
         cout << "Iterative DFS starts: " << endl;
-        stack<int> stk;
         unordered_set<int> visit;
+        stack<int> stk;
         stk.push(start);
         while(!stk.empty()){
             int u = stk.top();
             stk.pop();
-            if(visit.count(u)){continue;}
+            if(visit.count(u)) continue;
             visit.insert(u);
             cout << u << " ";
-            for(const auto &edge : adj[u]){
+            for(const auto &edge: adj[u]){
                 if(!visit.count(edge.first)){
                     stk.push(edge.first);
                 }
@@ -43,7 +52,7 @@ public:
     }
 
     void dfsR(int start){
-        cout << "Recursively DFS starts: " << endl;
+        cout << "Recursive DFS starts: " << endl;
         unordered_set<int> visit;
         dfs_helper(start, visit);
         cout << endl;
@@ -67,15 +76,6 @@ public:
             }
         }
         cout << endl;
-    }
-
-    void dfs_helper(int u, unordered_set<int> &visit){
-        if(visit.count(u)){return;}
-        visit.insert(u);
-        cout << u << " ";
-        for(const auto &edge : adj[u]){
-            dfs_helper(edge.first, visit);
-        }
     }
 
     void printGraph(){
