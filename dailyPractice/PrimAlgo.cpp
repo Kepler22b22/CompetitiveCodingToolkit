@@ -7,25 +7,25 @@ using namespace std;
 
 void primsAlgo(vector<vector<pair<int, int>>> &edges, int n){
     vector<int> parent(n, -1), key(n, INT_MAX);
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    unordered_set<int> visit;
     key[0] = 0;
+    unordered_set<int> visit;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     pq.push({0, 0});
     while(!pq.empty()){
         int u = pq.top().second;
         pq.pop();
-        if(visit.count(u)){continue;}
+        if(visit.count(u)) continue;
         visit.insert(u);
         for(const auto &edge : edges[u]){
             if(!visit.count(edge.first) && key[edge.first] > edge.second){
-                parent[edge.first] = u;
                 key[edge.first] = edge.second;
                 pq.push({edge.second, edge.first});
+                parent[edge.first] = u;
             }
         }
     }
     cout << "Edge\tWeight" << endl;
-    for(int i = 1; i < n; i++){
+    for(int i = 1; i < n; ++i){
         cout << parent[i] << " - " << i << " " << key[i] << endl;
     }
 }
