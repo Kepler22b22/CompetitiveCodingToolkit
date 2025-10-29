@@ -2,7 +2,54 @@
 
 using namespace std;
 
+class TrieNode {
+private:
+    TrieNode *children[52];
+    bool endOfWord;
 
+    int getIdx(char ch){
+        if(islower(ch)){return ch - 'a';}
+        if(isupper(ch)){return ch - 'A' + 26;}
+        return -1;
+    }
+
+public:
+    TrieNode(){
+        endOfWord = false;
+    }
+
+    void insert(string word){
+        TrieNode *cur = this;
+        for(char ch : word){
+            int i = getIdx(ch);
+            if(!cur->children[i]){
+                cur->children[i] = new TrieNode();
+            }
+            cur = cur->children[i];
+        }
+        cur->endOfWord = true;
+    }
+
+    bool startsWith(string prefix){
+        TrieNode *cur = this;
+        for(char ch : prefix){
+            int i = getIdx(ch);
+            if(!cur->children[i]){return false;}
+            cur = cur->children[i];
+        }
+        return true;
+    }
+
+    bool search(string word){
+        TrieNode *cur = this;
+        for(char ch : word){
+            int i = getIdx(ch);
+            if(!cur->children[i]){return false;}
+            cur = cur->children[i];
+        }
+        return cur->endOfWord;
+    }
+};
 
 int main() {
     TrieNode trie;
