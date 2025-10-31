@@ -14,10 +14,10 @@ void heapifyMax(vector<int> &nums, int n, int i){
 }
 
 void maxHeap(vector<int> &nums){
-    for(int i = nums.size() / 2 - 1; i >= 0; i--){
+    for(int i = nums.size() / 2 - 1; i >= 0; --i){
         heapifyMax(nums, nums.size(), i);
     }
-    for(int i = nums.size() - 1; i > 0; i--){
+    for(int i = nums.size() - 1; i > 0; --i){
         swap(nums[0], nums[i]);
         heapifyMax(nums, i, 0);
     }
@@ -34,10 +34,10 @@ void heapifyMin(vector<int> &nums, int n, int i){
 }
 
 void minHeap(vector<int> &nums){
-    for(int i = nums.size() / 2 - 1; i >= 0; i--){
+    for(int i = nums.size() / 2 - 1; i >= 0; --i){
         heapifyMin(nums, nums.size(), i);
     }
-    for(int i = nums.size() - 1; i > 0; i--){
+    for(int i = nums.size() - 1; i > 0; --i){
         swap(nums[0], nums[i]);
         heapifyMin(nums, i, 0);
     }
