@@ -16,10 +16,10 @@ public:
     void insert(string word){
         TrieNode *cur = this;
         for(char ch : word){
-            if(!cur->children.[ch]){
+            if(!cur->children[ch]){
                 cur->children[ch] = new TrieNode();
             }
-            cur  = cur->children[ch];
+            cur = cur->children[ch];
         }
         cur->endOfWord = true;
     }

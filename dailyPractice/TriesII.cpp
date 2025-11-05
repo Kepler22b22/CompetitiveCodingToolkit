@@ -18,7 +18,7 @@ private:
             return false;
         }
         else{
-            if(!cur->children.count(ch)){return false;}
+            if(!cur->children[ch]){return false;}
             return bt(word, i + 1, cur->children[ch]);
         }
     }
@@ -31,7 +31,7 @@ public:
     void insert(string word){
         TrieNode *cur = this;
         for(char ch : word){
-            if(!cur->children.count(ch)){
+            if(!cur->children[ch]){
                 cur->children[ch] = new TrieNode();
             }
             cur = cur->children[ch];
