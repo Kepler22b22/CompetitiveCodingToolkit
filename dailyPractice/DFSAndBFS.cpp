@@ -11,15 +11,6 @@ private:
     int V;
     vector<vector<pair<int, int>>> adj;
 
-    void dfs_helper(int u, unordered_set<int> &visit){
-        if(visit.count(u)){return;}
-        visit.insert(u);
-        cout << u << " ";
-        for(const auto &edge : adj[u]){
-            dfs_helper(edge.first, visit);
-        }
-    }
-
 public:
     Graph(int verticies){
         V = verticies;
@@ -33,16 +24,16 @@ public:
 
     void dfsI(int start){
         cout << "Iterative DFS starts: " << endl;
-        unordered_set<int> visit;
         stack<int> stk;
+        unordered_set<int> visit;
         stk.push(start);
         while(!stk.empty()){
             int u = stk.top();
             stk.pop();
-            if(visit.count(u)) continue;
+            if(visit.count(u)){continue;}
             visit.insert(u);
             cout << u << " ";
-            for(const auto &edge: adj[u]){
+            for(const auto &edge : adj[u]){
                 if(!visit.count(edge.first)){
                     stk.push(edge.first);
                 }
@@ -58,6 +49,15 @@ public:
         cout << endl;
     }
 
+    void dfs_helper(int u, unordered_set<int> &visit){
+        if(visit.count(u)){return;}
+        visit.insert(u);
+        cout << u << " ";
+        for(const auto &edge : adj[u]){
+            dfs_helper(edge.first, visit);
+        }
+    }
+
     void bfs(int start){
         cout << "BFS starts: " << endl;
         queue<int> q;
@@ -70,8 +70,8 @@ public:
             cout << u << " ";
             for(const auto &edge : adj[u]){
                 if(!visit.count(edge.first)){
-                    visit.insert(edge.first);
                     q.push(edge.first);
+                    visit.insert(edge.first);
                 }
             }
         }
