@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void BellmanFordAlgo(vector<tuple<int, int, int>> &edges, int n){
+void BellmanFordAlgo(vector<tuple<int, int , int>> &edges, int n){
     int superNode = n;
     vector<int> dist(n + 1, INT_MAX);
     dist[superNode] = 0;
@@ -12,14 +12,14 @@ void BellmanFordAlgo(vector<tuple<int, int, int>> &edges, int n){
     }
     for(int i = 0; i < n; ++i){
         for(const auto &[u, v, w] : edges){
-            if(dist[u] != INT_MAX && dist[v] > dist[u] + w){
-                dist[v] = dist[u] + w;
+            if(dist[u] != INT_MAX && dist[v] > w + dist[u]){
+                dist[v] = w + dist[u];
             }
         }
     }
     for(const auto &[u, v, w] : edges){
-        if(dist[u] != INT_MAX && dist[v] > dist[u] + w){
-            cout << "Negative Cycle detected. " << endl;
+        if(dist[u] != INT_MAX && dist[v] > w + dist[u]){
+            cout << "Negative cycle detected." << endl;
         }
     }
     for(int i = 0; i < n; ++i){
