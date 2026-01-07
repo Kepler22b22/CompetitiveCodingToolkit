@@ -14,12 +14,12 @@ void primsAlgo(vector<vector<pair<int, int>>> &edges, int n){
     while(!pq.empty()){
         int u = pq.top().second;
         pq.pop();
-        if(visit.count(u)){continue;}
+        if(visit.count(u)) continue;
         visit.insert(u);
         for(const auto &edge : edges[u]){
             if(!visit.count(edge.first) && key[edge.first] > edge.second){
-                parent[edge.first] = u;
                 key[edge.first] = edge.second;
+                parent[edge.first] = u;
                 pq.push({edge.second, edge.first});
             }
         }
