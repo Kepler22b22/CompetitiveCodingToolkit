@@ -7,8 +7,8 @@ void merge(vector<int> &nums, int low, int mid, int high){
     vector<int> temp(high - low + 1);
     int l = low, r = mid + 1, k = 0;
     while(l <= mid && r <= high){
-        if(nums[l] < nums[r]){temp[k++] = nums[l++];}
-        else{temp[k++] = nums[r++];}
+        if(nums[l] <= nums[r]) temp[k++] = nums[l++];
+        else temp[k++] = nums[r++];
     }
     while(l <= mid){
         temp[k++] = nums[l++];
@@ -21,7 +21,7 @@ void merge(vector<int> &nums, int low, int mid, int high){
     }
 }
 
-void mergeSort(vector<int> & nums, int low, int high){
+void mergeSort(vector<int> &nums, int low, int high){
     if(low < high){
         int mid = low + (high - low) / 2;
         mergeSort(nums, low, mid);
@@ -31,8 +31,8 @@ void mergeSort(vector<int> & nums, int low, int high){
 }
 
 void mergeSortI(vector<int> &nums){
-    for(int i = 1; i < nums.size(); ++i){
-        for(int l = 0; l < nums.size() - i; ++l){
+    for(int i = 1; i < nums.size(); i *= 2){
+        for(int l = 0; l < nums.size() - i; l += 2 * i){
             int mid = l + i - 1;
             int r = min((int)nums.size() - 1, l + 2 * i - 1);
             merge(nums, l, mid, r);
