@@ -8,8 +8,8 @@ private:
     bool endOfWord;
 
     int getIdx(char ch){
-        if(islower(ch)){return ch - 'a' + 26;}
-        if(isupper(ch)){return ch - 'A';}
+        if(islower(ch)) return ch - 'a';
+        if(isupper(ch)) return ch - 'A' + 26;
         return -1;
     }
 
