@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <unordered_set>
 #include <stack>
 #include <queue>
-#include <unordered_set>
 
 using namespace std;
 
@@ -30,7 +30,7 @@ public:
         while(!stk.empty()){
             int u = stk.top();
             stk.pop();
-            if(visit.count(u)){continue;}
+            if(visit.count(u)) continue;
             visit.insert(u);
             cout << u << " ";
             for(const auto &edge : adj[u]){
@@ -50,11 +50,13 @@ public:
     }
 
     void dfs_helper(int u, unordered_set<int> &visit){
-        if(visit.count(u)){return;}
+        if(visit.count(u)) return;
         visit.insert(u);
         cout << u << " ";
         for(const auto &edge : adj[u]){
-            dfs_helper(edge.first, visit);
+            if(!visit.count(edge.first)){
+                dfs_helper(edge.first, visit);
+            }
         }
     }
 
@@ -70,8 +72,8 @@ public:
             cout << u << " ";
             for(const auto &edge : adj[u]){
                 if(!visit.count(edge.first)){
-                    q.push(edge.first);
                     visit.insert(edge.first);
+                    q.push(edge.first);
                 }
             }
         }
