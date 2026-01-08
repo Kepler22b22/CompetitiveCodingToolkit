@@ -9,9 +9,9 @@ int partitionI(vector<int> &nums, int low, int high){
     while(l <= r){
         while(l <= high && nums[l] <= pivot){l++;}
         while(r >= low && nums[r] > pivot){r--;}
-        if(l < r){swap(nums[l], nums[r]);}
+        if(l < r) swap(nums[l], nums[r]);
     }
-    swap(nums[low], nums[r]);
+    swap(nums[r], nums[low]);
     return r;
 }
 
