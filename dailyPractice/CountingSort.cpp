@@ -16,6 +16,11 @@ void CountingSort(vector<int> &nums){
         }
     }
 }
+// 0 1 2 3 4 5
+// 0 0 0 0 0 1
+// idx = 7
+// i = 5
+// 0 0 2 2 3 3 3 5
 
 void printArray(vector<int> &nums){
     for(int num : nums){
