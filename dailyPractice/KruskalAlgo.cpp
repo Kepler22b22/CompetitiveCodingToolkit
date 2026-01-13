@@ -31,7 +31,7 @@ public:
 
 void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
     DisjointSet set(n);
-    vector<tuple<int, int ,int>> inMST;
+    vector<tuple<int, int, int>> inMST;
     sort(edges.begin(), edges.end(), [](tuple<int, int, int> &a, tuple<int, int, int> &b){
         return get<2>(a) < get<2>(b);
     });
