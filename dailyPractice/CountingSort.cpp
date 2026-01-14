@@ -6,7 +6,7 @@ using namespace std;
 void CountingSort(vector<int> &nums){
     int m = *max_element(nums.begin(), nums.end());
     vector<int> count(m + 1, 0);
-    for(int num : nums){
+    for(const int &num : nums){
         count[num]++;
     }
     int idx = 0;
