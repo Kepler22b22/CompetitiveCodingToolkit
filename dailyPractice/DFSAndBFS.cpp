@@ -49,17 +49,6 @@ public:
         cout << endl;
     }
 
-    void dfs_helper(int u, unordered_set<int> &visit){
-        if(visit.count(u)) return;
-        visit.insert(u);
-        cout << u << " ";
-        for(const auto &edge : adj[u]){
-            if(!visit.count(edge.first)){
-                dfs_helper(edge.first, visit);
-            }
-        }
-    }
-
     void bfs(int start){
         cout << "BFS starts: " << endl;
         queue<int> q;
@@ -78,6 +67,15 @@ public:
             }
         }
         cout << endl;
+    }
+
+    void dfs_helper(int u, unordered_set<int> &visit){
+        if(visit.count(u)) return;
+        cout << u << " ";
+        visit.insert(u);
+        for(const auto &edge : adj[u]){
+            dfs_helper(edge.first, visit);
+        }
     }
 
     void printGraph(){
