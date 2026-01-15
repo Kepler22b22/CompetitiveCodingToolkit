@@ -92,6 +92,7 @@ int main(){
     cout << endl;
 
     //Quick Sort III: nums[low + 1] as pivot
+    // median-of-three
     nums = {5, 4, 3, 2, 1};
     cout << "Original array III: ";
     for (int num : nums) {cout << num << " ";}
