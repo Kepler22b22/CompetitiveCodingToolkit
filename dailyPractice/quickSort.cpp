@@ -44,6 +44,32 @@ void quickSortII(vector<int> &nums, int low, int high){
     }
 }
 
+int partitionIII(vector<int> &nums, int low, int high){
+    int mid = (low + high) >> 1;
+    swap(nums[mid], nums[low + 1]);
+    if(nums[low] > nums[high]) swap(nums[low], nums[high]);
+    if(nums[low + 1] > nums[high]) swap(nums[low + 1], nums[high]);
+    if(nums[low] > nums[low + 1]) swap(nums[low], nums[low + 1]);
+    int pivot = nums[low + 1];
+    int l = low, r = high;
+    while(l <= r){
+        while(l <= high && nums[l] <= pivot) l++;
+        while(r >= low && nums[r] > pivot) r--;
+        if(l < r) swap(nums[l], nums[r]);
+    }
+    nums[low + 1] = nums[r];
+    nums[r] = pivot;
+    return r;
+}
+
+void quickSortIII(vector<int> &nums, int low, int high){
+    if(low < high){
+        int mid = partitionIII(nums, low, high);
+        quickSortIII(nums, low, mid - 1);
+        quickSortIII(nums, mid + 1, high);
+    }
+}
+
 int main(){
     //Quick Sort I
     vector<int >nums = {5, 4, 3, 2, 1};
@@ -62,6 +88,16 @@ int main(){
     cout << endl;
     quickSortII(nums, 0, nums.size() - 1);
     cout << "Quick Sorted array II: ";
+    for (int num : nums) {cout << num << " ";}
+    cout << endl;
+
+    //Quick Sort III: nums[low + 1] as pivot
+    nums = {5, 4, 3, 2, 1};
+    cout << "Original array III: ";
+    for (int num : nums) {cout << num << " ";}
+    cout << endl;
+    quickSortIII(nums, 0, nums.size() - 1);
+    cout << "Quick Sorted array III: ";
     for (int num : nums) {cout << num << " ";}
     cout << endl;
 
