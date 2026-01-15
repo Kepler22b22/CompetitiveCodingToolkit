@@ -18,7 +18,7 @@ public:
 
     void insert(string word){
         TrieNode *cur = this;
-        for(char ch : word){
+        for(const char &ch : word){
             if(!cur->children.count(ch)){
                 cur->children[ch] = new TrieNode();
             }
@@ -28,18 +28,18 @@ public:
     }
 
     bool startsWith(string prefix){
-        TrieNode *cur = this;
-        for(char ch : prefix){
-            if(!cur->children.count(ch)){return false;}
+        TrieNode *cur  = this;
+        for(const char &ch : prefix){
+            if(!cur->children[ch]) return false;
             cur = cur->children[ch];
         }
         return true;
     }
 
     bool search(string word){
-        TrieNode *cur = this;
-        for(char ch : word){
-            if(!cur->children.count(ch)){return false;}
+        TrieNode *cur  = this;
+        for(const char &ch : word){
+            if(!cur->children[ch]) return false;
             cur = cur->children[ch];
         }
         return cur->endOfWord;
