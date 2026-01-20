@@ -45,8 +45,8 @@ void quickSortII(vector<int> &nums, int low, int high){
 }
 
 int partitionIII(vector<int> &nums, int low, int high){
-    int mid = (low + high) >> 1;
-    swap(nums[mid], nums[low + 1]);
+    int mid = low + ((high - low) >> 1);
+    swap(nums[low], nums[mid]);
     if(nums[low] > nums[high]) swap(nums[low], nums[high]);
     if(nums[low + 1] > nums[high]) swap(nums[low + 1], nums[high]);
     if(nums[low] > nums[low + 1]) swap(nums[low], nums[low + 1]);
@@ -92,7 +92,7 @@ int main(){
     cout << endl;
 
     //Quick Sort III: nums[low + 1] as pivot
-    // median-of-three
+    // Median-of-three
     nums = {5, 4, 3, 2, 1};
     cout << "Original array III: ";
     for (int num : nums) {cout << num << " ";}

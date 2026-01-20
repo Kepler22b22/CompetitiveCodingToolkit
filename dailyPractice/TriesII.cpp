@@ -18,22 +18,18 @@ private:
             return false;
         }
         else{
-            if(!cur->children.count(ch)) return false;
+            if(!cur->children[ch]) return false;
             return backtracking(word, i + 1, cur->children[ch]);
         }
     }
 
 public:
-    TrieNode(){
-        endOfWord = false;
-    }
+    TrieNode(): endOfWord(false) {}
 
     void insert(string word){
         TrieNode *cur = this;
         for(char ch : word){
-            if(!cur->children.count(ch)){
-                cur->children[ch] = new TrieNode();
-            }
+            if(!cur->children.count(ch)) cur->children[ch] = new TrieNode();
             cur = cur->children[ch];
         }
         cur->endOfWord = true;
