@@ -20,11 +20,11 @@ public:
 
     void unionSet(int u, int v){
         int rootu = find(u), rootv = find(v);
-        if(rank[rootu] < rank[rootv]){parent[rootu] = rootv;}
-        else if(rank[rootu] > rank[rootv]){parent[rootv] = rootu;}
+        if(rank[rootu] < rank[rootv]) parent[rootu] = rootv;
+        else if(rank[rootu] > rank[rootv]) parent[rootv] = rootu;
         else{
-            parent[rootv] = rootu;
-            rank[rootu]++;
+            parent[rootu] = rootv;
+            rank[rootv]++;
         }
     }
 };
@@ -42,8 +42,8 @@ void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
         }
         if(inMST.size() == n - 1) break;
     }
-    for(const auto &edge : inMST){
-        cout << get<0>(edge) << " - " << get<1>(edge) << " " << get<2>(edge) << endl;
+    for(const auto &[u, v, w] : inMST) {
+        cout << u << " - " << v << " " << w << endl;
     }
 }
 
