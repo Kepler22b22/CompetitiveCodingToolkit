@@ -4,26 +4,20 @@
 using namespace std;
 
 void merge(vector<int> &nums, int low, int mid, int high){
-    vector<int> temp(high - low + 1);
     int l = low, r = mid + 1, k = 0;
+    vector<int> temp(high - low + 1);
     while(l <= mid && r <= high){
         if(nums[l] <= nums[r]) temp[k++] = nums[l++];
         else temp[k++] = nums[r++];
     }
-    while(l <= mid){
-        temp[k++] = nums[l++];
-    }
-    while(r <= high){
-        temp[k++] = nums[r++];
-    }
-    for(int i = low; i <= high; ++i){
-        nums[i] = temp[i - low];
-    }
+    while(l <= mid) temp[k++] = nums[l++];
+    while(r <= high) temp[k++] = nums[r++];
+    for(int i = low; i <= high; ++i) nums[i] = temp[i - low];
 }
 
 void mergeSort(vector<int> &nums, int low, int high){
     if(low < high){
-        int mid = low + (high - low) / 2;
+        int mid = low + ((high - low) >> 1);
         mergeSort(nums, low, mid);
         mergeSort(nums, mid + 1, high);
         merge(nums, low, mid, high);
