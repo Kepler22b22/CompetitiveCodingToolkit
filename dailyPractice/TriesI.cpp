@@ -20,9 +20,7 @@ public:
         TrieNode *cur = this;
         for(char ch : word){
             int idx = getIdx(ch);
-            if(!cur->children[idx]){
-                cur->children[idx] = new TrieNode();
-            }
+            if(!cur->children[idx]) cur->children[idx] = new TrieNode();
             cur = cur->children[idx];
         }
         cur->endOfWord = true;

@@ -1,8 +1,7 @@
 #include <iostream>
-#include <vector>
-#include <unordered_set>
 #include <stack>
 #include <queue>
+#include <unordered_set>
 
 using namespace std;
 
@@ -49,6 +48,15 @@ public:
         cout << endl;
     }
 
+    void dfs_helper(int u, unordered_set<int> &visit){
+        if(visit.count(u)) return;
+        visit.insert(u);
+        cout << u << " ";
+        for(const auto&edge : adj[u]){
+            dfs_helper(edge.first, visit);
+        }
+    }
+
     void bfs(int start){
         cout << "BFS starts: " << endl;
         queue<int> q;
@@ -67,15 +75,6 @@ public:
             }
         }
         cout << endl;
-    }
-
-    void dfs_helper(int u, unordered_set<int> &visit){
-        if(visit.count(u)) return;
-        cout << u << " ";
-        visit.insert(u);
-        for(const auto &edge : adj[u]){
-            dfs_helper(edge.first, visit);
-        }
     }
 
     void printGraph(){
