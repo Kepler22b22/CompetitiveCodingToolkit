@@ -1,4 +1,4 @@
-// [0, n] or [1, n]
+// [0, n] or [1, n], and appears exactly once.
 #include <iostream>
 #include <vector>
 
