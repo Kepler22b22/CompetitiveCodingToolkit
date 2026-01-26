@@ -24,18 +24,20 @@ private:
     }
 
 public:
-    TrieNode(): endOfWord(false) {}
+    TrieNode(){
+        endOfWord = false;
+    }
 
     void insert(string word){
         TrieNode *cur = this;
         for(char ch : word){
-            if(!cur->children.count(ch)) cur->children[ch] = new TrieNode();
+            if(!cur->children[ch]) cur->children[ch] = new TrieNode();
             cur = cur->children[ch];
         }
         cur->endOfWord = true;
     }
 
-    bool search(string word){
+    int search(string word){
         TrieNode *cur = this;
         return backtracking(word, 0, cur);
     }
