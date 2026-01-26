@@ -27,8 +27,8 @@ void preorderI(Node *root){
         Node *cur = stk.top();
         stk.pop();
         cout << cur->val << " ";
-        if(cur->right){stk.push(cur->right);}
-        if(cur->left){stk.push(cur->left);}
+        if(cur->right) stk.push(cur->right);
+        if(cur->left) stk.push(cur->left);
     }
 }
 
@@ -73,8 +73,8 @@ void postorderI(Node *root){
             stk.push(stk.top()->right);
         }
         else{
-            cout << stk.top()->val << " ";
             lastVisit = stk.top();
+            cout << stk.top()->val << " ";
             stk.pop();
         }
     }
