@@ -7,7 +7,9 @@ void CountingSort(vector<int> &nums){
     int mx = *max_element(nums.begin(), nums.end());
     int mn = *min_element(nums.begin(), nums.end());
     vector<int> count(mx - mn + 1, 0);
-    for(const auto &num : nums) count[num - mn]++;
+    for(int num : nums){
+        count[num - mn]++;
+    }
     int idx = 0;
     for(int i = 0; i <= mx - mn; ++i){
         while(count[i]-- > 0){
