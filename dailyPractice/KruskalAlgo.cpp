@@ -23,18 +23,18 @@ public:
         if(rank[rootu] < rank[rootv]) parent[rootu] = rootv;
         else if(rank[rootu] > rank[rootv]) parent[rootv] = rootu;
         else{
-            parent[rootu] = rootv;
-            rank[rootv]++;
+            parent[rootv] = rootu;
+            rank[rootu]++;
         }
     }
 };
 
 void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
     DisjointSet set(n);
-    vector<tuple<int, int, int>> inMST;
     sort(edges.begin(), edges.end(), [](tuple<int, int, int> &a, tuple<int, int, int> &b){
         return get<2>(a) < get<2>(b);
     });
+    vector<tuple<int, int, int>> inMST;
     for(const auto &[u, v, w] : edges){
         if(set.find(u) != set.find(v)){
             set.unionSet(u, v);
@@ -42,8 +42,8 @@ void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
         }
         if(inMST.size() == n - 1) break;
     }
-    for(const auto &[u, v, w] : inMST) {
-        cout << u << " - " << v << " " << w << endl;
+    for(const auto &edge : inMST){
+        cout << get<0>(edge) << " - " << get<1>(edge) << " " << get<2>(edge) << endl;
     }
 }
 

@@ -12,9 +12,7 @@ private:
     bool endOfWord;
 
 public:
-    TrieNode(){
-        endOfWord = false;
-    }
+    TrieNode(): endOfWord(false) {}
 
     void insert(string word){
         TrieNode *cur = this;

@@ -166,6 +166,32 @@ int main()
 // Install the core SDK only (then use the stdout exporter in code):
 // vcpkg install opentelemetry-cpp
 
+
+// CMakeLists.txt
+// cmake_minimum_required(VERSION 3.20)
+// project(quickSort_OTel LANGUAGES CXX)
+
+// set(CMAKE_CXX_STANDARD 17)
+// set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+// add_executable(quickSort_OTel quickSort_OTel.cpp)
+
+// # opentelemetry-cpp provides CMake package + components.
+// # We use the ostream exporter to print spans to stdout.
+// find_package(opentelemetry-cpp CONFIG REQUIRED COMPONENTS
+//     api
+//     sdk
+//     exporters_ostream
+// )
+
+// target_link_libraries(quickSort_OTel PRIVATE
+//     opentelemetry-cpp::api
+//     opentelemetry-cpp::trace
+//     opentelemetry-cpp::sdk
+//     opentelemetry-cpp::ostream_span_exporter
+// )
+
 // cd ..../dailyPractice
+// mkdir -p build
 // cmake --build build -j
 // ./build/quickSort_OTel
