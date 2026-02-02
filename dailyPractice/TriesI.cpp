@@ -19,9 +19,9 @@ public:
     void insert(string word){
         TrieNode *cur = this;
         for(char ch : word){
-            int idx = getIdx(ch);
-            if(!cur->children[idx]) cur->children[idx] = new TrieNode();
-            cur = cur->children[idx];
+            int i = getIdx(ch);
+            if(!cur->children[i]) cur->children[i] = new TrieNode();
+            cur = cur->children[i];
         }
         cur->endOfWord = true;
     }
@@ -29,9 +29,9 @@ public:
     bool startsWith(string prefix){
         TrieNode *cur = this;
         for(char ch : prefix){
-            int idx = getIdx(ch);
-            if(!cur->children[idx]) return false;
-            cur = cur->children[idx];
+            int i = getIdx(ch);
+            if(!cur->children[i]) return false;
+            cur = cur->children[i];
         }
         return true;
     }
@@ -39,9 +39,9 @@ public:
     bool search(string word){
         TrieNode *cur = this;
         for(char ch : word){
-            int idx = getIdx(ch);
-            if(!cur->children[idx]) return false;
-            cur = cur->children[idx];
+            int i = getIdx(ch);
+            if(!cur->children[i]) return false;
+            cur = cur->children[i];
         }
         return cur->endOfWord;
     }
