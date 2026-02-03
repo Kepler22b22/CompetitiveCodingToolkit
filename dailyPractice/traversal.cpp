@@ -69,7 +69,7 @@ void postorderI(Node *root){
             stk.push(cur);
             cur = cur->left;
         }
-        if(stk.top()->right && stk.top()->right != lastVisit){
+        if(stk.top()->right && lastVisit != stk.top()->right){
             stk.push(stk.top()->right);
         }
         else{
