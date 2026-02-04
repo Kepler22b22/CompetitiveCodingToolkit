@@ -18,26 +18,24 @@ private:
             return false;
         }
         else{
-            if(!cur->children[ch]) return false;
+            if(!cur->children.count(ch)) return false;
             return backtracking(word, i + 1, cur->children[ch]);
         }
     }
 
 public:
-    TrieNode(){
-        endOfWord = false;
-    }
+    TrieNode(): endOfWord(false) {}
 
     void insert(string word){
         TrieNode *cur = this;
         for(char ch : word){
-            if(!cur->children[ch]) cur->children[ch] = new TrieNode();
+            if(!cur->children.count(ch)) cur->children[ch] = new TrieNode();
             cur = cur->children[ch];
         }
         cur->endOfWord = true;
     }
 
-    int search(string word){
+    bool search(string word){
         TrieNode *cur = this;
         return backtracking(word, 0, cur);
     }
