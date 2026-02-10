@@ -1,13 +1,17 @@
+// Use array when the size is fixed and meaningful. Use vector when the size is dynamic and intentional.
+// Use the compiler-generated destructor, exactly as if I hadn’t written one — but generate it here.
+
 #include <iostream>
+#include <array>
 
 using namespace std;
 
 class TrieNode {
 private:
-    TrieNode *children[52];
+    array<unique_ptr<TrieNode>, 52> children{};
     bool endOfWord;
 
-    int getIdx(char ch){
+    static int getIdx(char ch){
         if(islower(ch)) return ch - 'a' + 26;
         if(isupper(ch)) return ch - 'A';
         return -1;
@@ -15,13 +19,15 @@ private:
 
 public:
     TrieNode(): endOfWord(false) {}
+    ~TrieNode();
 
     void insert(string word){
         TrieNode *cur = this;
         for(char ch : word){
             int i = getIdx(ch);
-            if(!cur->children[i]) cur->children[i] = new TrieNode();
-            cur = cur->children[i];
+            auto &child = cur->children[i];
+            if(!child) child = make_unique<TrieNode>();
+            cur = child.get();
         }
         cur->endOfWord = true;
     }
@@ -30,8 +36,9 @@ public:
         TrieNode *cur = this;
         for(char ch : prefix){
             int i = getIdx(ch);
-            if(!cur->children[i]) return false;
-            cur = cur->children[i];
+            auto &child = cur->children[i];
+            if(!child) return false;
+            cur = child.get();
         }
         return true;
     }
@@ -40,12 +47,15 @@ public:
         TrieNode *cur = this;
         for(char ch : word){
             int i = getIdx(ch);
-            if(!cur->children[i]) return false;
-            cur = cur->children[i];
+            auto &child = cur->children[i];
+            if(!child) return false;
+            cur = child.get();
         }
         return cur->endOfWord;
     }
 };
+
+TrieNode::~TrieNode() = default;
 
 int main() {
     TrieNode trie;
