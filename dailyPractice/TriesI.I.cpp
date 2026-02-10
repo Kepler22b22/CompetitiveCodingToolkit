@@ -1,6 +1,8 @@
 // children[ch]: inserts default entry if missing → modifies map
 // children.count(ch): only checks existence → no modification
 
+// unique_ptr<T> is a smart pointer that owns a T and deletes it automatically when it goes out of scope.
+
 #include <iostream>
 #include <unordered_map>
 
@@ -8,17 +10,18 @@ using namespace std;
 
 class TrieNode {
 private:
-    unordered_map<char, TrieNode*> children;
+    unordered_map<char, unique_ptr<TrieNode>> children;
     bool endOfWord;
 
 public:
     TrieNode(): endOfWord(false) {}
-
+    
     void insert(string word){
         TrieNode *cur = this;
         for(char ch : word){
-            if(!cur->children.count(ch)) cur->children[ch] = new TrieNode();
-            cur = cur->children[ch];
+            auto &child = cur->children[ch];
+            if(!child) child = make_unique<TrieNode>();
+            cur = child.get();
         }
         cur->endOfWord = true;
     }
@@ -26,8 +29,9 @@ public:
     bool startsWith(string prefix){
         TrieNode *cur = this;
         for(char ch : prefix){
-            if(!cur->children.count(ch)) return false;
-            cur = cur->children[ch];
+            auto &child = cur->children[ch];
+            if(!child) return false;
+            cur = child.get();
         }
         return true;
     }
@@ -35,8 +39,9 @@ public:
     bool search(string word){
         TrieNode *cur = this;
         for(char ch : word){
-            if(!cur->children.count(ch)) return false;
-            cur = cur->children[ch];
+            auto &child = cur->children[ch];
+            if(!child) return false;
+            cur = child.get();
         }
         return cur->endOfWord;
     }
