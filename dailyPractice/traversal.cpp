@@ -87,7 +87,7 @@ void levelOrder(Node *root){
     while(!q.empty()){
         Node *cur = q.front();
         q.pop();
-        cout << cur->val << " ";
+        cout << cur->val <<" ";
         if(cur->left) q.push(cur->left);
         if(cur->right) q.push(cur->right);
     }
