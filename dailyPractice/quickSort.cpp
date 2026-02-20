@@ -11,7 +11,7 @@ int partitionI(vector<int> &nums, int low, int high){
         while(l <= r && nums[r] > pivot) r--;
         if(l < r) swap(nums[l], nums[r]);
     }
-    swap(nums[r], nums[low]);
+    swap(nums[low], nums[r]);
     return r;
 }
 
@@ -49,7 +49,7 @@ int partitionIII(vector<int> &nums, int low, int high){
     swap(nums[low + 1], nums[mid]);
     if(nums[low] > nums[high]) swap(nums[low], nums[high]);
     if(nums[low + 1] > nums[high]) swap(nums[low + 1], nums[high]);
-    if(nums[low]> nums[low + 1]) swap(nums[low], nums[low + 1]);
+    if(nums[low] > nums[low + 1]) swap(nums[low], nums[low + 1]);
     int pivot = nums[low + 1];
     int l = low, r = high;
     while(l <= r){
