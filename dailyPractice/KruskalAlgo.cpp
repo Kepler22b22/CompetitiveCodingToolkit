@@ -14,7 +14,7 @@ public:
     }
 
     int find(int i){
-        if(parent[i] == -1)return i;
+        if(parent[i] == -1) return i;
         return parent[i] = find(parent[i]);
     }
 
@@ -31,7 +31,7 @@ public:
 
 void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
     DisjointSet set(n);
-    sort(edges.begin(), edges.end(), [](auto &a, auto &b){
+    sort(edges.begin(), edges.end(), [](tuple<int, int, int> &a, tuple<int, int, int> &b){
         return get<2>(a) < get<2>(b);
     });
     vector<tuple<int, int, int>> inMST;
@@ -43,7 +43,7 @@ void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
         if(inMST.size() == n - 1) break;
     }
     for(const auto &[u, v, w] : inMST){
-        cout << u <<  " - " << v << " " << w <<endl;
+        cout << u << " - " << v << " " << w << endl;
     }
 }
 
