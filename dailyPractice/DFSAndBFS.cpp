@@ -1,19 +1,20 @@
 #include <iostream>
+#include <vector>
+#include <unordered_set>
 #include <stack>
 #include <queue>
-#include <unordered_set>
 
 using namespace std;
 
 class Graph {
 private:
-    int V;
     vector<vector<pair<int, int>>> adj;
+    int V;
 
     void dfs_helper(int u, unordered_set<int> &visit){
         if(visit.count(u)) return;
-        visit.insert(u);
         cout << u << " ";
+        visit.insert(u);
         for(const auto &edge : adj[u]){
             dfs_helper(edge.first, visit);
         }
@@ -25,7 +26,7 @@ public:
         adj.resize(V);
     }
 
-    void addEdges(int u,  int v, int w){
+    void addEdges(int u, int v, int w){
         adj[u].push_back({v, w});
         adj[v].push_back({u, w});
     }
@@ -39,8 +40,8 @@ public:
             int u = stk.top();
             stk.pop();
             if(visit.count(u)) continue;
-            visit.insert(u);
             cout << u << " ";
+            visit.insert(u);
             for(const auto &edge : adj[u]){
                 if(!visit.count(edge.first)){
                     stk.push(edge.first);
@@ -51,7 +52,7 @@ public:
     }
 
     void dfsR(int start){
-        cout << "Recursively DFS starts: " << endl;
+        cout << "Recursive DFS starts: " << endl;
         unordered_set<int> visit;
         dfs_helper(start, visit);
         cout << endl;
