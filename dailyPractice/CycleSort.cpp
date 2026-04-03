@@ -1,5 +1,5 @@
 // [0, n] or [1, n], and appears exactly once.
-// O(n^2), advantage: minimal writes, not minimal comparisons
+// O(n^2), but advantage: minimal writes, not minimal comparisons
 #include <iostream>
 #include <vector>
 
