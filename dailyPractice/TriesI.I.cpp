@@ -29,9 +29,9 @@ public:
     bool startsWith(string prefix){
         TrieNode *cur = this;
         for(char ch : prefix){
-            auto &child = cur->children[ch];
-            if(!child) return false;
-            cur = child.get();
+            auto child = cur->children.find(ch);
+            if(child == cur->children.end()) return false;
+            cur = child->second.get();
         }
         return true;
     }
@@ -39,9 +39,9 @@ public:
     bool search(string word){
         TrieNode *cur = this;
         for(char ch : word){
-            auto &child = cur->children[ch];
-            if(!child) return false;
-            cur = child.get();
+            auto child = cur->children.find(ch);
+            if(child == cur->children.end()) return false;
+            cur = child->second.get();
         }
         return cur->endOfWord;
     }
