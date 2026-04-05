@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 class TrieNode {
 private:
     unordered_map<char, TrieNode*> children;
@@ -25,12 +24,12 @@ private:
     }
 
 public:
-    TrieNode(): endOfWord(false) {}
+    TrieNode(): endOfWord(false){}
 
     void insert(string word){
         TrieNode *cur = this;
         for(char ch : word){
-            if(!cur->children.count(ch)) cur->children[ch] = new TrieNode();
+            if(!cur->children.count(ch)){cur->children[ch] = new TrieNode();}
             cur = cur->children[ch];
         }
         cur->endOfWord = true;
