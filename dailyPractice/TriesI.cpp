@@ -8,7 +8,7 @@ using namespace std;
 
 class TrieNode {
 private:
-    array<unique_ptr<TrieNode>, 52> children{};
+    array<unique_ptr<TrieNode>, 52> children;
     bool endOfWord;
 
     static int getIdx(char ch){
