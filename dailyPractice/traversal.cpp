@@ -6,8 +6,8 @@ using namespace std;
 
 class Node {
 public:
-    Node *left, *right;
     int val;
+    Node *left, *right;
 
     Node(int v): val(v), left(nullptr), right(nullptr) {}
 };
@@ -87,7 +87,7 @@ void levelOrder(Node *root){
     while(!q.empty()){
         Node *cur = q.front();
         q.pop();
-        cout << cur->val <<" ";
+        cout << cur->val << " ";
         if(cur->left) q.push(cur->left);
         if(cur->right) q.push(cur->right);
     }
