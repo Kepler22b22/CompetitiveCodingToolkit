@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 #include <stack>
 #include <queue>
+#include <unordered_set>
 
 using namespace std;
 
@@ -40,8 +40,8 @@ public:
             int u = stk.top();
             stk.pop();
             if(visit.count(u)) continue;
-            cout << u << " ";
             visit.insert(u);
+            cout << u << " ";
             for(const auto &edge : adj[u]){
                 if(!visit.count(edge.first)){
                     stk.push(edge.first);
