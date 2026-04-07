@@ -76,7 +76,7 @@ Date: Feb 5 2025
 **Don't forget pq.pop() within the while loop!  **
 **Don't forget edges[u]'s u within the for loop! **
 
-Date: Feb 6 2026
+Date: Feb 6 2025
 **Don't forget pq.pop() within the while loop!  **
 
 Date: Feb 7 2025
@@ -92,3 +92,6 @@ Date: Feb 8 2025
 Date: Feb 13 2025
 1. traversal: iteratively postorder if-else condition！
 2. heap sort!
+
+Date: Apr 7 2026
+Normally, use queue to do bfs (FIFO, because we need to visit neighbors later), and use stack to do DFS (LIFO, because we need to visit neighbors first).
