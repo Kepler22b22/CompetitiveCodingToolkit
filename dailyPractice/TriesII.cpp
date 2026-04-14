@@ -8,7 +8,7 @@ private:
     unordered_map<char, TrieNode*> children;
     bool endOfWord;
 
-    bool backtracking(string word, int i, TrieNode *cur){
+    bool backtracking(string &word, int i, TrieNode *cur){
         if(i == word.size()) return cur->endOfWord;
         char ch = word[i];
         if(ch == '.'){
@@ -24,12 +24,12 @@ private:
     }
 
 public:
-    TrieNode(): endOfWord(false){}
+    TrieNode(): endOfWord(false) {}
 
     void insert(string word){
         TrieNode *cur = this;
         for(char ch : word){
-            if(!cur->children.count(ch)){cur->children[ch] = new TrieNode();}
+            if(!cur->children[ch]) cur->children[ch] = new TrieNode();
             cur = cur->children[ch];
         }
         cur->endOfWord = true;
