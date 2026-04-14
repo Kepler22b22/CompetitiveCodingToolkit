@@ -16,9 +16,10 @@ private:
         if(isupper(ch)) return ch - 'A';
         return -1;
     }
-
+    
 public:
     TrieNode(): endOfWord(false) {}
+
     ~TrieNode();
 
     void insert(string word){
