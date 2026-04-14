@@ -15,7 +15,7 @@ private:
 
 public:
     TrieNode(): endOfWord(false) {}
-    
+
     void insert(string word){
         TrieNode *cur = this;
         for(char ch : word){
