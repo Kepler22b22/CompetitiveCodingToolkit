@@ -3,12 +3,12 @@
 
 using namespace std;
 
-class DisjointSet {
+class Disjoint {
 private:
     vector<int> parent, rank;
 
 public:
-    DisjointSet(int n){
+    Disjoint(int n){
         parent.resize(n, -1);
         rank.resize(n, 0);
     }
@@ -30,9 +30,9 @@ public:
 };
 
 void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
-    DisjointSet set(n);
     vector<tuple<int, int, int>> inMST;
-    sort(edges.begin(), edges.end(), [](const auto &a, const auto &b){
+    Disjoint set(n);
+    sort(edges.begin(), edges.end(), [](auto &a, auto &b){
         return get<2>(a) < get<2>(b);
     });
     for(const auto &[u, v, w] : edges){
@@ -42,9 +42,7 @@ void KruskalAlgo(vector<tuple<int, int, int>> &edges, int n){
         }
         if(inMST.size() == n - 1) break;
     }
-    for(const auto &[u, v, w] : inMST){
-        cout << u << " - " << v << " " << w << endl;
-    }
+    for(const auto &[u, v ,w] : inMST) cout << u << " - " << v << " " << w << endl;
 }
 
 int main() {
