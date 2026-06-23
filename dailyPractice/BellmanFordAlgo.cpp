@@ -4,13 +4,28 @@
 using namespace std;
 
 void BellmanFordAlgo(vector<tuple<int, int, int>> &edges, int n){
-    int superNode = n;
     vector<int> dist(n + 1, INT_MAX);
-    dist[superNode] = 0;
+    int superNode = n;
+    dist[n] = 0;
     for(int i = 0; i < n; ++i){
-        edges.push_back({n, i , 0});
+        edges.push_back({n, i, 0});
     }
-    
+    for(int i = 0; i < n; ++i){
+        for(const auto &[u, v, w] : edges){
+            if(dist[u] != INT_MAX && dist[v] > dist[u] + w){
+                dist[v] = dist[u] + w;
+            }
+        }
+    }
+    for(const auto &[u, v, w] : edges){
+        if(dist[u] != INT_MAX && dist[v] > dist[u] + w){
+            cout << "Negative Cycle Detected. " << endl;
+        }
+    }
+    for(int i = 0; i < n; ++i){
+        if(dist[i] == INT_MAX) cout << "Node " << i << ": INT_MAX" << endl;
+        else cout << "Node " << i << " " << dist[i] << endl;
+    }
 }
 
 int main() {
