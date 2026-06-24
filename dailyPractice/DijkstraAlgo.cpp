@@ -9,12 +9,12 @@ vector<int> DijkstraAlgo(vector<vector<pair<int, int>>> &edges, int n, int start
     vector<int> dist(n, INT_MAX);
     unordered_set<int> visit;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    pq.push({0, start});
     dist[start] = 0;
+    pq.push({0, start});
     while(!pq.empty()){
         int u = pq.top().second;
         pq.pop();
-        if(visit.count(u)) continue;
+        if(visit.count(u)) continue;;
         visit.insert(u);
         for(const auto &edge : edges[u]){
             if(!visit.count(edge.first) && dist[edge.first] > dist[u] + edge.second){
