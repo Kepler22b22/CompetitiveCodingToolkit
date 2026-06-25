@@ -4,7 +4,7 @@
 using namespace std;
 
 void merge(vector<int> &nums, int low, int mid, int high){
-    vector<int> temp(high - low + 1);
+    vector<int> temp(high - low + 1, 0);
     int l = low, r = mid + 1, k = 0;
     while(l <= mid && r <= high){
         if(nums[l] < nums[r]) temp[k++] = nums[l++];
