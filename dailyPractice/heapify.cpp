@@ -31,6 +31,7 @@ void heapifyMin(vector<int> &nums, int n, int i){
     }
 }
 
+
 void minHeap(vector<int> &nums){
     for(int i = nums.size() / 2; i >= 0; --i) heapifyMin(nums, nums.size(), i);
     for(int i = nums.size() - 1; i > 0; --i){
