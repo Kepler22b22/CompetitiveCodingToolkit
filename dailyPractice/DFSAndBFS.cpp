@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 #include <stack>
 #include <queue>
+#include <unordered_set>
 
 using namespace std;
 
@@ -40,8 +40,8 @@ public:
             int u = stk.top();
             stk.pop();
             if(visit.count(u)) continue;
-            visit.insert(u);
             cout << u << " ";
+            visit.insert(u);
             for(const auto &edge : adj[u]){
                 if(!visit.count(edge.first)){
                     stk.push(edge.first);
@@ -59,7 +59,7 @@ public:
     }
 
     void bfs(int start){
-        cout << "BFS starts: " <<endl;
+        cout << "BFS starts: " << endl;
         queue<int> q;
         unordered_set<int> visit;
         q.push(start);
@@ -70,8 +70,8 @@ public:
             cout << u << " ";
             for(const auto &edge : adj[u]){
                 if(!visit.count(edge.first)){
-                    q.push(edge.first);
                     visit.insert(edge.first);
+                    q.push(edge.first);
                 }
             }
         }
