@@ -59,18 +59,46 @@ left pointer should also be checked to be smaller than high;
 right pointer should also be checked to be greater than low. 
 
 2. Kruskal vs. Prim vs. Dijkstra
-1) Krystal: <-- minimum spinning tree, undirected weighted graphs
+1) Kruskal: <-- minimum spinning tree, undirected weighted graphs
 class DisjointSet: (parent, rank <- depth of this node) find, unionSet
 需要先按照weight的decreasing order sort edges (vector<tuple<int, int, int>), 然后开始遍历edges;
 对于每个u, v, 如果u，v的parent不同，unionSet, 并push进MST中;
 当MST的size等于n-1的时候及时break
+Time: O(ElogE)
+Space: 
+Edge list: O(E)
+Union-Find parent[]: O(V)
+Union-Find rank/size[]: O(V)
 
 2) Prim: <-- minimum spinning tree, undirected weighted graphs
 priority queue, parent, key;
 从index 0开始，先把{0, 0}push进pq中，key[0] = 0, 只要pq不为空...
+Time: O(ElogV)
+Space:
+Graph: O(V + E)
+key[]: O(V)
+inMST[]: O(V)
+parent[] (optional): O(V)
+Priority queue: O(E) worst case (multiple candidate edges can be in the heap)
 
-3) Dijkstra: <-- shortest path, directed weighted and undirected weighted graphs
+3) Dijkstra: <-- shortest path, directed weighted and undirected weighted graphs, all edge weights to be non-negative
 priority queue, distance
+Time: O((E+V)logV) -(E > V-1)-> O(ElogV)
+Space:
+Graph	O(V+E)
+dist	O(V)
+parent	O(V)
+visited	O(V)
+priority queue	O(E)
+Overall:
+O(V+E)
+
+4) Bellman-Ford: <-- shortest path, directed weighted and undirected weighted graphs, with negative edge weights
+Time: O(VE)
+Space:
+Edge list: O(E)
+Distance array: O(V)
+Parent array (optional): O(V)
 
 Date: Feb 5 2025
 **Don't forget pq.pop() within the while loop!  **
