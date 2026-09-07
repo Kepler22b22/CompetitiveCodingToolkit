@@ -16,15 +16,15 @@ private:
         if(isupper(ch)) return ch - 'A';
         return -1;
     }
-    
+
 public:
     TrieNode(): endOfWord(false) {}
 
     ~TrieNode();
 
-    void insert(string word){
+    void insert(const string &word){
         TrieNode *cur = this;
-        for(char ch : word){
+        for(const auto &ch : word){
             int i = getIdx(ch);
             auto &child = cur->children[i];
             if(!child) child = make_unique<TrieNode>();
@@ -33,9 +33,9 @@ public:
         cur->endOfWord = true;
     }
 
-    bool startsWith(string prefix){
+    bool startsWith(const string &prefix){
         TrieNode *cur = this;
-        for(char ch : prefix){
+        for(const auto &ch : prefix){
             int i = getIdx(ch);
             auto &child = cur->children[i];
             if(!child) return false;
@@ -44,9 +44,9 @@ public:
         return true;
     }
 
-    bool search(string word){
+    bool search(const string &word){
         TrieNode *cur = this;
-        for(char ch : word){
+        for(const auto &ch : word){
             int i = getIdx(ch);
             auto &child = cur->children[i];
             if(!child) return false;
