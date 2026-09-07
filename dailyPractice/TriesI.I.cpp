@@ -16,9 +16,9 @@ private:
 public:
     TrieNode(): endOfWord(false) {}
 
-    void insert(string word){
+    void insert(const string &word){
         TrieNode *cur = this;
-        for(char ch : word){
+        for(const auto &ch : word){
             auto &child = cur->children[ch];
             if(!child) child = make_unique<TrieNode>();
             cur = child.get();
@@ -26,9 +26,9 @@ public:
         cur->endOfWord = true;
     }
 
-    bool startsWith(string prefix){
+    bool startsWith(const string &prefix){
         TrieNode *cur = this;
-        for(char ch : prefix){
+        for(const auto &ch : prefix){
             auto child = cur->children.find(ch);
             if(child == cur->children.end()) return false;
             cur = child->second.get();
@@ -36,9 +36,9 @@ public:
         return true;
     }
 
-    bool search(string word){
+    bool search(const string &word){
         TrieNode *cur = this;
-        for(char ch : word){
+        for(const auto &ch : word){
             auto child = cur->children.find(ch);
             if(child == cur->children.end()) return false;
             cur = child->second.get();
