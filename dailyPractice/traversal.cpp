@@ -6,8 +6,8 @@ using namespace std;
 
 class Node {
 public:
-    int val;
     Node *left, *right;
+    int val;
 
     Node(int v): val(v), left(nullptr), right(nullptr) {}
 };
@@ -40,6 +40,7 @@ void inorderR(Node *root){
 }
 
 void inorderI(Node *root){
+    if(!root) return;
     stack<Node*> stk;
     Node *cur = root;
     while(!stk.empty() || cur){
@@ -73,8 +74,8 @@ void postorderI(Node *root){
             cur = stk.top()->right;
         }
         else{
-            lastVisit = stk.top();
             cout << stk.top()->val << " ";
+            lastVisit = stk.top();
             stk.pop();
         }
     }
